@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 12:13:10 by mignavar          #+#    #+#             */
-/*   Updated: 2023/10/05 18:09:32 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:41:09 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_words(char const *s, char c)
 
 	l = 0;
 	word = 0;
-	while (s[l] != '\0')
+	while (s[l])
 	{
 		if (s[l] == c)
 			l++;
@@ -39,7 +39,7 @@ int	len_word(char const *s, int l, char c)
 	int	len;
 
 	len = 0;
-	while (s[l] != c)
+	while (s[l] != c && s[l])
 	{
 		len++;
 		l++;
@@ -47,45 +47,50 @@ int	len_word(char const *s, int l, char c)
 	return (len);
 }
 
-char	**fill(char const *s, char c, int len)
+void	free_all(char **str, int j)
 {
-	int		l;
-	int		word;
-	char	**str;
-
-	l = len;
-	word = len_word(s, l, c);
-	while (s[len] != c)
+	while (j >= 0)
 	{
-		*str = ft_substr(s, l, word);
+		free(str[j]);
+		j--;
+	}
+}
+
+char	**fill(char const *s, char c, char **str, int count)
+{
+	int	j;
+	int	len;
+	int	word;
+
+	j = 0;
+	len = 0;
+	while (s[len] != '\0' && j < count)
+	{
+		if (s[len] != c)
+		{
+			word = len_word(s, len, c);
+			str[j] = ft_substr(s, len, word);
+			if (!str[j])
+				free_all(str, j);
+			j++;
+			len = len + (word - 1);
+		}
+		len++;
 	}
 	return (str);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		l;
-	int		j;
 	int		count;
-	int		word;
 	char	**str;
 
-	l = 0;
-	j = 0;
-	count = count_words(s, c);
-	str = (char **)ft_calloc((count + 1), sizeof(char **));
 	if (!s || !c)
 		return (NULL);
-	while (s[l] != '\0')
-	{
-		if (s[l] != c)
-		{
-			*str = fill(s, c, l);
-			j++;
-			str++;
-			l = l + word;
-		}
-		l++;
-	}
+	count = count_words(s, c);
+	str = (char **)ft_calloc((count + 1), sizeof(char **));
+	if (!str || !c)
+		return (NULL);
+	str = fill((char *)s, c, str, count);
 	return (str);
 }
