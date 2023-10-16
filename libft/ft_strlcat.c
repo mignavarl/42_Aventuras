@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 12:12:49 by mignavar          #+#    #+#             */
-/*   Updated: 2023/10/04 15:30:38 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/10/13 17:16:29 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	totalsize;
 	size_t	l;
 
+	if ((!dst || !src) && size == 0)
+		return (0);
 	dstsize = ft_strlen(dst);
 	totalsize = (ft_strlen(dst) + ft_strlen(src));
 	l = 0;

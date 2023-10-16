@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:33:42 by mignavar          #+#    #+#             */
-/*   Updated: 2023/10/05 13:52:17 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:42:19 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	a;
-	size_t	t;
 
 	a = 0;
-	t = start;
 	if (ft_strlen(s) < start)
 	{
 		sub = (char *)malloc(sizeof(char));
+		if (!sub)
+			return (NULL);
 		*sub = '\0';
 		return (sub);
 	}
@@ -31,11 +31,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub = (char *)malloc(sizeof(char) * (len + 1));
 	if (!sub)
 		return (0);
-	while (a < len && t < ft_strlen(s))
+	while (a < len && start < ft_strlen(s))
 	{
-		sub[a] = s[t];
+		sub[a] = s[start];
 		a++;
-		t++;
+		start++;
 	}
 	sub[a] = '\0';
 	return (sub);
