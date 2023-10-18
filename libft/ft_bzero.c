@@ -6,12 +6,11 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:50:34 by mignavar          #+#    #+#             */
-/*   Updated: 2023/10/05 12:25:58 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:14:53 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	ft_bzero(void *s, size_t n)
 {

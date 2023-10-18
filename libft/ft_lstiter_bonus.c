@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 16:00:42 by mignavar          #+#    #+#             */
-/*   Updated: 2023/10/16 16:43:43 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:23:31 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (lst != '\0')
+	while (lst != NULL)
 	{
 		f(lst -> content);
 		lst = lst -> next;

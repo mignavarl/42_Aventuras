@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 18:29:37 by mignavar          #+#    #+#             */
-/*   Updated: 2023/10/16 15:23:01 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:23:37 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_list	*ft_lstlast(t_list *lst)
 	t_list	*l;
 
 	l = lst;
-	while (l != '\0')
+	while (l != NULL)
 	{
-		if (l -> next == '\0')
+		if (l -> next == NULL)
 			return (l);
 		l = l -> next;
 	}

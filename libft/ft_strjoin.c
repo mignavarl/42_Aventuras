@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 10:56:41 by mignavar          #+#    #+#             */
-/*   Updated: 2023/09/28 14:05:07 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:42:48 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		i;
 
 	i = 0;
-	str = ((char *)malloc((ft_strlen(s1) + ft_strlen(s2))
-				* sizeof(char const) + 1));
+	str = ((char *)malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char) + 1));
 	if (!str)
 		return (NULL);
 	while (*s1 != '\0')
