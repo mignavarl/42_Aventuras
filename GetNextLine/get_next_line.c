@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:38:47 by mignavar          #+#    #+#             */
-/*   Updated: 2023/11/08 17:17:59 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:40:45 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ char	*read_file(char *buff, int fd)
 		if (rd <= 0)
 			break ;
 		buff[rd] = '\0';
-		//buff = appendix_read(buff, buff_read);
-		buff = ft_strjoin(buff, buff_read);
+		buff = appendix_read(buff, buff_read);
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}
@@ -60,6 +59,7 @@ char	*extract_line(char *buff)
 	l = 0;
 	while (buff[l] != '\n' && buff[l] != '\0')
 		l++;
+	l++;
 	line = ft_calloc(l + 1, sizeof(char));
 	if (!line)
 		return (NULL);
@@ -69,8 +69,13 @@ char	*extract_line(char *buff)
 		line[i] = buff[i];
 		i++;
 	}
+	if (buff[l - 1] == '\n')
+	{
 	line[i] = '\n';
 	line[i + 1] = '\0';
+	}
+	else
+		line[i] = '\0';
 	return (line);
 }
 
@@ -79,7 +84,8 @@ char	*rest_buff(char *buff)
 	char	*temp;
 	int		i;
 	int		l;
-	
+	int		j;
+
 	i = 0;
 	while (buff[i] != '\n' && buff[i] != '\0')
 		i++;
@@ -88,8 +94,14 @@ char	*rest_buff(char *buff)
 	l = i;
 	while (buff[l] != '\0')
 		l++;
-	temp = ft_calloc(l + 1, sizeof(char));
-	temp = &buff[i];
+	temp = ft_calloc((l - i) + 1, sizeof(char));
+	j = 0;
+	while (buff[i] != '\0')
+	{
+		temp[j] = buff[i];
+		i++;
+		j++;
+	}
 	free(buff);
 	return (temp);
 }
@@ -115,7 +127,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int		fd;
 	char	*line;
@@ -134,10 +146,10 @@ int	main(void)
 		if (line == NULL)
 			break ;
 		count++;
-		printf("[%d]:%s\n", count, line);
+		printf("[%d]:%s", count, line);
 		free (line);
 		line = NULL;
 	}
 	close(fd);
 	return (0);
-}
+}*/
