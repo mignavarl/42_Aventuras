@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:38:47 by mignavar          #+#    #+#             */
-/*   Updated: 2023/11/10 12:40:45 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:35:09 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ char	*appendix_read(char *buff, char *buff_read)
 	char	*temp;
 
 	temp = ft_strjoin(buff, buff_read);
-	if (buff)
-		free(buff);
+	free(buff);
 	return (temp);
 }
 
@@ -27,26 +26,25 @@ char	*read_file(char *buff, int fd)
 	int		rd;
 	char	*buff_read;
 
-	buff_read = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	if (!buff_read)
-		return (NULL);
 	rd = 1;
 	while (rd > 0)
 	{
+		buff_read = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+		if (!buff_read)
+			return (NULL);
 		rd = read(fd, buff_read, BUFFER_SIZE);
 		if (rd == -1 || buff_read[0] == '\0')
 		{
 			free(buff_read);
+			if (buff[rd] != '\0')
+				return (buff);
 			return (NULL);
 		}
-		if (rd <= 0)
-			break ;
-		buff[rd] = '\0';
 		buff = appendix_read(buff, buff_read);
+		free(buff_read);
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}
-	free(buff_read);
 	return (buff);
 }
 
@@ -71,8 +69,8 @@ char	*extract_line(char *buff)
 	}
 	if (buff[l - 1] == '\n')
 	{
-	line[i] = '\n';
-	line[i + 1] = '\0';
+		line[i] = '\n';
+		line[i + 1] = '\0';
 	}
 	else
 		line[i] = '\0';
@@ -103,7 +101,7 @@ char	*rest_buff(char *buff)
 		j++;
 	}
 	free(buff);
-	return (temp);
+	return (temp); //Tengo que liberar el temp si lo que tiene es nada ¿Entonces que devolvería? ¿NULL quizás?
 }
 
 char	*get_next_line(int fd)
@@ -126,30 +124,3 @@ char	*get_next_line(int fd)
 	buff = rest_buff(buff);
 	return (line);
 }
-
-/*int	main(void)
-{
-	int		fd;
-	char	*line;
-	int		count;
-
-	count = 0;
-	fd = open("example.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		printf("No se pudo abrir el archivo");
-		return (1);
-	}
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		count++;
-		printf("[%d]:%s", count, line);
-		free (line);
-		line = NULL;
-	}
-	close(fd);
-	return (0);
-}*/
