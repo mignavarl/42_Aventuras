@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:38:47 by mignavar          #+#    #+#             */
-/*   Updated: 2023/11/13 15:35:09 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:46:58 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ char	*read_file(char *buff, int fd)
 		if (!buff_read)
 			return (NULL);
 		rd = read(fd, buff_read, BUFFER_SIZE);
-		if (rd == -1 || buff_read[0] == '\0')
+		if (rd < 1)
 		{
 			free(buff_read);
-			if (buff[rd] != '\0')
+			if (buff[0] != '\0' && rd != -1)
 				return (buff);
+			free(buff);
+			buff = 0;
 			return (NULL);
 		}
 		buff = appendix_read(buff, buff_read);
@@ -89,19 +91,20 @@ char	*rest_buff(char *buff)
 		i++;
 	if (buff[i] == '\n')
 		i++;
+	if (buff[i] == '\0')
+	{
+		free(buff);
+		return (NULL);
+	}
 	l = i;
 	while (buff[l] != '\0')
 		l++;
 	temp = ft_calloc((l - i) + 1, sizeof(char));
 	j = 0;
 	while (buff[i] != '\0')
-	{
-		temp[j] = buff[i];
-		i++;
-		j++;
-	}
+		temp[j++] = buff[i++];
 	free(buff);
-	return (temp); //Tengo que liberar el temp si lo que tiene es nada ¿Entonces que devolvería? ¿NULL quizás?
+	return (temp);
 }
 
 char	*get_next_line(int fd)
@@ -112,14 +115,15 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!buff)
+	{
 		buff = ft_calloc(1, sizeof(char));
+		if (!buff)
+			return (NULL);
+	}
 	if (!ft_strchr(buff, '\n'))
 		buff = read_file(buff, fd);
-	if (buff == '\0')
-	{
-		free(buff);
+	if (!buff)
 		return (NULL);
-	}
 	line = extract_line(buff);
 	buff = rest_buff(buff);
 	return (line);
