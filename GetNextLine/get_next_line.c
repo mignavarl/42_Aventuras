@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:38:47 by mignavar          #+#    #+#             */
-/*   Updated: 2023/11/15 15:46:58 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:54:18 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,16 @@ char	*extract_line(char *buff)
 	l = 0;
 	while (buff[l] != '\n' && buff[l] != '\0')
 		l++;
-	l++;
+	if (buff[l] == '\n')
+		l++;
 	line = ft_calloc(l + 1, sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (buff[i] != '\n' && buff[i] != '\0')
-	{
-		line[i] = buff[i];
-		i++;
-	}
-	if (buff[l - 1] == '\n')
+	l = 0;
+	while (buff[l] != '\n' && buff[l] != '\0')
+		line[i++] = buff[l++];
+	if (buff[l] == '\n')
 	{
 		line[i] = '\n';
 		line[i + 1] = '\0';
