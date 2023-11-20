@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:38:47 by mignavar          #+#    #+#             */
-/*   Updated: 2023/11/15 17:54:18 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:37:03 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ char	*read_file(char *buff, int fd)
 	int		rd;
 	char	*buff_read;
 
+	buff_read = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!buff_read)
+		return (NULL);//tengo que liberar el buff
 	rd = 1;
 	while (rd > 0)
 	{
-		buff_read = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-		if (!buff_read)
-			return (NULL);
 		rd = read(fd, buff_read, BUFFER_SIZE);
 		if (rd < 1)
 		{
@@ -39,14 +39,14 @@ char	*read_file(char *buff, int fd)
 			if (buff[0] != '\0' && rd != -1)
 				return (buff);
 			free(buff);
-			buff = 0;
 			return (NULL);
 		}
+		buff_read[rd] = '\0';
 		buff = appendix_read(buff, buff_read);
-		free(buff_read);
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}
+	free(buff_read);
 	return (buff);
 }
 
@@ -98,7 +98,7 @@ char	*rest_buff(char *buff)
 	l = i;
 	while (buff[l] != '\0')
 		l++;
-	temp = ft_calloc((l - i) + 1, sizeof(char));
+	temp = ft_calloc((l - i) + 1, sizeof(char));//poner la protección con su free
 	j = 0;
 	while (buff[i] != '\0')
 		temp[j++] = buff[i++];
@@ -122,7 +122,10 @@ char	*get_next_line(int fd)
 	if (!ft_strchr(buff, '\n'))
 		buff = read_file(buff, fd);
 	if (!buff)
+	{
+		free(buff);
 		return (NULL);
+	}
 	line = extract_line(buff);
 	buff = rest_buff(buff);
 	return (line);
