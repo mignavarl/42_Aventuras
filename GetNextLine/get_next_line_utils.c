@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 13:11:58 by mignavar          #+#    #+#             */
-/*   Updated: 2023/11/08 16:31:41 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:17:48 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	*ft_calloc(size_t nitems, size_t size)
 
 char	*ft_strchr(const char *str, int ch)
 {
+	if (!str)
+		return (0);
 	while (*str != '\0' && *str != (char)ch)
 		str++;
 	if (*str == (char)ch)

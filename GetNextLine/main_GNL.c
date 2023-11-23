@@ -1,5 +1,7 @@
 #include "get_next_line.h"
 
+
+
 int	main(void)
 {
 	int		fd;
@@ -7,7 +9,7 @@ int	main(void)
 	int		count;
 
 	count = 0;
-	fd = open("ejemplo.txt", O_RDONLY);
+	fd = open("shrek.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		printf("No se pudo abrir el archivo");

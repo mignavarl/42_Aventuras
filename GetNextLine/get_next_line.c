@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:38:47 by mignavar          #+#    #+#             */
-/*   Updated: 2023/11/20 17:37:03 by mignavar         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:18:04 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*read_file(char *buff, int fd)
 
 	buff_read = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buff_read)
-		return (NULL);//tengo que liberar el buff
+		return (NULL);
 	rd = 1;
 	while (rd > 0)
 	{
@@ -36,7 +36,7 @@ char	*read_file(char *buff, int fd)
 		if (rd < 1)
 		{
 			free(buff_read);
-			if (buff[0] != '\0' && rd != -1)
+			if (buff[0] != '\0' && rd == 0)
 				return (buff);
 			free(buff);
 			return (NULL);
@@ -53,7 +53,6 @@ char	*read_file(char *buff, int fd)
 char	*extract_line(char *buff)
 {
 	char	*line;
-	int		i;
 	int		l;
 
 	l = 0;
@@ -64,17 +63,8 @@ char	*extract_line(char *buff)
 	line = ft_calloc(l + 1, sizeof(char));
 	if (!line)
 		return (NULL);
-	i = 0;
-	l = 0;
-	while (buff[l] != '\n' && buff[l] != '\0')
-		line[i++] = buff[l++];
-	if (buff[l] == '\n')
-	{
-		line[i] = '\n';
-		line[i + 1] = '\0';
-	}
-	else
-		line[i] = '\0';
+	while (l--)
+		line[l] = buff[l];
 	return (line);
 }
 
@@ -82,7 +72,6 @@ char	*rest_buff(char *buff)
 {
 	char	*temp;
 	int		i;
-	int		l;
 	int		j;
 
 	i = 0;
@@ -90,15 +79,9 @@ char	*rest_buff(char *buff)
 		i++;
 	if (buff[i] == '\n')
 		i++;
-	if (buff[i] == '\0')
-	{
-		free(buff);
+	temp = ft_calloc((ft_strlen(buff) - i) + 1, sizeof(char));
+	if (!temp)
 		return (NULL);
-	}
-	l = i;
-	while (buff[l] != '\0')
-		l++;
-	temp = ft_calloc((l - i) + 1, sizeof(char));//poner la protección con su free
 	j = 0;
 	while (buff[i] != '\0')
 		temp[j++] = buff[i++];
