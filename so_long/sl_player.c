@@ -1,0 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sl_player.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/13 12:13:05 by mignavar          #+#    #+#             */
+/*   Updated: 2024/02/14 14:29:46 by mignavar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+void	pos_player(t_game *data)
+{
+	int	pos; 
+	int	line;
+
+	pos = 1;
+	line = 1;
+	while (data->map[line])
+	{
+		while (data->map[line][pos] != '\n' && data->map[line][pos] != '\0')
+		{
+			if (data->map[line][pos] == 'P')
+				break ;
+			pos++;
+		}
+		if (data->map[line][pos] == 'P')
+			break ;
+		pos = 1;
+		line++;
+	}
+	data->x = pos;
+	data->y = line;
+}
+
+void	put_player(t_game *data, t_img *sprite)
+{
+	mlx_put_image_to_window(data->mlx, data->win, sprite->pj, 
+		data->x * 64, data->y * 64);
+}
+
+void	restore_player(t_game *data, t_img *sprite)
+{
+	//mlx_clear_window(data->mlx, data->win);
+	put_background(data, sprite);
+	put_player(data, sprite);
+}
