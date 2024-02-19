@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   other_funcions.c                                   :+:      :+:    :+:   */
+/*   sl_other_funcions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:21:07 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/09 14:52:07 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:31:01 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_map(char **map)
 {
 	int	i;
-	
+
 	i = 0;
 	while (map[i])
 	{
@@ -33,4 +33,24 @@ int	ft_strlen_no_n(char *map)
 	while (map[len] != '\n' && map[len] != '\0')
 		len++;
 	return (len);
+}
+
+void	free_all(t_game *data)
+{
+	int	total;
+
+	total = get_total_line(data->map);
+	while (total >= 0)
+	{
+		free(data->map[total]);
+		total--;
+	}
+	free(data->map);
+}
+
+int	cross_window(t_game *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	free_all(data);
+	exit(0);
 }

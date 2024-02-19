@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_map.c                                         :+:      :+:    :+:   */
+/*   sl_fill_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:03:28 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/09 14:52:21 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:29:59 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,18 @@ int	fill_map(char **map, int total_line, int final_pos)
 	line = 1;
 	while (map[line][pos] != '\0')
 	{
-		while(pos < final_pos)
+		while (pos < final_pos)
 		{
 			if (map[line][pos] == 'P')
 				break ;
 			pos++;
 		}
 		if (map[line][pos] == 'P')
-		 	break ;
+			break ;
 		pos = 1;
 		line++;
 	}
 	fill_pj(map, line, pos);
-	print_map(map);
 	if (check_col(map, total_line) != 0 || check_exit(map, total_line) != 0)
 		return (1);
 	return (0);

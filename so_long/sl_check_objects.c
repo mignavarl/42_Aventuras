@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_objects.c                                    :+:      :+:    :+:   */
+/*   sl_check_objects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 13:22:32 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/07 14:21:37 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:29:11 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_wall(char **map, int total_line)
+int	check_wall(char **map, int total_line)
 {
-	int wall;
+	int	wall;
 	int	line;
 
 	wall = 0;

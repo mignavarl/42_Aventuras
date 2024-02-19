@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:58:54 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/14 15:35:41 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:50:33 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_img
 	void	*wall;
 	void	*exit;
 	void	*col;
+	void	*open;
 }				t_img;
 
 typedef struct s_game
@@ -35,11 +36,13 @@ typedef struct s_game
 	int		y;
 
 	char	**map;
-	t_img 	sprite;
+	int		col;
+
+	t_img	sprite;
 }				t_game;
 
 //MAP
-char    **create_map(char *path);
+char	**create_map(char *path);
 int		get_alto(char *path);
 int		get_total_line(char **map);
 int		fill_map(char **map, int total_line, int final_line);
@@ -57,6 +60,10 @@ int		check_letter(char **map, int total_line);
 //GAME
 void	init_game(t_game *data);
 int		key_event(int keycode, t_game *data);
+void	key_move(int key, t_game *data);
+void	key_col(t_game *data);
+void	key_exit(t_game *data);
+int		cross_window(t_game *data);
 
 //PLAYER
 void	restore_player(t_game *data, t_img *sprite);
@@ -73,5 +80,7 @@ void	put_col(t_game *data, t_img *sprite);
 int		ft_strlen_no_n(char *map);
 int		error_arg(int ac, char **av);
 void	print_map(char **map);
+void	free_all(t_game *data);
+void	print_errors(int error);
 
 #endif

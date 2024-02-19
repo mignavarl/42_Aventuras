@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:13:05 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/14 14:29:46 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:31:45 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pos_player(t_game *data)
 {
-	int	pos; 
+	int	pos;
 	int	line;
 
 	pos = 1;
@@ -38,13 +38,12 @@ void	pos_player(t_game *data)
 
 void	put_player(t_game *data, t_img *sprite)
 {
-	mlx_put_image_to_window(data->mlx, data->win, sprite->pj, 
+	mlx_put_image_to_window(data->mlx, data->win, sprite->pj,
 		data->x * 64, data->y * 64);
 }
 
 void	restore_player(t_game *data, t_img *sprite)
 {
-	//mlx_clear_window(data->mlx, data->win);
 	put_background(data, sprite);
 	put_player(data, sprite);
 }
