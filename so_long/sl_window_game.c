@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:24:24 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/19 11:35:35 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:25:12 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	key_event(int key, t_game *data)
 	return (0);
 }
 
-void	init_game(t_game *data)
+int	init_game(t_game *data)
 {
 	data->col = check_col(data->map, get_total_line(data->map));
 	data->mlx = mlx_init();
@@ -95,10 +95,13 @@ void	init_game(t_game *data)
 	init_sprite(&data->sprite, data);
 	data->x = 0;
 	data->y = 0;
-	put_background(data, &data->sprite);
+	if (put_background(data, &data->sprite) != 0)
+		return (1);
 	pos_player(data);
-	put_player(data, &data->sprite);
+	if (put_player(data, &data->sprite) != 0)
+		return (1);
 	mlx_hook(data->win, 2, 1L >> 0, key_event, data);
 	mlx_hook(data->win, 17, 0L, cross_window, data);
 	mlx_loop(data->mlx);
+	return (0);
 }

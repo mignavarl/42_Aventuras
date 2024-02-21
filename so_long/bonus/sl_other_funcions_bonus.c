@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:21:07 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/19 12:29:54 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:51:20 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	free_all(t_game *data)
 
 int	cross_window(t_game *data)
 {
+	ft_printf("\033[1;31m-----------------------\033[0m\n");
+	ft_printf("\033[1;31m      YOU GIVE UP      \033[0m\n");
+	ft_printf("\033[1;31m-----------------------\033[0m\n");
 	mlx_destroy_window(data->mlx, data->win);
 	free_all(data);
 	exit(0);

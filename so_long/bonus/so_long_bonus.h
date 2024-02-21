@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:58:54 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/19 17:14:04 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:49:04 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_img
 	void	*col;
 	void	*open;
 	void	*enemy;
+	void	*black;
+	void	*yellow;
 }				t_img;
 
 typedef struct s_game
@@ -33,13 +35,15 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 
-	//CORDS
+	//CORDS PLAYER
 	int		x;
 	int		y;
 
+	//MAP
 	char	**map;
-	t_img	sprite;
 	int		col;
+	int		mov;
+	t_img	sprite;
 }				t_game;
 
 //MAP
@@ -59,25 +63,28 @@ int		check_exit(char **map, int total_line);
 int		check_letter(char **map, int total_line);
 
 //GAME
-void	init_game(t_game *data);
+int		init_game(t_game *data);
 int		key_event(int keycode, t_game *data);
 void	key_move(int key, t_game *data);
 void	key_col(t_game *data);
 void	key_exit(t_game *data);
 int		cross_window(t_game *data);
 void	enemy_kill(t_game *data);
+int		number_movements(t_game *data, t_img *sprite);
 
 //PLAYER
 void	restore_player(t_game *data, t_img *sprite);
-void	put_player(t_game *data, t_img *sprite);
 void	pos_player(t_game *data);
+int		put_player(t_game *data, t_img *sprite);
 
 //BACKGROUND
-void	put_background(t_game *data, t_img *sprite);
-void	put_walls(t_game *data, t_img *sprite);
-void	put_floor(t_game *data, t_img *sprite);
-void	put_col(t_game *data, t_img *sprite);
-void	put_enemy(t_game *data, t_img *sprite);
+int		put_background(t_game *data, t_img *sprite);
+int		put_walls(t_game *data, void *wall);
+int		put_floor(t_game *data, t_img *sprite);
+int		put_col(t_game *data, t_img *sprite);
+int		put_enemy(t_game *data, t_img *sprite);
+int		animate_sea(t_game *data);
+int		col_yellow(t_game *data);
 
 //OTHER FUNCIONS
 int		ft_strlen_no_n(char *map);

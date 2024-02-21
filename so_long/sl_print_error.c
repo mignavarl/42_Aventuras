@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:41:51 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/19 14:59:07 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:28:24 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,6 @@ void	print_errors(int error)
 		ft_printf("invalid character in map\n");
 	if (error == 7)
 		ft_printf("The map cannot be completed\n");
+	if (error == 8)
+		ft_printf("Problems with images\n");
 }

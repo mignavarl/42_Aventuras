@@ -9,7 +9,7 @@ BONUS = so_long_bonus
 DIR_BONUS = ./bonus/
 
 BONUS_SRC =so_long_bonus.c sl_check_objects_bonus.c sl_other_funcions_bonus.c sl_map_utils_bonus.c sl_fill_map_bonus.c sl_print_error_bonus.c\
-	sl_window_game_bonus.c sl_player_bonus.c sl_background_bonus.c sl_collectables_map_bonus.c sl_enemy_bonus.c
+	sl_window_game_bonus.c sl_player_bonus.c sl_background_bonus.c sl_collectables_map_bonus.c sl_enemy_bonus.c sl_animations_bonus.c
 
 BONUS_OBJ = ${addprefix ${DIR_BONUS}, ${BONUS_SRC:.c=.o}}
 
@@ -46,4 +46,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+rebonus: fclean bonus
+
+.PHONY: all clean fclean re bonus rebonus

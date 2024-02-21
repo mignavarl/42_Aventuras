@@ -6,19 +6,21 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:49:27 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/19 11:28:42 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:39:32 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_exit(t_game *data, t_img *sprite)
+int	put_exit(t_game *data, t_img *sprite)
 {
 	int		pos;
 	int		line;
 
 	pos = 0;
 	line = 0;
+	if (!sprite->exit)
+		return (1);
 	while (data->map[line])
 	{
 		while (data->map[line][pos] != '\n' && data->map[line][pos] != '\0')
@@ -34,15 +36,18 @@ void	put_exit(t_game *data, t_img *sprite)
 		pos = 0;
 		line++;
 	}
+	return (0);
 }
 
-void	put_floor(t_game *data, t_img *sprite)
+int	put_floor(t_game *data, t_img *sprite)
 {
 	int		pos;
 	int		line;
 
 	pos = 0;
 	line = 0;
+	if (!sprite->floor)
+		return (1);
 	while (data->map[line])
 	{
 		while (data->map[line][pos] != '\n' && data->map[line][pos] != '\0')
@@ -56,15 +61,18 @@ void	put_floor(t_game *data, t_img *sprite)
 		pos = 0;
 		line++;
 	}
+	return (0);
 }
 
-void	put_walls(t_game *data, t_img *sprite)
+int	put_walls(t_game *data, t_img *sprite)
 {
 	int		pos;
 	int		line;
 
 	pos = 0;
 	line = 0;
+	if (!sprite->wall)
+		return (1);
 	while (data->map[line])
 	{
 		while (data->map[line][pos] != '\n' && data->map[line][pos] != '\0')
@@ -77,12 +85,18 @@ void	put_walls(t_game *data, t_img *sprite)
 		pos = 0;
 		line++;
 	}
+	return (0);
 }
 
-void	put_background(t_game *data, t_img *sprite)
+int	put_background(t_game *data, t_img *sprite)
 {
-	put_walls(data, sprite);
-	put_floor(data, sprite);
-	put_exit(data, sprite);
-	put_col(data, sprite);
+	if (put_walls(data, sprite) == 1)
+		return (1);
+	if (put_floor(data, sprite) == 1)
+		return (1);
+	if (put_exit(data, sprite) == 1)
+		return (1);
+	if (put_col(data, sprite) == 1)
+		return (1);
+	return (0);
 }
