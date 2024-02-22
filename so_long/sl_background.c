@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:49:27 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/20 14:39:32 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:00:16 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	put_exit(t_game *data, t_img *sprite)
 
 	pos = 0;
 	line = 0;
-	if (!sprite->exit)
+	if (!sprite->exit || !sprite->open)
 		return (1);
 	while (data->map[line])
 	{

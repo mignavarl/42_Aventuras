@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:24:24 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/20 14:25:12 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:06:56 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,12 @@ int	other_keycode(int key, t_game *data)
 {
 	if (key == 53)
 	{
+		ft_printf("\033[1;31m-----------------------\033[0m\n");
+		ft_printf("\033[1;31m      YOU GIVE UP      \033[0m\n");
+		ft_printf("\033[1;31m-----------------------\033[0m\n");
 		mlx_destroy_window(data->mlx, data->win);
 		free_all(data);
 		exit(0);
-	}
-	if (key == 18 && key == 19)
-	{
-		ft_printf("FUNCIONA\n");
-		return (0);
 	}
 	return (0);
 }
@@ -86,7 +84,7 @@ int	key_event(int key, t_game *data)
 	return (0);
 }
 
-int	init_game(t_game *data)
+void	init_game(t_game *data)
 {
 	data->col = check_col(data->map, get_total_line(data->map));
 	data->mlx = mlx_init();
@@ -96,12 +94,11 @@ int	init_game(t_game *data)
 	data->x = 0;
 	data->y = 0;
 	if (put_background(data, &data->sprite) != 0)
-		return (1);
+		failed_sprite(data);
 	pos_player(data);
 	if (put_player(data, &data->sprite) != 0)
-		return (1);
+		failed_sprite(data);
 	mlx_hook(data->win, 2, 1L >> 0, key_event, data);
 	mlx_hook(data->win, 17, 0L, cross_window, data);
 	mlx_loop(data->mlx);
-	return (0);
 }

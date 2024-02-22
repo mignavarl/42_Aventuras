@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:58:54 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/20 14:24:33 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:07:47 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		check_exit(char **map, int total_line);
 int		check_letter(char **map, int total_line);
 
 //GAME
-int		init_game(t_game *data);
+void	init_game(t_game *data);
 int		key_event(int keycode, t_game *data);
 void	key_move(int key, t_game *data);
 void	key_col(t_game *data);
@@ -75,6 +75,7 @@ int		put_background(t_game *data, t_img *sprite);
 int		put_walls(t_game *data, t_img *sprite);
 int		put_floor(t_game *data, t_img *sprite);
 int		put_col(t_game *data, t_img *sprite);
+void	failed_sprite(t_game *data);
 
 //OTHER FUNCIONS
 int		ft_strlen_no_n(char *map);

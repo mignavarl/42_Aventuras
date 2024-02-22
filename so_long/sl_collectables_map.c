@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 14:57:00 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/20 14:35:27 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:59:47 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void	key_exit(t_game *data)
 {
 	if (data->map[data->y][data->x] == 'E' && data->col == 0)
 	{
+		ft_printf("\033[1;32m--------------------\033[0m\n");
+		ft_printf("\033[1;32m      YOU  WIN      \033[0m\n");
+		ft_printf("\033[1;32m--------------------\033[0m\n");
 		mlx_destroy_window(data->mlx, data->win);
 		free_all(data);
 		exit(0);

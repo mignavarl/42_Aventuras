@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:54:56 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/20 14:29:14 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:33:30 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	main(int ac, char **av)
 	}
 	free_all(&data);
 	data.map = create_map(av[1]);
-	if (init_game(&data) != 0)
-		print_errors(8);
+	init_game(&data);
 	return (0);
 }

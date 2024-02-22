@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:21:07 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/21 11:51:20 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:27:12 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	free_all(t_game *data)
 		total--;
 	}
 	free(data->map);
+	//free(&data);
 }
 
 int	cross_window(t_game *data)
@@ -55,5 +56,13 @@ int	cross_window(t_game *data)
 	ft_printf("\033[1;31m-----------------------\033[0m\n");
 	mlx_destroy_window(data->mlx, data->win);
 	free_all(data);
+	exit(0);
+}
+
+void	failed_sprite(t_game *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	free_all(data);
+	print_errors(8);
 	exit(0);
 }

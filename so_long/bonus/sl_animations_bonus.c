@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:44:15 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/21 12:15:46 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:31:27 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	animate_sea(t_game *data)
 {
 	static int	frames;
 
+	if (!data->sprite.wall_2 || !data->sprite.wall)
+		failed_sprite(data);
 	if (!frames)
 		frames = 0;
 	if (frames < 40)
@@ -30,6 +32,9 @@ int	animate_sea(t_game *data)
 
 int	number_movements(t_game *data, t_img *sprite)
 {
+	char *num;
+
+	num = ft_itoa(data->mov);
 	if (!sprite->black)
 		return (1);
 	if (!data->mov)
@@ -37,6 +42,7 @@ int	number_movements(t_game *data, t_img *sprite)
 	mlx_put_image_to_window(data->mlx, data->win, sprite->black,
 		0, (get_total_line(data->map) * 64));
 	mlx_string_put(data->mlx, data->win, 0,
-		((get_total_line(data->map)) * 64), 0xE1A6FF, ft_itoa(data->mov));
+		((get_total_line(data->map)) * 64), 0xE1A6FF, num);
+	free(num);
 	return (0);
 }
