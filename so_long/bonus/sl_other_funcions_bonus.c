@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:21:07 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/22 12:27:12 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:10:00 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	free_all(t_game *data)
 		total--;
 	}
 	free(data->map);
-	//free(&data);
 }
 
 int	cross_window(t_game *data)

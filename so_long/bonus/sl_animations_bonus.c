@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:44:15 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/22 12:31:27 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:09:12 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	animate_sea(t_game *data)
 
 int	number_movements(t_game *data, t_img *sprite)
 {
-	char *num;
+	char	*num;
 
 	num = ft_itoa(data->mov);
 	if (!sprite->black)

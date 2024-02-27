@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:24:24 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/22 11:53:58 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:26:08 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	init_game(t_game *data)
 	data->col = check_col(data->map, get_total_line(data->map));
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, ft_strlen_no_n(data->map[0]) * 64,
-			(get_total_line(data->map) + 1) * 64, "so_long");
+			(get_total_line(data->map) + 1) * 64, "so_long_bonus");
 	init_sprite(&data->sprite, data);
 	data->x = 0;
 	data->y = 0;

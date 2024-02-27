@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:54:56 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/22 12:33:30 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:12:27 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,16 @@ int	main(int ac, char **av)
 	data.map = create_map(av[1]);
 	if (!data.map)
 		return (1);
-	if (get_total_line(data.map) > 22 && ft_strlen_no_n(data.map[0]) > 40)
+	if (get_total_line(data.map) > 21 && ft_strlen_no_n(data.map[0]) > 40)
 	{
+		free_all(&data);
 		print_errors(0);
 		return (0);
 	}
 	error = check_map(data.map);
 	if (error != 0)
 	{
+		free_all(&data);
 		print_errors(error);
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:54:56 by mignavar          #+#    #+#             */
-/*   Updated: 2024/02/22 12:22:01 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:01:10 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,11 @@ int	check_map(char **map)
 	return (0);
 }
 
-void d_leaks(void)
-{
-	system("leaks so_long");
-}
-
 int	main(int ac, char **av)
 {
 	t_game	data;
 	int		error;
 
-	atexit(d_leaks);
 	if (error_arg(ac, av) == 1)
 		return (1);
 	data.map = create_map(av[1]);
@@ -84,12 +78,14 @@ int	main(int ac, char **av)
 		return (1);
 	if (get_total_line(data.map) > 22 && ft_strlen_no_n(data.map[0]) > 40)
 	{
+		free_all(&data);
 		print_errors(0);
 		return (0);
 	}
 	error = check_map(data.map);
 	if (error != 0)
 	{
+		free_all(&data);
 		print_errors(error);
 		return (0);
 	}
