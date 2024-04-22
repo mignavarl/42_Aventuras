@@ -6,21 +6,21 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:11:23 by mignavar          #+#    #+#             */
-/*   Updated: 2024/03/27 11:15:34 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:59:56 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_limits(long res, long sym)
+void	ps_atoi_limits(long res, long sym, t_data data)
 {
 	if ((res * sym) < INT_MIN)
-		print_error("Below INT_MIN\n");
+		print_error("Below INT_MIN", data);
 	else if ((res * sym) > INT_MAX)
-		print_error("Above INT_MAX");
+		print_error("Above INT_MAX", data);
 }
 
-int	ps_atoi(const char *str)
+int	ps_atoi(const char *str, t_data data)
 {
 	long	sym;
 	long	res;
@@ -40,6 +40,6 @@ int	ps_atoi(const char *str)
 		res = res * 10 + (*str - '0');
 		str++;
 	}
-	check_limits(res, sym);
+	ps_atoi_limits(res, sym, data);
 	return (res * sym);
 }

@@ -6,68 +6,99 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:21:15 by mignavar          #+#    #+#             */
-/*   Updated: 2024/03/28 16:50:04 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/16 10:56:49 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void d_leaks(void)
+void	print_numbers(t_stack *stack_a, t_stack *stack_b)
 {
-	system("leaks push_swap");
-}
-
-void	print_numbers(t_stack *stack_a, int numbers)
-{
-	int	i;
-	int num;
-
-	i = 0;
-	while (i <= numbers)//Mostrar los int
+	printf("    A\t|   B\n------------------\n");
+	while (stack_a != NULL || stack_b != NULL)
 	{
-		num = stack_a -> content;
-		ft_printf("Numbers %d = %d\n", i, num);
-		i++;
-		stack_a = stack_a->next;
-		
+		if (stack_a != NULL)
+		{
+			printf("    %d\t|", stack_a->content);
+			stack_a = stack_a->next;
+		}
+		else
+			printf("   \t|");
+		if (stack_b != NULL)
+		{
+			printf("   %d\n", stack_b->content);
+			stack_b = stack_b->next;
+		}
+		else
+			printf("\n");
 	}
 }
 
-
-void print_bunker(char **bunker, int num)
+void pruebargh(t_stack **stack_a)
 {
-	int i;
-
-	i = 0;
-	while (i < num)
+	char	arg[42];
+	t_stack *stack_b;
+	
+	stack_b = NULL;
+	while (1)
 	{
-		ft_printf("Bunker[%d]: %s\n", i, bunker[i]);
-		i++;
+		print_numbers(*stack_a, stack_b);
+		scanf("%s", arg);
+		if (ft_strncmp(arg, "pb", 2) == 0)
+			push(stack_a, &stack_b, 2);
+		else if (ft_strncmp(arg, "pa", 2) == 0)
+			push(&stack_b, stack_a, 1);
+		else if (ft_strncmp(arg, "sa", 2) == 0)
+			swap(stack_a, 1);
+		else if (ft_strncmp(arg, "sb", 2) == 0)
+			swap(&stack_b, 2);
+		else if (ft_strncmp(arg, "rrr", 3) == 0)
+			double_reverse(stack_a, &stack_b);
+		else if (ft_strncmp(arg, "ra", 2) == 0)
+			rotate(stack_a, 1);
+		else if (ft_strncmp(arg, "rb", 2) == 0)
+			rotate(&stack_b, 2);
+		else if (ft_strncmp(arg, "rra", 3) == 0)
+			reverse_rotate(stack_a, 1);
+		else if (ft_strncmp(arg, "rrb", 3) == 0)
+			reverse_rotate(&stack_b, 2);
+		else if (ft_strncmp(arg, "3", 1) == 0)
+			orden_three_numbers(stack_a);
+		else if (ft_strncmp(arg, "ss", 2) == 0)
+			double_swap(stack_a, &stack_b);
+		else if(ft_strncmp(arg, "rr", 2) == 0)
+			double_rotate(stack_a, &stack_b);
+		else if (ft_strncmp(arg, "q", 1) == 0)
+			break ;
 	}
+	free(stack_b);
 }
 
-//TODO: liberar cuando haya errores
-//TODO: empezar con los movimientos
+// void d_leaks(void)
+// {
+// 	system("leaks push_swap");
+// }
+// 	atexit(d_leaks);
 
 int	main(int argc, char **argv)
 {
-	//atexit(d_leaks);
-	t_stack	**stack_a;
+	t_stack	*stack_a;
 	t_data	data;
 
+	if (argc == 1)
+		return (0);
 	if (check_letters(argc - 1, argv) == 1)
 		return (0);
 	data.numbers = count_number(argc - 1, argv);
-	ft_printf("Nº Argumentos = %d\n", data.numbers);
-	data.bunker = create_bunker(argv, argc - 1, data.numbers);
-	print_bunker(data.bunker, data.numbers);
-	//Crear lista y añadir los int
-	stack_a = malloc(sizeof(t_stack));
+	if (data.numbers < 2)
+		print_error("Few arguments", data);
+	data.bunker = create_bunker(argv, argc - 1, data);
+	check_numbers(data);
+	stack_a = NULL;
 	stack_a = create_list(stack_a, data.bunker, data.numbers);
-	//ft_printf("Aquí\n");
-	print_numbers(*stack_a, data.numbers - 1);
-	//check_equal(data.numbers, stack);
-	free_bunker(data.bunker, data.numbers);
+	free_bunker(data);
+	pruebargh(&stack_a);
+	//orden_numbers(data, &stack_a);
 	free_stack(stack_a);
 	ft_printf(GREEN"Todo OK\n"END);
 	return (0);

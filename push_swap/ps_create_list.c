@@ -6,11 +6,26 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:15:18 by mignavar          #+#    #+#             */
-/*   Updated: 2024/03/28 16:16:06 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:15:21 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ps_lstsize(t_stack *lst)
+{
+	t_stack	*l;
+	int		i;
+
+	l = lst;
+	i = 0;
+	while (l != NULL)
+	{
+		i++;
+		l = l -> next;
+	}
+	return (i);
+}
 
 t_stack	*ps_lst_intnew(int number)
 {
@@ -30,14 +45,14 @@ void	ps_lstadd_front(t_stack **lst, t_stack *new)
 	*lst = new;
 }
 
-t_stack	**create_list(t_stack **list, char **bunker, int num)
+t_stack	*create_list(t_stack *list, char **bunker, int num)
 {
 	int	i;
 
 	i = 0;
 	while (i < num)
 	{
-		ps_lstadd_front(list, ps_lst_intnew(ps_atoi(bunker[i])));
+		ps_lstadd_front(&list, ps_lst_intnew(ft_atoi(bunker[i])));
 		i++;
 	}
 	return (list);

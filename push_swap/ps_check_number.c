@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:03:35 by mignavar          #+#    #+#             */
-/*   Updated: 2024/03/14 16:51:17 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:00:32 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,6 @@ int	count_number(int argc, char **argv)
 	return (num);
 }
 
-// void	check_equal(int numbers, t_list **list)
-// {
-// 	int	n;
-// 	int	l;
-
-// 	n = 0;
-// 	l = 1;
-// 	while (n < numbers)
-// 	{
-// 		while (l <= numbers)
-// 		{
-// 			if (bunker[n] == bunker[l])
-// 			{
-// 				print_error("Equal numbers");
-// 				exit(0);
-// 			}
-// 			l++;
-// 		}
-// 		n++;
-// 		l = n + 1;
-// 	}
-// }
-
 int	check_letters(int ac, char **av)
 {
 	int	n;
@@ -78,4 +55,44 @@ int	check_letters(int ac, char **av)
 		ac--;
 	}
 	return (0);
+}
+
+void	check_equal(t_data data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (i < data.numbers)
+	{
+		while (j < data.numbers)
+		{
+			if (ft_atoi(data.bunker[i]) == ft_atoi(data.bunker[j]))
+			{
+				print_error("Equal numbers", data);
+			}
+			j++;
+		}
+		i++;
+		j = i + 1;
+	}
+}
+
+void	check_limits(t_data data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data.numbers)
+	{
+		ps_atoi(data.bunker[i], data);
+		i++;
+	}
+}
+
+void	check_numbers(t_data data)
+{
+	check_equal(data);
+	check_limits(data);
 }
