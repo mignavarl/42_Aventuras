@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:24:44 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/18 14:48:03 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:26:00 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 	typedef struct s_stack
 	{
 		int				content;
+		int				index;
 		struct s_stack	*next;
 	}					t_stack;
 
