@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:21:15 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/16 10:56:49 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:38:10 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ void pruebargh(t_stack **stack_a)
 // }
 // 	atexit(d_leaks);
 
+//TODO: array con +d3 números
+//TODO: negativos despues de primer nummero en array
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
@@ -88,10 +91,13 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	if (check_letters(argc - 1, argv) == 1)
+	{
+		write(2, "Error\n", 6);
 		return (0);
+	}
 	data.numbers = count_number(argc - 1, argv);
 	if (data.numbers < 2)
-		print_error("Few arguments", data);
+		print_error(data);
 	data.bunker = create_bunker(argv, argc - 1, data);
 	check_numbers(data);
 	stack_a = NULL;

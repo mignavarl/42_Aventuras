@@ -6,40 +6,32 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:55:09 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/22 14:23:29 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:02:16 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	put_index(t_stack **stack_a, int numbers)
-{
-	static int	idx;
-	t_stack 	*s_clon;
-	t_stack		*aux;
-	int			min;
+// void	push_all_less_three(t_data data, t_stack **a, t_stack **b)
+// {
+// 	t_stack	*clon;
+// 	t_stack	*aux;
 
-	idx = 0;
-	s_clon = stack_a;
-	min = s_clon->content;
-	if (!idx)
-		idx = 0;
-	while(s_clon && idx < numbers)
-	{
-		s_clon = s_clon->next;
-		if (min > s_clon->content && s_clon->index == NULL)
-		{
-			min = s_clon->content;
-			aux = s_clon;
-		}
-	}
-	aux->index = idx;
-	if (idx < numbers)
-	{
-		idx++;
-		put_index(stack_a, numbers);
-	}
-}
+// 	clon = *a;
+// 	while (clon)
+// 	{
+// 		if (clon->index < (data.numbers - 3))
+// 		{
+// 			if (!b)
+// 				push(a, b, 2);
+// 			else
+// 			{
+// 				aux 
+// 			}
+// 		}
+// 		clon = clon->next;
+// 	}
+// }
 
 void	algorithm(t_data data, t_stack **stack_a)
 {
@@ -47,6 +39,7 @@ void	algorithm(t_data data, t_stack **stack_a)
 
 	stack_b = NULL;
 	put_index(stack_a, data.numbers);
+	//push_all_less_three(data, stack_a, stack_b);
 }
 
 void	orden_numbers(t_data data, t_stack **stack_a)

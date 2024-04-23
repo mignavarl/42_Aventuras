@@ -1,7 +1,8 @@
 NAME = push_swap
 SRC =ps_push_swap.c ps_check_number.c ps_atoi.c ps_create_bunker.c ps_print_errors.c\
 		ps_create_list.c ps_free_things.c ps_operations_swap.c ps_operations_push.c\
-		ps_operations_rotate.c ps_orden_numbers.c ps_orden_trhee_numbers.c
+		ps_operations_rotate.c ps_orden_numbers.c ps_orden_trhee_numbers.c ps_index_list.c
+		
 
 OBJ = ${SRC:.c=.o}
 
@@ -15,8 +16,9 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@echo "[📝 Pushuapeando... 📝]"
 	@cd libft && $(MAKE)
-	@$(CC) $(OBJ) $(MLX_FLAGS) $(LFLAGS) -o $(NAME)
+	@$(CC) $(OBJ) $(LFLAGS) -o $(NAME)
 
 clean:
 	@cd libft && Make clean

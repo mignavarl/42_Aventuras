@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:03:35 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/01 15:00:32 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:08:26 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,13 @@ int	check_letters(int ac, char **av)
 		while (av[ac][n])
 		{
 			if ((ft_isdigit(av[ac][n]) == 0 && av[ac][n] != '-'
-				&& av[ac][n] != ' ')
+				&& av[ac][n] != ' ' && av[ac][n] != '+')
 				|| ft_strncmp(av[ac], "-0", ft_strlen(av[ac])) == 0)
+				return (1);
+			if ((av[ac][n] == '-' && av[ac][n-1] == '-')
+				|| (av[ac][n] == '+' && av[ac][n-1] == '+')
+				|| (av[ac][n] == '-' && av[ac][n-1] == '+')
+				|| (av[ac][n] == '+' && av[ac][n-1] == '-'))
 				return (1);
 			n++;
 		}
@@ -70,7 +75,7 @@ void	check_equal(t_data data)
 		{
 			if (ft_atoi(data.bunker[i]) == ft_atoi(data.bunker[j]))
 			{
-				print_error("Equal numbers", data);
+				print_error(data);
 			}
 			j++;
 		}

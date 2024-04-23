@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:11:23 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/01 14:59:56 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:55:49 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ps_atoi_limits(long res, long sym, t_data data)
 {
 	if ((res * sym) < INT_MIN)
-		print_error("Below INT_MIN", data);
+		print_error(data);
 	else if ((res * sym) > INT_MAX)
-		print_error("Above INT_MAX", data);
+		print_error(data);
 }
 
 int	ps_atoi(const char *str, t_data data)

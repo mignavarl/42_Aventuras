@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:24:44 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/22 11:26:00 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:03:06 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 	typedef struct s_stack
 	{
 		int				content;
-		int				index;
+		int				*index;
 		struct s_stack	*next;
 	}					t_stack;
 
@@ -58,6 +58,7 @@ typedef struct s_data
 	void	orden_numbers(t_data data, t_stack **stack_a);
 	void	orden_three_numbers(t_stack **stack);
 	void	orden_five_numbers(t_stack **stack_a);
+	void	put_index(t_stack **stack_a, int numbers);
 	
 
 	//LIST_INT
@@ -66,7 +67,7 @@ typedef struct s_data
 	int		ps_lstsize(t_stack *lst);
 
 	//ERRORS
-	void	print_error(char *error, t_data data);
+	void	print_error(t_data data);
 
 	//FREES
 	void	free_bunker(t_data data);
