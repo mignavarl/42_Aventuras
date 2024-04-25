@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:58:41 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/16 10:54:51 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:38:49 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 void	swap(t_stack **stack, int i)
 {
 	t_stack	*clon;
-	int		temp_first;
-	int		temp_second;
-
+	t_stack	*dir_1;
+	t_stack	*dir_2;
+	
 	if (ps_lstsize(*stack) < 2 || !stack)
 		return ;
 	clon = *stack;
-	temp_first = clon->content;
+	dir_1 = clon;
 	clon = clon->next;
-	temp_second = clon->content;
-	(*stack)->content = temp_second;
-	stack = &(*stack)->next;
-	(*stack)->content = temp_first;
+	dir_2 = clon;
+	clon = clon->next;
+	dir_1->next = clon;
+	dir_2->next = dir_1;
+	*stack = dir_2;
 	if (i == 1)
 		write(1, "sa\n", 3);
 	if (i == 2)

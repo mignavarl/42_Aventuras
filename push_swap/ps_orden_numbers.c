@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:55:09 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/25 13:12:43 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:01:59 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void	push_all_less_three(t_data data, t_stack **a, t_stack **b)
 		}
 		else
 			rotate(a, 1);
-		print_numbers(*a, *b);
+		//print_numbers(*a, *b);
 	}
 	orden_three_numbers(a);
-	print_numbers(*a, *b);
+	//print_numbers(*a, *b);
 	push_to_a(a, b);
-	print_numbers(*a, *b);
+	//print_numbers(*a, *b);
 }
 
 void	algorithm(t_data data, t_stack **stack_a)
@@ -63,7 +63,7 @@ void	algorithm(t_data data, t_stack **stack_a)
 
 	stack_b = NULL;
 	put_index(stack_a, data.numbers);
-	print_numbers(*stack_a, NULL);
+	//print_numbers(*stack_a, NULL);
 	push_all_less_three(data, stack_a, &stack_b);
 }
 

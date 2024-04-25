@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:11:15 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/25 11:37:18 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:29:25 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_stack *min_no_index(t_stack *a)
 	return (aux);
 }
 
-//TODO: arreglarlo, en el cuaderno datos
 void	put_index(t_stack **stack_a, int numbers)
 {
 	static int	idx;
