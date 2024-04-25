@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:21:15 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/23 15:38:10 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:09:52 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	print_numbers(t_stack *stack_a, t_stack *stack_b)
 	{
 		if (stack_a != NULL)
 		{
-			printf("    %d\t|", stack_a->content);
+			printf(" (%d)%d\t|", stack_a->index, stack_a->content);
 			stack_a = stack_a->next;
 		}
 		else
 			printf("   \t|");
 		if (stack_b != NULL)
 		{
-			printf("   %d\n", stack_b->content);
+			printf("(%d)%d\n", stack_b->index, stack_b->content);
 			stack_b = stack_b->next;
 		}
 		else
@@ -34,7 +34,7 @@ void	print_numbers(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void pruebargh(t_stack **stack_a)
+void pruebargh(t_stack **stack_a, t_data data)
 {
 	char	arg[42];
 	t_stack *stack_b;
@@ -68,6 +68,8 @@ void pruebargh(t_stack **stack_a)
 			double_swap(stack_a, &stack_b);
 		else if(ft_strncmp(arg, "rr", 2) == 0)
 			double_rotate(stack_a, &stack_b);
+		else if (ft_strncmp(arg, "algo", 4) == 0)
+			algorithm(data, stack_a);
 		else if (ft_strncmp(arg, "q", 1) == 0)
 			break ;
 	}
@@ -79,9 +81,6 @@ void pruebargh(t_stack **stack_a)
 // 	system("leaks push_swap");
 // }
 // 	atexit(d_leaks);
-
-//TODO: array con +d3 números
-//TODO: negativos despues de primer nummero en array
 
 int	main(int argc, char **argv)
 {
@@ -103,8 +102,8 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_a = create_list(stack_a, data.bunker, data.numbers);
 	free_bunker(data);
-	pruebargh(&stack_a);
-	//orden_numbers(data, &stack_a);
+	//pruebargh(&stack_a, data);
+	orden_numbers(data, &stack_a);
 	free_stack(stack_a);
 	ft_printf(GREEN"Todo OK\n"END);
 	return (0);

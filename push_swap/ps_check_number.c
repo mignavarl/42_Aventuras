@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:03:35 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/23 16:08:26 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:11:57 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int	check_letters(int ac, char **av)
 				&& av[ac][n] != ' ' && av[ac][n] != '+')
 				|| ft_strncmp(av[ac], "-0", ft_strlen(av[ac])) == 0)
 				return (1);
-			if ((av[ac][n] == '-' && av[ac][n-1] == '-')
-				|| (av[ac][n] == '+' && av[ac][n-1] == '+')
-				|| (av[ac][n] == '-' && av[ac][n-1] == '+')
-				|| (av[ac][n] == '+' && av[ac][n-1] == '-'))
+			if ((av[ac][n] == '-' && av[ac][n - 1] == '-')
+				|| (av[ac][n] == '+' && av[ac][n - 1] == '+')
+				|| (av[ac][n] == '-' && av[ac][n - 1] == '+')
+				|| (av[ac][n] == '+' && av[ac][n - 1] == '-'))
 				return (1);
 			n++;
 		}

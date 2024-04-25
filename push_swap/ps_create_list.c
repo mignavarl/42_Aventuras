@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 16:15:18 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/08 11:15:21 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:40:31 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_stack	*ps_lst_intnew(int number)
 		return (NULL);
 	s -> content = number;
 	s -> next = NULL;
+	s -> index = -1;
 	return (s);
 }
 

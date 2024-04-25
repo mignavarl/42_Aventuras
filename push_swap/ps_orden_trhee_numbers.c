@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:30:20 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/15 15:16:33 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:14:51 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	algorythm_three(t_stack **stack, int a, int b, int c)
 
 void	orden_three_numbers(t_stack **stack)
 {
-	int	a;
-	int	b;
-	int	c;
+	int		a;
+	int		b;
+	int		c;
 	t_stack	*clon;
 
 	clon = *stack;

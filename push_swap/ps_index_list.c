@@ -6,52 +6,52 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:11:15 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/23 14:12:24 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:37:18 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	first_no_index(t_stack *a)
+t_stack *min_no_index(t_stack *a)
 {
-	int	min;
+	t_stack	*aux;
+	t_stack	*s_clon;
+	int		min;
 
-	while(a)
+	s_clon = a;
+	while (s_clon)
 	{
-		if (a->index == NULL)
+		if (s_clon->index < 0)
 		{
-			min = a->content;
-			return (min);
+			min = s_clon->content;
+			aux = s_clon;
+			break ;
 		}
-		a = a->next;
+		s_clon = s_clon->next;
 	}
-	min = a->content;
-	return (min);
-}
-
-void	put_index(t_stack **stack_a, int numbers)
-{
-	static int	idx;
-	t_stack 	*s_clon;
-	t_stack		*aux;
-	int			min;
-
-	idx = 0;
-	s_clon = *stack_a;
-	min = first_no_index(*stack_a);
-	if (!idx)
-		idx = 0;
-	while(s_clon && idx < numbers)
+	while(s_clon)
 	{
-		if (min > s_clon->content && s_clon->index == NULL)
+		if (s_clon->index < 0 && min > s_clon->content)
 		{
 			min = s_clon->content;
 			aux = s_clon;
 		}
 		s_clon = s_clon->next;
-	} 
-	aux->index = &idx;
-	if (idx < numbers)
+	}
+	return (aux);
+}
+
+//TODO: arreglarlo, en el cuaderno datos
+void	put_index(t_stack **stack_a, int numbers)
+{
+	static int	idx;
+	t_stack *aux;
+
+	if (!idx)
+		idx = 0;
+	aux = min_no_index(*stack_a);
+	aux->index = idx;
+	if (idx < numbers - 1)
 	{
 		idx++;
 		put_index(stack_a, numbers);
