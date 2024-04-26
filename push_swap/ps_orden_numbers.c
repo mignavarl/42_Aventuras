@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:55:09 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/25 18:01:59 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:47:04 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,23 @@
 
 void	push_to_a(t_stack **a, t_stack **b)
 {
-	while (ps_lstsize(*b) > 0)
+	t_stack	*aux;
+	int		l;
+
+	aux = ps_lstlast(*b);
+	l = ps_lstsize(*b);
+	while (l > 0)
 	{
-		push(b, a, 1);
+		if (l == 1)
+			push(b, a, 1);
+		else if ((*b)->index < aux->index)
+		{
+			reverse_rotate(b, 2);
+			push(b, a, 1);
+		}
+		else if ((*b)->index > aux->index)
+			push(b, a, 1);
+		l--;
 	}
 }
 
@@ -49,12 +63,10 @@ void	push_all_less_three(t_data data, t_stack **a, t_stack **b)
 		}
 		else
 			rotate(a, 1);
-		//print_numbers(*a, *b);
 	}
 	orden_three_numbers(a);
-	//print_numbers(*a, *b);
+	//orden_b(b);
 	push_to_a(a, b);
-	//print_numbers(*a, *b);
 }
 
 void	algorithm(t_data data, t_stack **stack_a)
@@ -63,8 +75,8 @@ void	algorithm(t_data data, t_stack **stack_a)
 
 	stack_b = NULL;
 	put_index(stack_a, data.numbers);
-	//print_numbers(*stack_a, NULL);
 	push_all_less_three(data, stack_a, &stack_b);
+	print_numbers(*stack_a, NULL);
 }
 
 void	orden_numbers(t_data data, t_stack **stack_a)

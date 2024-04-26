@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:21:15 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/25 17:39:07 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:26:11 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ int	main(int argc, char **argv)
 	//pruebargh(&stack_a, data);
 	orden_numbers(data, &stack_a);
 	free_stack(stack_a);
-	ft_printf(GREEN"Todo OK\n"END);
+	//ft_printf(GREEN"Todo OK\n"END);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:24:44 by mignavar          #+#    #+#             */
-/*   Updated: 2024/04/24 19:10:56 by mignavar         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:02:48 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	orden_five_numbers(t_stack **stack_a);
 void	put_index(t_stack **stack_a, int numbers);
 void	calculate_mov(t_stack **a, t_stack **b);
 void	algorithm(t_data data, t_stack **stack_a);
+void	orden_b(t_stack **b);
 
 	//LIST_INT
 t_stack	*ps_lst_intnew(int number);
