@@ -77,6 +77,31 @@ void pruebargh(t_stack **stack_a, t_data data)
 	free(stack_b);
 }
 
+
+void	check_orden(t_stack **a)//TODO: NO FUNCIONA
+{
+	t_stack	*first;
+	t_stack	*second;
+	int		i;
+	int		final;
+
+	first = *a;
+	second = *a;
+	second = second->next;
+	i = 0;
+	final = ps_lstsize(*a);
+	while (i < final)
+	{
+		if (second->content > first->content)
+			return ;
+		first = first->next;
+		second = second->next;
+		i++;
+	}
+	free_stack(*a);
+	exit(0);
+}
+
 // void d_leaks(void)
 // {
 // 	system("leaks push_swap");
@@ -102,10 +127,10 @@ int	main(int argc, char **argv)
 	check_numbers(data);
 	stack_a = NULL;
 	stack_a = create_list(stack_a, data.bunker, data.numbers);
+	print_numbers(stack_a, NULL);
 	free_bunker(data);
-	//pruebargh(&stack_a, data);
+	check_orden(&stack_a);
 	orden_numbers(data, &stack_a);
 	free_stack(stack_a);
-	//ft_printf(GREEN"Todo OK\n"END);
 	return (0);
 }

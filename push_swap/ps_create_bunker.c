@@ -36,31 +36,40 @@ int	length_number(char *str)
 	return (num);
 }
 
-char	**create_bunker(char **argv, int argc, t_data data)
+char	**extract_number(t_data data, char **argv, int argc, char **bunker)
 {
-	char	**bunker;
-	int		num;
-	int		len_num;
-	int		pos;
+	int	num;
+	int	ac;
+	int	len_num;
+	int	pos;
 
-	bunker = (char **)ft_calloc((data.numbers), sizeof(char *));
 	num = 0;
 	pos = 0;
-	while (num <= data.numbers && argc > 0)
+	ac = 1;
+	while (num <= data.numbers && ac <= argc)
 	{
-		while (argv[argc][pos] != '\0')
+		while (argv[ac][pos] != '\0')
 		{
-			if (argv[argc][pos] != ' ')
+			if (argv[ac][pos] != ' ')
 			{
-				len_num = length_number(&argv[argc][pos]);
-				bunker[num] = ft_substr(argv[argc], pos, len_num);
+				len_num = length_number(&argv[ac][pos]);
+				bunker[num] = ft_substr(argv[ac], pos, len_num);
 				num++;
 				pos += len_num - 1;
 			}
 			pos++;
 		}
 		pos = 0;
-		argc--;
+		ac++;
 	}
+	return(bunker);
+}
+
+char	**create_bunker(char **argv, int argc, t_data data)
+{
+	char	**bunker;
+
+	bunker = (char **)ft_calloc((data.numbers), sizeof(char *));
+	bunker = extract_number(data, argv, argc, bunker);
 	return (bunker);
 }

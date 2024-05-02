@@ -100,4 +100,5 @@ void	check_numbers(t_data data)
 {
 	check_equal(data);
 	check_limits(data);
+	
 }
