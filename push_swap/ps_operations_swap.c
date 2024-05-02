@@ -17,7 +17,7 @@ void	swap(t_stack **stack, int i)
 	t_stack	*clon;
 	t_stack	*dir_1;
 	t_stack	*dir_2;
-	
+
 	if (ps_lstsize(*stack) < 2 || !stack)
 		return ;
 	clon = *stack;

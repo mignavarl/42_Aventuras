@@ -14,6 +14,7 @@
 
 void	print_numbers(t_stack *stack_a, t_stack *stack_b)
 {
+	printf(RED"------------------\n"END);
 	printf("    A\t|   B\n------------------\n");
 	while (stack_a != NULL || stack_b != NULL)
 	{

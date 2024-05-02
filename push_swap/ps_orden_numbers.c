@@ -15,22 +15,20 @@
 void	push_to_a(t_stack **a, t_stack **b)
 {
 	t_stack	*aux;
-	int		l;
 
 	aux = ps_lstlast(*b);
-	l = ps_lstsize(*b);
-	while (l > 0)
+	while (ps_lstsize(*b) > 0)
 	{
-		if (l == 1)
+		if ((*a)->index - 1 == (*b)->index)
 			push(b, a, 1);
-		else if ((*b)->index < aux->index)
+		else if ((*a)->index - 1 == aux->index)
 		{
 			reverse_rotate(b, 2);
 			push(b, a, 1);
 		}
-		else if ((*b)->index > aux->index)
-			push(b, a, 1);
-		l--;
+		else
+			calculate_mov_a(a, b);
+		aux = ps_lstlast(*b);
 	}
 }
 
@@ -64,9 +62,6 @@ void	push_all_less_three(t_data data, t_stack **a, t_stack **b)
 		else
 			rotate(a, 1);
 	}
-	orden_three_numbers(a);
-	//orden_b(b);
-	push_to_a(a, b);
 }
 
 void	algorithm(t_data data, t_stack **stack_a)
@@ -76,7 +71,8 @@ void	algorithm(t_data data, t_stack **stack_a)
 	stack_b = NULL;
 	put_index(stack_a, data.numbers);
 	push_all_less_three(data, stack_a, &stack_b);
-	print_numbers(*stack_a, NULL);
+	orden_three_numbers(stack_a);
+	push_to_a(stack_a, &stack_b);
 }
 
 void	orden_numbers(t_data data, t_stack **stack_a)

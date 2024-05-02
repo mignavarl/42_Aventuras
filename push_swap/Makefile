@@ -22,11 +22,11 @@ $(NAME): $(OBJ)
 	@$(CC) $(OBJ) $(LFLAGS) -o $(NAME)
 
 clean:
-	@cd libft && Make clean
+	@cd libft && $(MAKE) clean
 	@$(RM) $(OBJ)
 
 fclean: clean
-	@cd libft && Make fclean
+	@cd libft && $(MAKE) fclean
 	@$(RM) $(NAME)
 
 re: fclean all

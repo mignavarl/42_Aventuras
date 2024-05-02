@@ -65,6 +65,7 @@ void	put_index(t_stack **stack_a, int numbers);
 void	calculate_mov(t_stack **a, t_stack **b);
 void	algorithm(t_data data, t_stack **stack_a);
 void	orden_b(t_stack **b);
+void	calculate_mov_a(t_stack **a, t_stack **b);
 
 	//LIST_INT
 t_stack	*ps_lst_intnew(int number);

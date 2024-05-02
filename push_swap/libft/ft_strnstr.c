@@ -18,7 +18,7 @@ char	*ft_strnstr(const char *str, const char *find, size_t len)
 	size_t	f;
 
 	s = 0;
-	if (find[0] == '\0' || len < 0)
+	if (find[0] == '\0')
 		return ((char *)str);
 	while (str[s] != '\0' && s < len)
 	{

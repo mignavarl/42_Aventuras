@@ -12,17 +12,52 @@
 
 #include "push_swap.h"
 
-void	orden_b(t_stack **b)
+void	calculate_mov_a(t_stack **a, t_stack **b)
 {
-	t_stack *aux;
+	t_stack	*clon;
+	int		i;
 
-	aux = ps_lstlast(*b);
-	if ((*b)->index < aux->index)
+	clon = *b;
+	i = 0;
+	while (clon->index != (*a)->index - 1)
 	{
-		while ((*b)->index < aux->index)
+		clon = clon->next;
+		i++;
+	}
+	if (i <= (ps_lstsize(*b) / 2))
+	{
+		while (i-- > 0)
+		{
+			rotate(b, 2);
+			if ((*a)->index == ((*b)->index - 1))
+			{
+				push(b, a, 1);
+				break ;
+			}
+		}
+	}
+	else
+		while (i-- >= 0)
 		{
 			reverse_rotate(b, 2);
-			aux = ps_lstlast(*b);
+			if ((*a)->index == ((*b)->index - 1))
+			{
+				push(b, a, 1);
+				break ;
+			}
+		}
+}
+
+void	appendix_middle_b(t_stack **a, t_stack **b, t_stack *aux)
+{
+	while ((*a)->index < (*b)->index)
+	{
+		reverse_rotate(b, 2);
+		aux = ps_lstlast(*b);
+		if ((*a)->index > (*b)->index || aux->index < (*b)->index)
+		{
+			push(a, b, 2);
+			break ;
 		}
 	}
 }
@@ -45,17 +80,7 @@ void	in_middle_b(t_stack **a, t_stack **b)
 		}
 	}
 	else if (((*b)->index - (*a)->index) > ((*a)->index - aux->index))
-	{
-		while ((*a)->index < (*b)->index)
-		{
-			reverse_rotate(b, 2);
-			if ((*a)->index > (*b)->index)
-			{
-				push(a, b, 2);
-				break ;
-			}
-		}
-	}
+		appendix_middle_b(a, b, aux);
 }
 
 void	calculate_mov(t_stack **a, t_stack **b)
@@ -63,18 +88,28 @@ void	calculate_mov(t_stack **a, t_stack **b)
 	t_stack	*aux;
 
 	aux = ps_lstlast(*b);
-	if ((*a)->index < (*b)->index && (*a)->index < aux->index)
+	if ((*a)->index < (*b)->index && (*a)->index < aux->index
+		&& (*b)->index > aux->index)
 	{
 		push(a, b, 2);
 		rotate(b, 2);
 	}
+	else if ((*a)->index < (*b)->index && (*a)->index < aux->index
+		&& (*b)->index < aux->index)
+		in_middle_b(a, b);
 	else if ((*a)->index > (*b)->index && (*a)->index < aux->index)
 		push(a, b, 2);
-	else if ((*a)->index > (*b)->index && (*a)->index > aux->index)
+	else if ((*a)->index > (*b)->index && (*a)->index > aux->index
+			&& aux->index > (*b)->index)
+	{
 		push(a, b, 2);
+		rotate(b, 2);
+	}
 	else if ((*a)->index < (*b)->index && (*a)->index > aux->index)
 	{
 		in_middle_b(a, b);
 	}
-	//print_numbers(*a, *b);
+	else if ((*a)->index > (*b)->index && (*a)->index > aux->index
+			&& aux->index < (*b)->index)
+		push(a, b, 2);
 }
