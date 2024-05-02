@@ -79,7 +79,7 @@ void	in_middle_b(t_stack **a, t_stack **b)
 			}
 		}
 	}
-	else if (((*b)->index - (*a)->index) > ((*a)->index - aux->index))
+	else
 		appendix_middle_b(a, b, aux);
 }
 
