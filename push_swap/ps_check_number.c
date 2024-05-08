@@ -46,7 +46,8 @@ int	check_letters(int ac, char **av)
 		while (av[ac][n])
 		{
 			if ((ft_isdigit(av[ac][n]) == 0 && av[ac][n] != '-'
-				&& av[ac][n] != ' ' && av[ac][n] != '+')
+				&& av[ac][n] != ' ' && av[ac][n] != '+' 
+				&& !(av[ac][n] >= 9 && av[ac][n] <= 13))
 				|| ft_strncmp(av[ac], "-0", ft_strlen(av[ac])) == 0)
 				return (1);
 			if ((av[ac][n] == '-' && av[ac][n - 1] == '-')

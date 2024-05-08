@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_orden_trhee_numbers.c                           :+:      :+:    :+:   */
+/*   ps_sort_trhee_numbers.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mignavar <mignavar@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -32,7 +32,7 @@ void	algorythm_three(t_stack **stack, int a, int b, int c)
 	}
 }
 
-void	orden_three_numbers(t_stack **stack)
+void	sort_three_numbers(t_stack **stack)
 {
 	int		a;
 	int		b;

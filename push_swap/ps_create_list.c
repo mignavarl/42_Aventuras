@@ -46,15 +46,30 @@ void	ps_lstadd_front(t_stack **lst, t_stack *new)
 	*lst = new;
 }
 
+void	ps_lstadd_back(t_stack **lst, t_stack *new)
+{
+	t_stack	*l;
+
+	if (!new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	l = ps_lstlast(*lst);
+	l->next = new;
+}
+
 t_stack	*create_list(t_stack *list, char **bunker, int num)
 {
-	int	i;
+	int	n;
 
-	i = 0;
-	while (i < num)
+	n = 0;
+	while (n < num)
 	{
-		ps_lstadd_front(&list, ps_lst_intnew(ft_atoi(bunker[i])));
-		i++;
+		ps_lstadd_back(&list, ps_lst_intnew(ft_atoi(bunker[n])));
+		n++;
 	}
 	return (list);
 }

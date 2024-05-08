@@ -31,3 +31,4 @@ re: fclean all
 	@echo "[🛠️  Rehaciendo...🛠️ ]"
 
 .PHONY: all clean fclean re bonus rebonus
+.SILENT:

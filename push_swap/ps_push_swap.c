@@ -64,7 +64,7 @@ void pruebargh(t_stack **stack_a, t_data data)
 		else if (ft_strncmp(arg, "rrb", 3) == 0)
 			reverse_rotate(&stack_b, 2);
 		else if (ft_strncmp(arg, "3", 1) == 0)
-			orden_three_numbers(stack_a);
+			sort_three_numbers(stack_a);
 		else if (ft_strncmp(arg, "ss", 2) == 0)
 			double_swap(stack_a, &stack_b);
 		else if(ft_strncmp(arg, "rr", 2) == 0)
@@ -77,8 +77,15 @@ void pruebargh(t_stack **stack_a, t_data data)
 	free(stack_b);
 }
 
+void	print_error(t_data data)
+{
+	write(2, "Error\n", 6);
+	if (data.bunker)
+		free_bunker(data);
+	exit(0);
+}
 
-void	check_orden(t_stack **a)//TODO: NO FUNCIONA
+void	check_sort(t_stack **a)
 {
 	t_stack	*first;
 	t_stack	*second;
@@ -91,11 +98,12 @@ void	check_orden(t_stack **a)//TODO: NO FUNCIONA
 	i = 0;
 	final = ps_lstsize(*a);
 	while (i < final)
-	{
-		if (second->content > first->content)
+	{		if (second->content < first->content)
 			return ;
-		first = first->next;
 		second = second->next;
+		first = first->next;
+		if (!second)
+			break ;
 		i++;
 	}
 	free_stack(*a);
@@ -127,10 +135,9 @@ int	main(int argc, char **argv)
 	check_numbers(data);
 	stack_a = NULL;
 	stack_a = create_list(stack_a, data.bunker, data.numbers);
-	print_numbers(stack_a, NULL);
 	free_bunker(data);
-	check_orden(&stack_a);
-	orden_numbers(data, &stack_a);
+	check_sort(&stack_a);
+	sort_numbers(data, &stack_a);
 	free_stack(stack_a);
 	return (0);
 }

@@ -58,14 +58,15 @@ void	reverse_rotate(t_stack **stack, int i);
 void	double_reverse(t_stack **stack_a, t_stack **stack_b);
 
 	//ALGORYTHMS
-void	orden_numbers(t_data data, t_stack **stack_a);
-void	orden_three_numbers(t_stack **stack);
-void	orden_five_numbers(t_stack **stack_a);
+void	sort_numbers(t_data data, t_stack **stack_a);
+void	sort_three_numbers(t_stack **stack);
+void	sort_five_numbers(t_stack **stack_a);
 void	put_index(t_stack **stack_a, int numbers);
-void	calculate_mov(t_stack **a, t_stack **b);
 void	algorithm(t_data data, t_stack **stack_a);
-void	orden_b(t_stack **b);
-void	calculate_mov_a(t_stack **a, t_stack **b);
+void	sort_few_numbers(t_data data, t_stack **a, t_stack **b);
+void	few_b_to_a(t_stack **a, t_stack **b);
+void	sort_more_numbers(t_data data, t_stack **a, t_stack **b);
+void	more_b_to_a(t_stack **a, t_stack **b, int t);
 
 	//LIST_INT
 t_stack	*ps_lst_intnew(int number);
