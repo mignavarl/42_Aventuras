@@ -80,7 +80,7 @@ void	sort_more_numbers(t_data data, t_stack **a, t_stack **b)
 	int		piece;
 
 	aux = *a;
-	x = ((ps_lstsize(*a) * 15) / 100);
+	x = ((ps_lstsize(*a) * 10) / 100);
 	piece = x;
 	i = 0;
 	while (i < data.numbers - 3)
