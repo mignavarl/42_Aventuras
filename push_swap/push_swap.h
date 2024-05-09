@@ -27,13 +27,9 @@ typedef struct s_stack
 
 typedef struct s_data
 {
-	//BUNKER
 	char	**bunker;
 	int		numbers;
 }					t_data;
-// TODO: borrar
-void	print_numbers(t_stack *stack_a, t_stack *stack_b);
-
 
 	//PRINCIPAL
 int		count_number(int ac, char **av);

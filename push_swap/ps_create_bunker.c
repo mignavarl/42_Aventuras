@@ -62,7 +62,7 @@ char	**extract_number(t_data data, char **argv, int argc, char **bunker)
 		pos = 0;
 		ac++;
 	}
-	return(bunker);
+	return (bunker);
 }
 
 char	**create_bunker(char **argv, int argc, t_data data)

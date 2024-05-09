@@ -12,7 +12,6 @@
 
 #include "push_swap.h"
 
-
 int	find_pos(t_stack **a, t_stack *aux)
 {
 	t_stack	*clon;
@@ -42,50 +41,6 @@ t_stack	*find_node(t_stack **a, int x, int total)
 		clon = clon->next;
 	}
 	return (clon);
-}
-
-void	more_b_to_a(t_stack **a, t_stack **b, int t)
-{
-	t_stack	*clon;
-	t_stack	*aux;
-	int		pos;
-
-	while (t > 0)
-	{
-		pos = 0;
-		clon = *b;
-		while (clon->index != t - 1)
-		{
-			clon = clon->next;
-			pos++;
-		}
-		aux = clon;
-		if (pos < t / 2)
-		{
-			while (pos-- >= -1)
-			{
-				if ((*b) == aux)
-				{
-					push(b, a, 1);
-					break ;
-				}
-				rotate(b, 2);
-			}
-		}
-		else
-		{
-			while (pos-- >= -1)
-			{
-				if ((*b) == aux)
-				{
-					push(b, a, 1);
-					break ;
-				}
-				reverse_rotate(b, 2);
-			}
-		}
-		t--;
-	}
 }
 
 void	more_to_b(t_stack **a, t_stack **b, t_stack *aux, int pos)
@@ -125,7 +80,7 @@ void	sort_more_numbers(t_data data, t_stack **a, t_stack **b)
 	int		piece;
 
 	aux = *a;
-	x = ((ps_lstsize(*a) * 20) / 100);
+	x = ((ps_lstsize(*a) * 15) / 100);
 	piece = x;
 	i = 0;
 	while (i < data.numbers - 3)

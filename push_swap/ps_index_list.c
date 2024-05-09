@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_stack *min_no_index(t_stack *a)
+t_stack	*min_no_index(t_stack *a)
 {
 	t_stack	*aux;
 	t_stack	*s_clon;
@@ -29,7 +29,7 @@ t_stack *min_no_index(t_stack *a)
 		}
 		s_clon = s_clon->next;
 	}
-	while(s_clon)
+	while (s_clon)
 	{
 		if (s_clon->index < 0 && min > s_clon->content)
 		{
@@ -44,7 +44,7 @@ t_stack *min_no_index(t_stack *a)
 void	put_index(t_stack **stack_a, int numbers)
 {
 	static int	idx;
-	t_stack *aux;
+	t_stack		*aux;
 
 	if (!idx)
 		idx = 0;
