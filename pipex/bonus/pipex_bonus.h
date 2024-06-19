@@ -39,7 +39,6 @@ void	child(t_data data, char **argv, char **envp, int h);
 void	final_child(t_data data, char **argv, char **envp);
 void	close_fds(int fd[2]);
 void	close_pipe(int extreme[2]);
-void	close_std(void);
 void	error_exit(int extreme[2], int fd[2]);
 char	*search_path(char *envp[]);
 char	*search_route(char *command, char *envp[]);

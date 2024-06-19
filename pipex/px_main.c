@@ -29,7 +29,6 @@ void	first_child(int fd[2], int extreme[2], char **argv, char **envp)
 	ft_free_double(command);
 	close(extreme[READ]);
 	close(fd[OUT]);
-	close_std();
 }
 
 void	second_child(int fd[2], int extreme[2], char **argv, char *envp[])
@@ -49,7 +48,6 @@ void	second_child(int fd[2], int extreme[2], char **argv, char *envp[])
 	ft_free_double(command);
 	close(extreme[WRITE]);
 	close(fd[IN]);
-	close_std();
 }
 
 void	first_father(int fd[2], int extreme[2], char **argv, char *envp[])
@@ -67,22 +65,14 @@ void	first_father(int fd[2], int extreme[2], char **argv, char *envp[])
 		waitpid(pid, NULL, 0);
 		close_fds(fd);
 		close_pipe(extreme);
-		close_std();
 	}
 }
 
-int	main(int argc, char **argv, char *envp[])
+void	init_family(int *fd, char **argv, char **envp)
 {
-	int	fd[2];
-	int	extreme[2];
 	int	pid;
+	int	extreme[2];
 
-	if (argc != 5)
-		return (0);
-	fd[IN] = open(argv[1], O_RDONLY);
-	fd[OUT] = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 00644);
-	if (fd[IN] == -1 || fd[OUT] == -1)
-		close_fds(fd);
 	pipe(extreme);
 	pid = fork();
 	if (pid < 0)
@@ -96,6 +86,20 @@ int	main(int argc, char **argv, char *envp[])
 	}
 	close_fds(fd);
 	close_pipe(extreme);
-	close_std();
+}
+
+int	main(int argc, char **argv, char *envp[])
+{
+	int	fd[2];
+
+	if (argc != 5)
+		return (0);
+	fd[IN] = open(argv[1], O_RDONLY);
+	if (fd[IN] == -1)
+		close_fds(fd);
+	fd[OUT] = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 00644);
+	if (fd[OUT] == -1)
+		close_fds(fd);
+	init_family(fd, argv, envp);
 	return (0);
 }

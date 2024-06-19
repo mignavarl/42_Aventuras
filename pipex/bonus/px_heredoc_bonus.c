@@ -12,20 +12,30 @@
 
 #include "pipex_bonus.h"
 
-void	first_father(t_data data, char **argv, char **envp)
+void	second_child(t_data data, char **argv, char **envp)
 {
 	char	**command;
 
 	command = ft_split(argv[4], ' ');
+	dup2(data.extreme[READ], STDIN_FILENO);
+	close(data.extreme[READ]);
+	dup2(data.fd[OUT], STDOUT_FILENO);
+	close(data.fd[OUT]);
+	execve(search_route(command[0], envp), command, envp);
+	ft_free_double(command);
+	error_exit(data.extreme, data.fd);
+}
+
+void	first_father(t_data data, char **argv, char **envp)
+{
 	close(data.extreme[WRITE]);
 	data.pid = fork();
 	if (data.pid < 0)
 		error_exit(data.extreme, data.fd);
 	if (data.pid == 0)
-		execve(search_route(command[0], envp), command, envp);
+		second_child(data, argv, envp);
 	else
 		waitpid(data.pid, NULL, 0);
-	ft_free_double(command);
 	close_fds(data.fd);
 	close_pipe(data.extreme);
 }
@@ -35,6 +45,10 @@ void	first_child(t_data data, char **argv, char **envp)
 	char	**command;
 
 	command = ft_split(argv[3], ' ');
+	dup2(data.extreme[WRITE], STDOUT_FILENO);
+	close(data.extreme[WRITE]);
+	dup2(data.fd[IN], STDIN_FILENO);
+	close(data.fd[IN]);
 	execve(search_route(command[0], envp), command, envp);
 	ft_free_double(command);
 	error_exit(data.extreme, data.fd);
@@ -43,8 +57,6 @@ void	first_child(t_data data, char **argv, char **envp)
 void	executing_command(t_data data, char **argv, char **envp)
 {
 	data.pid = fork();
-	dup2(data.fd[IN], STDIN_FILENO);
-	close(data.fd[IN]);
 	if (data.pid < 0)
 		error_exit(data.extreme, data.fd);
 	if (data.pid == 0)

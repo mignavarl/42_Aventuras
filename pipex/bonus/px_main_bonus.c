@@ -16,19 +16,20 @@ void	here_doc_function(t_data data, char **argv, char **envp)
 {
 	char	*input;
 
-	data.fd[IN] = open(argv[1], O_TRUNC | O_APPEND | O_CREAT, 00644);
+	data.fd[IN] = open(argv[1], O_RDWR | O_TRUNC | O_APPEND | O_CREAT, 00644);
 	data.fd[OUT] = open(argv[5], O_WRONLY | O_APPEND | O_CREAT, 00644);
 	pipe(data.extreme);
-	dup2(data.extreme[WRITE], STDOUT_FILENO);
-	close(data.fd[OUT]);
-	input = get_next_line(0);
-	while (ft_strncmp(argv[2], input, ft_strlen(input)) != 0)
+	input = ft_calloc(1, sizeof(char));
+	while (ft_strncmp(argv[2], input, (ft_strlen(input) - 1)) != 0)
 	{
-		free(input);
 		input = get_next_line(0);
+		if (ft_strncmp(argv[2], input, (ft_strlen(input) - 1)) == 0
+			&& input[0] != '\n')
+			break ;
+		ft_putstr_fd(input, data.fd[IN]);
+		free(input);
 	}
 	free(input);
-	printf("Antes executing\n");
 	executing_command(data, argv, envp);
 	unlink(argv[1]);
 }
@@ -42,7 +43,6 @@ void	n_pipes_function(t_data data, char **argv, char **envp)
 	loop_children(data, argv, envp);
 	close_fds(data.fd);
 	close_pipe(data.extreme);
-	close_std();
 }
 
 int	main(int argc, char **argv, char *envp[])
@@ -54,7 +54,7 @@ int	main(int argc, char **argv, char *envp[])
 	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 	{
 		printf("Entro heredoc\n");
-		here_doc_function(data, argv, envp);//TODO: la funcion
+		here_doc_function(data, argv, envp);
 	}
 	else
 	{

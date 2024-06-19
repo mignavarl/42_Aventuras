@@ -12,12 +12,6 @@
 
 #include "pipex_bonus.h"
 
-void	close_std(void)
-{
-	close(STDIN_FILENO);
-	close(STDOUT_FILENO);
-}
-
 void	close_pipe(int extreme[2])
 {
 	close(extreme[WRITE]);	
