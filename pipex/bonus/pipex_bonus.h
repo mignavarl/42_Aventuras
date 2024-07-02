@@ -25,17 +25,18 @@
 # define IN 0
 # define OUT 1
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int	fd[2];
 	int	extreme[2];
 	int	pid;
 	int	arg;
-}				t_data;
+	int	h;
+}			t_data;
 
 void	n_pipes_function(t_data data, char **argv, char **envp);
-void	loop_children(t_data data, char **argv, char **envp);
-void	child(t_data data, char **argv, char **envp, int h);
+void	loop_children(char **argv, char **envp, int h);
+void	child(char **argv, char **envp, int h);
 void	final_child(t_data data, char **argv, char **envp);
 void	close_fds(int fd[2]);
 void	close_pipe(int extreme[2]);

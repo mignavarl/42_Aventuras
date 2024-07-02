@@ -8,7 +8,7 @@ DIR_BONUS = ./bonus/
 SRC_BONUS = px_main_bonus.c px_close_bonus.c px_search_bonus.c px_family_bonus.c px_heredoc_bonus.c
 OBJ_BONUS = ${addprefix ${DIR_BONUS}, ${SRC_BONUS:.c=.o}}
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -O0 -g3
 MAKEFLAGS = --no-print-directory
 LFLAGS = -L libft -lft
 

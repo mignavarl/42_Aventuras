@@ -21,14 +21,9 @@ void	first_child(int fd[2], int extreme[2], char **argv, char **envp)
 	close(fd[IN]);
 	dup2(extreme[WRITE], STDOUT_FILENO);
 	close(extreme[WRITE]);
-	if (execve(search_route(command[0], envp), command, envp) == -1)
-	{
-		ft_free_double(command);
-		error_exit(extreme, fd);
-	}
+	execve(search_route(command[0], envp), command, envp);
 	ft_free_double(command);
-	close(extreme[READ]);
-	close(fd[OUT]);
+	error_exit(extreme, fd);
 }
 
 void	second_child(int fd[2], int extreme[2], char **argv, char *envp[])
@@ -40,14 +35,9 @@ void	second_child(int fd[2], int extreme[2], char **argv, char *envp[])
 	close(extreme[READ]);
 	dup2(fd[OUT], STDOUT_FILENO);
 	close(fd[OUT]);
-	if (execve(search_route(command[0], envp), command, envp) == -1)
-	{
-		ft_free_double(command);
-		error_exit(extreme, fd);
-	}
+	execve(search_route(command[0], envp), command, envp);
 	ft_free_double(command);
-	close(extreme[WRITE]);
-	close(fd[IN]);
+	error_exit(extreme, fd);
 }
 
 void	first_father(int fd[2], int extreme[2], char **argv, char *envp[])

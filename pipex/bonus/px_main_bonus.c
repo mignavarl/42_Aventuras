@@ -16,7 +16,8 @@ void	here_doc_function(t_data data, char **argv, char **envp)
 {
 	char	*input;
 
-	data.fd[IN] = open(argv[1], O_RDWR | O_TRUNC | O_APPEND | O_CREAT, 00644);
+	data.fd[IN] = open("/tmp/.heredoc",
+			O_RDWR | O_TRUNC | O_APPEND | O_CREAT, 00644);
 	data.fd[OUT] = open(argv[5], O_WRONLY | O_APPEND | O_CREAT, 00644);
 	pipe(data.extreme);
 	input = ft_calloc(1, sizeof(char));
@@ -30,19 +31,30 @@ void	here_doc_function(t_data data, char **argv, char **envp)
 		free(input);
 	}
 	free(input);
+	close(data.fd[IN]);
+	data.fd[IN] = open("/tmp/.heredoc", O_RDWR);
 	executing_command(data, argv, envp);
-	unlink(argv[1]);
+	unlink("/tmp/.heredoc");
 }
 
 void	n_pipes_function(t_data data, char **argv, char **envp)
 {
+	int	h;
+
+	h = 2;
 	data.fd[IN] = open(argv[1], O_RDONLY);
-	data.fd[1] = open(argv[data.arg - 1], O_WRONLY | O_CREAT | O_TRUNC, 00644);
-	if (data.fd[IN] == -1 || data.fd[OUT] == -1)
-		close_fds(data.fd);
-	loop_children(data, argv, envp);
-	close_fds(data.fd);
-	close_pipe(data.extreme);
+	data.fd[OUT] = open(argv[data.arg - 1],
+			O_WRONLY | O_TRUNC | O_CREAT, 00644);
+	dup2(data.fd[IN], STDIN_FILENO);
+	close(data.fd[IN]);
+	while (h < data.arg - 2)
+	{
+		loop_children(argv, envp, h);
+		h++;
+	}
+	dup2(data.fd[OUT], STDOUT_FILENO);
+	close(data.fd[OUT]);
+	final_child(data, argv, envp);
 }
 
 int	main(int argc, char **argv, char *envp[])
@@ -53,12 +65,10 @@ int	main(int argc, char **argv, char *envp[])
 		return (0);
 	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
 	{
-		printf("Entro heredoc\n");
 		here_doc_function(data, argv, envp);
 	}
 	else
 	{
-		printf("Entro n_pipe\n");
 		data.arg = argc;
 		n_pipes_function(data, argv, envp);
 	}

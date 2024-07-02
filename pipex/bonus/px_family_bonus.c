@@ -12,59 +12,64 @@
 
 #include "pipex_bonus.h"
 
-void	child(t_data data, char **argv, char **envp, int h)
-{
-	char	**command;
-
-	command = ft_split(argv[h + 1], ' ');
-	printf("Command: %s\n", command[0]);
-	if (h != 1)
-		dup2(data.extreme[READ], STDIN_FILENO);
-	dup2(data.extreme[WRITE], STDOUT_FILENO);
-	close_fds(data.fd);
-	close_pipe(data.extreme);
-	execve(search_route(command[0], envp), command, envp);
-	ft_free_double(command);
-	error_exit(data.extreme, data.fd);
-}
-
 void	final_child(t_data data, char **argv, char **envp)
 {
+	int		pid;
 	char	**command;
+	char	*route;
 
-	command = ft_split(argv[data.arg - 2], ' ');
-	printf("Final Command: %s\n", command[0]);
-	dup2(data.extreme[READ], STDIN_FILENO);
-	dup2(data.fd[OUT], STDOUT_FILENO);
-	close_fds(data.fd);
-	close_pipe(data.extreme);
-	execve(search_route(command[0], envp), command, envp);
-	ft_free_double(command);
-	error_exit(data.extreme, data.fd);
+	pid = fork();
+	if (pid < 0)
+		error_exit(NULL, NULL);
+	if (pid == 0)
+	{
+		command = ft_split(argv[data.arg - 2], ' ');
+		route = search_route(command[0], envp);
+		execve(route, command, envp);
+		free(route);
+		ft_free_double(command);
+		perror("Error final child");
+		exit(1);
+	}
+	else
+		waitpid(pid, NULL, 0);
 }
 
-void	loop_children(t_data data, char **argv, char **envp)
+void	child(char **argv, char **envp, int h, int pipefd)
 {
-	int	h;
+	char	**command;
+	char	*route;
 
-	h = 1;
-	dup2(data.fd[IN], STDIN_FILENO);
-	while (h < (data.arg - 3))
+	command = ft_split(argv[h], ' ');
+	route = search_route(command[0], envp);
+	execve(route, command, envp);
+	free(route);
+	ft_free_double(command);
+	perror("Error child");
+	exit(1);
+}
+
+void	loop_children(char **argv, char **envp, int h)
+{
+	int	pid;
+	int	pipefd[2];
+
+	pipe(pipefd);
+	pid = fork();
+	if (pid < 0)
+		error_exit(pipefd, NULL);
+	if (pid == 0)
 	{
-		pipe(data.extreme);
-		data.pid = fork();
-		if (data.pid < 0)
-			error_exit(data.extreme, data.fd);
-		if (data.pid == 0)
-			child(data, argv, envp, h);
-		close(data.extreme[WRITE]);
-		h++;
+		close(pipefd[READ]);
+		dup2(pipefd[WRITE], STDOUT_FILENO);
+		close(pipefd[WRITE]);
+		child(argv, envp, h, pipefd);
 	}
-	data.pid = fork();
-	if (data.pid < 0)
-		error_exit(data.extreme, data.fd);
-	if (data.pid == 0)
-		final_child(data, argv, envp);
-	while(waitpid(-1, NULL, 0) != -1)
-		continue ;
+	else
+	{
+		close(pipefd[WRITE]);
+		dup2(pipefd[READ], STDIN_FILENO);
+		close(pipefd[READ]);
+		waitpid(pid, NULL, 0);
+	}
 }

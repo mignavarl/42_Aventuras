@@ -14,7 +14,7 @@
 
 void	close_pipe(int extreme[2])
 {
-	close(extreme[WRITE]);	
+	close(extreme[WRITE]);
 	close(extreme[READ]);
 }
 
