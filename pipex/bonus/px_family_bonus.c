@@ -35,7 +35,7 @@ void	final_child(t_data data, char **argv, char **envp)
 		waitpid(pid, NULL, 0);
 }
 
-void	child(char **argv, char **envp, int h, int pipefd)
+void	child(char **argv, char **envp, int h)
 {
 	char	**command;
 	char	*route;
@@ -63,7 +63,7 @@ void	loop_children(char **argv, char **envp, int h)
 		close(pipefd[READ]);
 		dup2(pipefd[WRITE], STDOUT_FILENO);
 		close(pipefd[WRITE]);
-		child(argv, envp, h, pipefd);
+		child(argv, envp, h);
 	}
 	else
 	{

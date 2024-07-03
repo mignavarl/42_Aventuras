@@ -8,7 +8,7 @@ DIR_BONUS = ./bonus/
 SRC_BONUS = px_main_bonus.c px_close_bonus.c px_search_bonus.c px_family_bonus.c px_heredoc_bonus.c
 OBJ_BONUS = ${addprefix ${DIR_BONUS}, ${SRC_BONUS:.c=.o}}
 
-CFLAGS = -Wall -Wextra -Werror -O0 -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3 
 MAKEFLAGS = --no-print-directory
 LFLAGS = -L libft -lft
 
@@ -38,11 +38,10 @@ re: fclean all
 bonus: ${BONUS}
 
 ${BONUS}: $(OBJ_BONUS)
-	@cd libft && $(MAKE)
-	@${CC} ${CFLAGS} ${OBJ_BONUS} $(LFLAGS) -o ${BONUS}
+	cd libft && $(MAKE)
+	${CC} ${CFLAGS} ${OBJ_BONUS} $(LFLAGS) -o ${BONUS}
 
 rebonus: fclean bonus
 	@echo "[🛠️  Rehaciendo...🛠️ ]"
 
 .PHONY: all clean fclean re bonus rebonus
-.SILENT:
