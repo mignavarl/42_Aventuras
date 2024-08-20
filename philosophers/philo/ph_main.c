@@ -12,37 +12,61 @@
 
 #include "philo.h"
 
+//Overtable
+void	print_text(t_philo *philo, const char *str)
+{
+	pthread_mutex_lock(&philo->data->mutex_text);
+	printf("[%lld] %d %s\n", ft_time(), philo->id, str);
+	pthread_mutex_unlock(&philo->data->mutex_text);
+}
+
+void	think(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->mutex_dead);
+	if (philo->data->someone_is_dead_so_sad == 0)
+		print_text(philo, "is thinking");
+	pthread_mutex_unlock(&philo->data->mutex_dead);
+}
+
 void	*routine(void *arg)
 {
+	// t_philo	*philo;
 
+	(void)arg;
+	// TODO: comer
+	// TODO: dormir
+	// TODO: pensar
 	return ((void *)0);
 }
 
 //./philo [cant. filo y tenedores] [tiempo de morir] [tiempo comer] [tiempo dormir] [op: veces que comen]
 int	main(int argc, char **argv)
 {
-	int				ph;
-	t_data			data;
+	int		ph;
+	t_data	data;
 
-	// if (argc < 5 || argc > 6 || ft_atoi(argv[1]) < 2)
+	// if (argc < 5 || argc > 6 || ft_atoi(argv[1]) == 0)
 	// 	return (EXIT_FAILURE);
+	// if (ft_atoi(argv[1]) == 1)
+	// 	TODO:pasan_cosas;
 	if (all_args_nums(argc, argv) == 1)
 		return (EXIT_FAILURE);
 	printf(GREEN"EMPIEZA\n"END);
-	data = init_all(data, argv, argc);
+	memset(&data, 0, sizeof(data));
+	init_all(&data, argv, argc);
 	ph = 0;
 	while (ph < data.num_philo)
 	{
-		pthread_create(&data.philo[ph], NULL, routine, &data.array_philo[ph]);
+		pthread_create(&data.array_philo[ph].philo, NULL, routine, &data.array_philo[ph]);
 		ph++;
 	}
 	ph -= 1;
-	while (ph != 0)
+	while (ph >= 0)
 	{
-		pthread_join(data.philo[ph], NULL);
+		pthread_join(data.array_philo[ph].philo, NULL);
 		ph--;
 	}
-	close_all(data);
+	close_all(&data);
 	printf(GREEN"SE ACABÓ\n"END);
 	return (0);
 }

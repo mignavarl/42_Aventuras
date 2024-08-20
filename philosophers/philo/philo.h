@@ -25,31 +25,41 @@
 # define GREEN "\033[1;32m"
 # define END "\033[0m"
 
-typedef struct s_philo
+typedef struct s_data t_data;
+typedef struct s_philo t_philo;
+
+struct s_philo
 {
+	pthread_t		philo;
+	int				id;
 	int				num_philo;
 	int				must_eat;
 	size_t			time_die;
 	size_t			time_eat;
 	size_t			time_sleep;
 	pthread_mutex_t	fork;
-	int				dead;
-	int				id;
-}				t_philo;
+	pthread_mutex_t	*left_fork;
+	int				eating;
+	int				sleeping;
+	t_data			*data;
+};
 
-typedef struct s_data
+struct s_data
 {
 	int				num_philo;
-	pthread_t		*philo;
 	t_philo			*array_philo;
-}				t_data;
+	pthread_mutex_t	mutex_dead;
+	pthread_mutex_t	mutex_text;
+	int				someone_is_dead_so_sad;
+};
 
 //STATS
-t_data	init_all(t_data data, char **argv, int argc);
-void	close_all(t_data data);
+void		init_all(t_data *data, char **argv, int argc);
+void		close_all(t_data *data);
 
 //UTILS
-int		all_args_nums(int argc, char **argv);
-int		ft_atoi(const char *str);
+int			all_args_nums(int argc, char **argv);
+int			ft_atoi(const char *str);
+long long	ft_time(void);
 
 #endif

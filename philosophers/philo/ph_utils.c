@@ -46,9 +46,9 @@ int	all_args_nums(int argc, char **argv)
 
 	av = 1;
 	c = 0;
-	while (av < argc)
+	while (av < (argc - 1))
 	{
-		while (argv[av][c])
+		while (argv[av][c] != '\0')
 		{
 			if (argv[av][c] < '0' && argv[av][c] > '9')
 				return (1);
@@ -58,4 +58,17 @@ int	all_args_nums(int argc, char **argv)
 		av++;
 	}
 	return (0);
+}
+
+long long	ft_time(void)
+{
+	static long long	start;
+	long long			current;
+	struct timeval		time;
+
+	gettimeofday(&time, NULL);
+	current = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	if (!start)
+		start = current;
+	return (current - start);
 }
