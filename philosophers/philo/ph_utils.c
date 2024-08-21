@@ -60,7 +60,7 @@ int	all_args_nums(int argc, char **argv)
 	return (0);
 }
 
-long long	ft_time(void)
+size_t	ft_time(void)
 {
 	static long long	start;
 	long long			current;
@@ -71,4 +71,11 @@ long long	ft_time(void)
 	if (!start)
 		start = current;
 	return (current - start);
+}
+
+void	print_text(t_philo *philo, const char *str)
+{
+	pthread_mutex_lock(&philo->data->mutex_text);
+	printf("[%lld] %d %s\n", ft_time(), philo->id, str);
+	pthread_mutex_unlock(&philo->data->mutex_text);
 }

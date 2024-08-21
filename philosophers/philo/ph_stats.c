@@ -16,9 +16,9 @@ void	put_forks(t_data *data)
 {
 	int	ph;
 
-	data->array_philo[0].left_fork = &data->array_philo[data->num_philo - 1].fork;
+	data->array_philo[0].left_fork = &data->array_philo[data->num_ph - 1].fork;
 	ph = 1;
-	while (ph < data->num_philo)
+	while (ph < data->num_ph)
 	{
 		data->array_philo[ph].left_fork = &data->array_philo[ph - 1].fork;
 		ph++;
@@ -36,11 +36,11 @@ t_data	*stats_args(t_data *data, char **argv, int argc)
 	die = ft_atoi(argv[2]);
 	eat = ft_atoi(argv[3]);
 	sleep = ft_atoi(argv[4]);
-	while (ph < data->num_philo)
+	while (ph < data->num_ph)
 	{
 		memset(&data->array_philo[ph], 0, sizeof(t_philo));
 		data->array_philo[ph].id = ph;
-		data->array_philo[ph].num_philo = data->num_philo;
+		data->array_philo[ph].num_philo = data->num_ph;
 		data->array_philo[ph].time_die = die;
 		data->array_philo[ph].time_eat = eat;
 		data->array_philo[ph].time_sleep = sleep;
@@ -56,8 +56,8 @@ t_data	*stats_args(t_data *data, char **argv, int argc)
 
 void	init_all(t_data *data, char **argv, int argc)
 {
-	data->num_philo = ft_atoi(argv[1]);
-	data->array_philo = malloc(data->num_philo * sizeof(t_philo));
+	data->num_ph = ft_atoi(argv[1]);
+	data->array_philo = malloc(data->num_ph * sizeof(t_philo));
 	pthread_mutex_init(&data->mutex_text, NULL);
 	data = stats_args(data, argv, argc);
 }
@@ -67,7 +67,7 @@ void	close_all(t_data *data)
 	int	ph;
 
 	ph = 0;
-	while (ph < data->num_philo)
+	while (ph < data->num_ph)
 	{
 		pthread_mutex_destroy(&data->array_philo[ph].fork);
 		ph++;

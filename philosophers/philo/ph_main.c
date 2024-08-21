@@ -13,29 +13,16 @@
 #include "philo.h"
 
 //Overtable
-void	print_text(t_philo *philo, const char *str)
-{
-	pthread_mutex_lock(&philo->data->mutex_text);
-	printf("[%lld] %d %s\n", ft_time(), philo->id, str);
-	pthread_mutex_unlock(&philo->data->mutex_text);
-}
-
-void	think(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->data->mutex_dead);
-	if (philo->data->someone_is_dead_so_sad == 0)
-		print_text(philo, "is thinking");
-	pthread_mutex_unlock(&philo->data->mutex_dead);
-}
-
 void	*routine(void *arg)
 {
-	// t_philo	*philo;
+	t_philo	*philo;
 
-	(void)arg;
-	// TODO: comer
-	// TODO: dormir
-	// TODO: pensar
+	arg = philo;
+	while (42)
+	{
+		if ((ft_time() - philo->last_eat) >= philo->time_die)
+			dead(philo);
+	}
 	return ((void *)0);
 }
 
@@ -55,7 +42,7 @@ int	main(int argc, char **argv)
 	memset(&data, 0, sizeof(data));
 	init_all(&data, argv, argc);
 	ph = 0;
-	while (ph < data.num_philo)
+	while (ph < data.num_ph)
 	{
 		pthread_create(&data.array_philo[ph].philo, NULL, routine, &data.array_philo[ph]);
 		ph++;

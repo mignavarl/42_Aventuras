@@ -42,11 +42,12 @@ struct s_philo
 	int				eating;
 	int				sleeping;
 	t_data			*data;
+	size_t			last_eat;
 };
 
 struct s_data
 {
-	int				num_philo;
+	int				num_ph;
 	t_philo			*array_philo;
 	pthread_mutex_t	mutex_dead;
 	pthread_mutex_t	mutex_text;
@@ -57,9 +58,15 @@ struct s_data
 void		init_all(t_data *data, char **argv, int argc);
 void		close_all(t_data *data);
 
+//ACTIONS
+void	sleep(t_philo *philo);
+void	eat(t_philo *philo);
+void	think(t_philo *philo);
+
 //UTILS
 int			all_args_nums(int argc, char **argv);
 int			ft_atoi(const char *str);
-long long	ft_time(void);
+size_t		ft_time(void);
+void		print_text(t_philo *philo, const char *str);
 
 #endif

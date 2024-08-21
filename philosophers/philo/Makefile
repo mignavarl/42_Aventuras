@@ -1,5 +1,5 @@
 NAME = philo
-SRC = ph_main.c ph_stats.c ph_utils.c
+SRC = ph_main.c ph_stats.c ph_utils.c ph_actions.c
 OBJ = ${SRC:.c=.o}
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3 -O0 -fsanitize=thread
