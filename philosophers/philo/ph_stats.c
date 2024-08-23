@@ -59,6 +59,8 @@ void	init_all(t_data *data, char **argv, int argc)
 	data->num_ph = ft_atoi(argv[1]);
 	data->array_philo = malloc(data->num_ph * sizeof(t_philo));
 	pthread_mutex_init(&data->mutex_text, NULL);
+	pthread_mutex_init(&data->mutex_dead, NULL);
+	pthread_mutex_init(&data->mutex_time, NULL);
 	data = stats_args(data, argv, argc);
 }
 
@@ -73,5 +75,7 @@ void	close_all(t_data *data)
 		ph++;
 	}
 	pthread_mutex_destroy(&data->mutex_text);
+	pthread_mutex_destroy(&data->mutex_dead);
+	pthread_mutex_destroy(&data->mutex_time);
 	free(data->array_philo);
 }

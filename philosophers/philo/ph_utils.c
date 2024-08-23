@@ -60,22 +60,24 @@ int	all_args_nums(int argc, char **argv)
 	return (0);
 }
 
-size_t	ft_time(void)
+size_t	ft_time(t_philo *philo)
 {
 	static long long	start;
 	long long			current;
 	struct timeval		time;
 
+	pthread_mutex_lock(&philo->data->mutex_time);
 	gettimeofday(&time, NULL);
 	current = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	if (!start)
 		start = current;
+	pthread_mutex_unlock(&philo->data->mutex_time);
 	return (current - start);
 }
 
 void	print_text(t_philo *philo, const char *str)
 {
 	pthread_mutex_lock(&philo->data->mutex_text);
-	printf("[%lld] %d %s\n", ft_time(), philo->id, str);
+	printf("[%ld] %d %s\n", ft_time(philo), philo->id, str);
 	pthread_mutex_unlock(&philo->data->mutex_text);
 }

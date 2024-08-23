@@ -13,15 +13,27 @@
 #include "philo.h"
 
 //Overtable
-void	*routine(void *arg)
+void	*routine(void *arg)//Comer, dormir, pensar...
 {
 	t_philo	*philo;
 
-	arg = philo;
+	philo = (t_philo *)arg;
 	while (42)
 	{
-		if ((ft_time() - philo->last_eat) >= philo->time_die)
+		if ((ft_time(philo) - philo->last_eat) >= philo->time_die
+			&& its_dead(philo) == 0)
+		{
 			dead(philo);
+			break ;
+		}
+		if (its_dead(philo) == 0)
+		{
+			eat(philo);
+			sleeping(philo);
+			think(philo);
+		}
+		if (its_dead(philo) == 1)
+			break ;
 	}
 	return ((void *)0);
 }
