@@ -23,15 +23,11 @@ void	dead(t_philo *philo)
 int	its_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->mutex_dead);
-	if (philo->data->someone_is_dead_so_sad == 0)
-	{
-		pthread_mutex_unlock(&philo->data->mutex_dead);
-		return (0);
-	}
 	if (philo->data->someone_is_dead_so_sad == 1)
 	{
 		pthread_mutex_unlock(&philo->data->mutex_dead);
 		return (1);
 	}
+	pthread_mutex_unlock(&philo->data->mutex_dead);
 	return (0);
 }

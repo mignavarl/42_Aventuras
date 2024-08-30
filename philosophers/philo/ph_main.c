@@ -12,23 +12,26 @@
 
 #include "philo.h"
 
-//Overtable
-void	*routine(void *arg)//Comer, dormir, pensar...
+void	*routine(void *arg)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	while (42)
 	{
-		if ((ft_time(philo) - philo->last_eat) >= philo->time_die
-			&& its_dead(philo) == 0)
+		if ((ft_time(philo) - philo->last_eat) >= philo->time_die)
 		{
 			dead(philo);
 			break ;
 		}
 		if (its_dead(philo) == 0)
 		{
-			eat(philo);
+			if (eat(philo) == 1)
+				break ;
+			if (philo->data->argc == 6)
+				philo->must_eat--;
+			if ((philo->data->argc == 6 && philo->must_eat == 0))
+				break ;
 			sleeping(philo);
 			think(philo);
 		}
@@ -53,17 +56,17 @@ int	main(int argc, char **argv)
 	printf(GREEN"EMPIEZA\n"END);
 	memset(&data, 0, sizeof(data));
 	init_all(&data, argv, argc);
-	ph = 0;
+	ph = 1;
 	while (ph < data.num_ph)
 	{
 		pthread_create(&data.array_philo[ph].philo, NULL, routine, &data.array_philo[ph]);
 		ph++;
 	}
-	ph -= 1;
-	while (ph >= 0)
+	ph = 1;
+	while (ph < data.num_ph)
 	{
 		pthread_join(data.array_philo[ph].philo, NULL);
-		ph--;
+		ph++;
 	}
 	close_all(&data);
 	printf(GREEN"SE ACABÓ\n"END);

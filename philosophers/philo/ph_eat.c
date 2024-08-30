@@ -12,42 +12,40 @@
 
 #include "philo.h"
 
-void	waiting_fork(t_philo *philo)//TODO:buscar solucion eating variable, crear un mutex
+int	eat_dead(t_philo *philo)
 {
-	if (philo->id != 0)
+	if (its_dead(philo) == 1)
 	{
-		while (philo->data->array_philo[philo->id - 1].eating == 1)
-		{
-			continue ;
-		}
+		pthread_mutex_unlock(&philo->fork);
+		pthread_mutex_unlock(philo->left_fork);
+		return (1);
 	}
-	else if (philo->id == 0)
+	else if (ft_time(philo) >= (philo->last_eat + philo->time_die))
 	{
-		while (philo->data->array_philo[philo->data->num_ph].eating == 1)
-			continue ;
+		dead(philo);
+		pthread_mutex_unlock(&philo->fork);
+		pthread_mutex_unlock(philo->left_fork);
+		return (1);
 	}
+	return (0);
 }
 
-void	eat(t_philo *philo)//TODO: comer n veces
+int	eat(t_philo *philo)
 {
 	if (its_dead(philo) == 0)
 	{
 		pthread_mutex_lock(&philo->fork);
-		philo->eating = 1;
-		print_text(philo, "has taken a fork");
-		waiting_fork(philo);
-		if (its_dead(philo) == 1)
-		{
-			pthread_mutex_unlock(&philo->fork);
-			return ;
-		}
-		pthread_mutex_lock(philo->left_fork);//TODO: ¿se mueren con tenedor en mano?
-		print_text(philo, "has taken a fork");
+		print_text(philo, "taken a fork");
+		pthread_mutex_lock(philo->left_fork);
+		if (eat_dead(philo) == 1)
+			return (1);
+		print_text(philo, "taken a fork");
 		print_text(philo, "is eating");
 		usleep(philo->time_eat);
-		
+		philo->last_eat = ft_time(philo);
 		pthread_mutex_unlock(&philo->fork);
 		pthread_mutex_unlock(philo->left_fork);
-		philo->last_eat = ft_time(philo);
+		return (0);
 	}
+	return (1);
 }

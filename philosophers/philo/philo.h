@@ -40,8 +40,8 @@ struct s_philo
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*left_fork;
 	int				eating;
-	t_data			*data;
 	size_t			last_eat;
+	t_data			*data;
 };
 
 struct s_data
@@ -51,6 +51,8 @@ struct s_data
 	pthread_mutex_t	mutex_dead;
 	pthread_mutex_t	mutex_text;
 	pthread_mutex_t	mutex_time;
+	pthread_mutex_t	mutex_eat;
+	int				argc;
 	int				someone_is_dead_so_sad;
 };
 
@@ -63,16 +65,16 @@ void	sleeping(t_philo *philo);
 void	think(t_philo *philo);
 
 //EAT
-void	eat(t_philo *philo);
+int		eat(t_philo *philo);
 
 //DEAD
 void	dead(t_philo *philo);
 int		its_dead(t_philo *philo);
 
 //UTILS
-int			all_args_nums(int argc, char **argv);
-int			ft_atoi(const char *str);
-size_t		ft_time(t_philo *philo);
-void		print_text(t_philo *philo, const char *str);
+int		all_args_nums(int argc, char **argv);
+int		ft_atoi(const char *str);
+size_t	ft_time(t_philo *philo);
+void	print_text(t_philo *philo, const char *str);
 
 #endif

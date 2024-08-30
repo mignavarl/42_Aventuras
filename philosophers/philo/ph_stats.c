@@ -16,13 +16,20 @@ void	put_forks(t_data *data)
 {
 	int	ph;
 
-	data->array_philo[0].left_fork = &data->array_philo[data->num_ph - 1].fork;
-	ph = 1;
+	data->array_philo[1].left_fork = &data->array_philo[data->num_ph].fork;
+	ph = 2;
 	while (ph < data->num_ph)
 	{
 		data->array_philo[ph].left_fork = &data->array_philo[ph - 1].fork;
 		ph++;
 	}
+}
+
+void	init_time(t_philo *philo, size_t die, size_t eat, size_t sleep)
+{
+	philo->time_die = die;
+	philo->time_eat = eat;
+	philo->time_sleep = sleep;
 }
 
 t_data	*stats_args(t_data *data, char **argv, int argc)
@@ -32,7 +39,7 @@ t_data	*stats_args(t_data *data, char **argv, int argc)
 	size_t	eat;
 	size_t	sleep;
 
-	ph = 0;
+	ph = 1;
 	die = ft_atoi(argv[2]);
 	eat = ft_atoi(argv[3]);
 	sleep = ft_atoi(argv[4]);
@@ -41,9 +48,7 @@ t_data	*stats_args(t_data *data, char **argv, int argc)
 		memset(&data->array_philo[ph], 0, sizeof(t_philo));
 		data->array_philo[ph].id = ph;
 		data->array_philo[ph].num_philo = data->num_ph;
-		data->array_philo[ph].time_die = die;
-		data->array_philo[ph].time_eat = eat;
-		data->array_philo[ph].time_sleep = sleep;
+		init_time(&data->array_philo[ph], die, eat, sleep);
 		if (argc == 6)
 			data->array_philo[ph].must_eat = ft_atoi(argv[5]);
 		pthread_mutex_init(&data->array_philo[ph].fork, NULL);
@@ -56,11 +61,13 @@ t_data	*stats_args(t_data *data, char **argv, int argc)
 
 void	init_all(t_data *data, char **argv, int argc)
 {
-	data->num_ph = ft_atoi(argv[1]);
+	data->num_ph = ft_atoi(argv[1]) + 1;
+	data->argc = argc;
 	data->array_philo = malloc(data->num_ph * sizeof(t_philo));
 	pthread_mutex_init(&data->mutex_text, NULL);
 	pthread_mutex_init(&data->mutex_dead, NULL);
 	pthread_mutex_init(&data->mutex_time, NULL);
+	pthread_mutex_init(&data->mutex_eat, NULL);
 	data = stats_args(data, argv, argc);
 }
 
@@ -68,7 +75,7 @@ void	close_all(t_data *data)
 {
 	int	ph;
 
-	ph = 0;
+	ph = 1;
 	while (ph < data->num_ph)
 	{
 		pthread_mutex_destroy(&data->array_philo[ph].fork);
@@ -77,5 +84,6 @@ void	close_all(t_data *data)
 	pthread_mutex_destroy(&data->mutex_text);
 	pthread_mutex_destroy(&data->mutex_dead);
 	pthread_mutex_destroy(&data->mutex_time);
+	pthread_mutex_destroy(&data->mutex_eat);
 	free(data->array_philo);
 }
