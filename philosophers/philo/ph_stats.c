@@ -68,6 +68,7 @@ void	init_all(t_data *data, char **argv, int argc)
 	pthread_mutex_init(&data->mutex_dead, NULL);
 	pthread_mutex_init(&data->mutex_time, NULL);
 	pthread_mutex_init(&data->mutex_eat, NULL);
+	pthread_mutex_init(&data->mutex_reaper_time, NULL);
 	data = stats_args(data, argv, argc);
 }
 
@@ -85,5 +86,6 @@ void	close_all(t_data *data)
 	pthread_mutex_destroy(&data->mutex_dead);
 	pthread_mutex_destroy(&data->mutex_time);
 	pthread_mutex_destroy(&data->mutex_eat);
+	pthread_mutex_destroy(&data->mutex_reaper_time);
 	free(data->array_philo);
 }

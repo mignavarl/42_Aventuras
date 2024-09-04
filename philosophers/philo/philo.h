@@ -25,8 +25,8 @@
 # define GREEN "\033[1;32m"
 # define END "\033[0m"
 
-typedef struct s_data t_data;
-typedef struct s_philo t_philo;
+typedef struct s_data	t_data;
+typedef struct s_philo	t_philo;
 
 struct s_philo
 {
@@ -46,30 +46,33 @@ struct s_philo
 
 struct s_data
 {
+	pthread_t		the_reaper;
 	int				num_ph;
 	t_philo			*array_philo;
 	pthread_mutex_t	mutex_dead;
 	pthread_mutex_t	mutex_text;
 	pthread_mutex_t	mutex_time;
 	pthread_mutex_t	mutex_eat;
+	pthread_mutex_t	mutex_reaper_time;
 	int				argc;
 	int				someone_is_dead_so_sad;
 };
 
 //STATS
-void		init_all(t_data *data, char **argv, int argc);
-void		close_all(t_data *data);
+void	init_all(t_data *data, char **argv, int argc);
+void	close_all(t_data *data);
 
 //ACTIONS
 void	sleeping(t_philo *philo);
 void	think(t_philo *philo);
-
-//EAT
 int		eat(t_philo *philo);
 
 //DEAD
 void	dead(t_philo *philo);
 int		its_dead(t_philo *philo);
+
+//REAPER
+void	*reaper(void *arg);
 
 //UTILS
 int		all_args_nums(int argc, char **argv);

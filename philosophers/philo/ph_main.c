@@ -19,11 +19,11 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	while (42)
 	{
-		if ((ft_time(philo) - philo->last_eat) >= philo->time_die)
-		{
-			dead(philo);
-			break ;
-		}
+		// if ((ft_time(philo) - philo->last_eat) >= philo->time_die)
+		// {
+		// 	dead(philo);
+		// 	break ;
+		// }
 		if (its_dead(philo) == 0)
 		{
 			if (eat(philo) == 1)
@@ -63,9 +63,13 @@ int	main(int argc, char **argv)
 		ph++;
 	}
 	ph = 1;
-	while (ph < data.num_ph)
+	//printf("Llega aquí\n"); 
+	pthread_create(&data.the_reaper, NULL, reaper, &data);
+	pthread_join(data.the_reaper, NULL);
+	while (ph < data.num_ph)//TODO: no llegan todos
 	{
 		pthread_join(data.array_philo[ph].philo, NULL);
+		printf("PH: %d\n", ph);
 		ph++;
 	}
 	close_all(&data);

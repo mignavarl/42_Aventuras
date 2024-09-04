@@ -23,12 +23,12 @@ void	sleeping(t_philo *philo)
 	if (its_dead(philo) == 0)
 	{
 		print_text(philo, "is sleeping");
-		if (philo->time_sleep > (philo->last_eat + philo->time_die))
-		{
-			usleep(philo->time_die);
-			dead(philo);
-			return ;
-		}
-		usleep(philo->time_sleep);
+		// if (philo->time_sleep > (philo->last_eat + philo->time_die))
+		// {
+		// 	usleep(philo->time_die * 1000);
+		// 	dead(philo);
+		// 	return ;
+		// }
+		usleep(philo->time_sleep * 1000);
 	}
 }
