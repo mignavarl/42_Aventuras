@@ -34,9 +34,6 @@ struct s_philo
 	int				id;
 	int				num_philo;
 	int				must_eat;
-	size_t			time_die;
-	size_t			time_eat;
-	size_t			time_sleep;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*left_fork;
 	int				eating;
@@ -54,7 +51,12 @@ struct s_data
 	pthread_mutex_t	mutex_time;
 	pthread_mutex_t	mutex_eat;
 	pthread_mutex_t	mutex_reaper_time;
+	pthread_mutex_t	mutex_must_eat;
+	int				all_eat;
 	int				argc;
+	size_t			die;
+	size_t			eat;
+	size_t			sleep;
 	int				someone_is_dead_so_sad;
 };
 

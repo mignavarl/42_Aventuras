@@ -12,32 +12,67 @@
 
 #include "philo.h"
 
+int		reaper_eat(t_data *data)
+{
+	int	eaten;
+	int	ph;
+
+	ph = 1;
+	pthread_mutex_lock(&data->mutex_must_eat);
+	if (data->argc == 6)
+	{
+		eaten = 0;
+		while (ph <= data->num_ph)
+		{
+			if (data->array_philo[ph].must_eat <= 0)
+				eaten++;
+			ph++;
+		}
+		if (data->num_ph == eaten)
+		{
+			pthread_mutex_lock(&data->mutex_dead);
+			data->someone_is_dead_so_sad = 1;
+			pthread_mutex_unlock(&data->mutex_dead);
+			pthread_mutex_unlock(&data->mutex_must_eat);
+			return (1);
+		}
+	}
+	pthread_mutex_unlock(&data->mutex_must_eat);
+	return (0);
+}
+
 void	*reaper(void *arg)
 {
 	t_data	*data;
-	int		ph;
 	size_t	time;		
+	size_t	ph_last_eat;
+	int		ph;
+
 
 	data = (t_data *)arg;
 
 	ph = 1;
+	//printf("REAPER\n");
 	while (42)
 	{
-		pthread_mutex_lock(&data->mutex_reaper_time);
-		time = ft_time(&data->array_philo[ph]);
-		pthread_mutex_unlock(&data->mutex_reaper_time);
 		pthread_mutex_lock(&data->mutex_eat);
-		if (time >= (data->array_philo[ph].last_eat
-				+ data->array_philo[ph].time_die))
+		time = ft_time(&data->array_philo[ph]);
+		ph_last_eat = data->array_philo[ph].last_eat;
+		pthread_mutex_unlock(&data->mutex_eat);
+		pthread_mutex_lock(&data->mutex_reaper_time);
+		if (time >= (ph_last_eat + data->die))
 		{
 			dead(&data->array_philo[ph]);
-			pthread_mutex_unlock(&data->mutex_eat);
+			pthread_mutex_unlock(&data->mutex_reaper_time);
 			break ;
 		}
+		pthread_mutex_unlock(&data->mutex_reaper_time);
+		if (reaper_eat(data) == 1)
+			break ;
 		ph++;
-		if (ph == data->num_ph)
+		if (ph > data->num_ph)
 			ph = 1;
-		pthread_mutex_unlock(&data->mutex_eat);
+		usleep(100);
 	}
-	return ((void *)0);
+	return (NULL);
 }

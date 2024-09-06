@@ -46,9 +46,9 @@ int	eat(t_philo *philo)
 		print_text(philo, "taken a fork");
 		print_text(philo, "is eating");
 		pthread_mutex_lock(&philo->data->mutex_eat);
-		philo->last_eat = ft_time(philo);
+		philo->last_eat = (ft_time(philo));
 		pthread_mutex_unlock(&philo->data->mutex_eat);
-		usleep(philo->time_eat * 1000);
+		usleep(philo->data->eat * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(&philo->fork);
 		return (0);

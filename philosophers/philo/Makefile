@@ -2,7 +2,7 @@ NAME = philo
 SRC = ph_main.c ph_stats.c ph_utils.c ph_actions.c ph_death.c ph_eat.c ph_reaper.c
 OBJ = ${SRC:.c=.o}
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -lpthread -g3 -O0 #-fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -lpthread -g3 -O0 #-fsanitize=address
 RM = rm -rf
 
 all: ${NAME}

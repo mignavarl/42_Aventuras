@@ -29,6 +29,6 @@ void	sleeping(t_philo *philo)
 		// 	dead(philo);
 		// 	return ;
 		// }
-		usleep(philo->time_sleep * 1000);
+		usleep(philo->data->sleep * 1000);
 	}
 }
