@@ -30,10 +30,6 @@ int	ft_atoi(const char *str)
 	while (*str && *str >= '0' && *str <= '9')
 	{
 		res = res * 10 + (*str - '0');
-		if (res > (unsigned long)LONG_MAX && sym == -1)
-			return (0);
-		else if (res > (unsigned long)LONG_MAX && sym == 1)
-			return (-1);
 		str++;
 	}
 	return (res * sym);
@@ -73,16 +69,4 @@ size_t	ft_time(t_philo *philo)
 		start = current;
 	pthread_mutex_unlock(&philo->data->mutex_time);
 	return (current - start);
-}
-
-void	print_text(t_philo *philo, const char *str)
-{
-	pthread_mutex_lock(&philo->data->mutex_dead);
-	if (philo->data->someone_is_dead_so_sad == 0)
-	{
-		pthread_mutex_lock(&philo->data->mutex_text);
-		printf("[%ld] %d %s\n", ft_time(philo), philo->id, str);
-		pthread_mutex_unlock(&philo->data->mutex_text);
-	}
-	pthread_mutex_unlock(&philo->data->mutex_dead);
 }

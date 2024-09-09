@@ -23,6 +23,11 @@
 
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
+# define YELLOW "\033[1;33m"
+# define BLUE "\033[1;34m"
+# define PURPLE "\033[1;95m"
+# define CYAN "\033[1;36m"
+# define WHITE "\033[1;37m"
 # define END "\033[0m"
 
 typedef struct s_data	t_data;
@@ -65,8 +70,12 @@ void	init_all(t_data *data, char **argv, int argc);
 void	close_all(t_data *data);
 
 //ACTIONS
+void	only_one(t_data *data);
+void	*one_philo(void *arg);
 void	sleeping(t_philo *philo);
 void	think(t_philo *philo);
+int		eat_odd(t_philo *philo);
+int		eat_even(t_philo *philo);
 int		eat(t_philo *philo);
 
 //DEAD
@@ -74,12 +83,12 @@ void	dead(t_philo *philo);
 int		its_dead(t_philo *philo);
 
 //REAPER
-void	*reaper(void *arg);
+void	reaper(void *arg);
 
 //UTILS
 int		all_args_nums(int argc, char **argv);
 int		ft_atoi(const char *str);
 size_t	ft_time(t_philo *philo);
-void	print_text(t_philo *philo, const char *str);
+void	print_text(t_philo *philo, const char *letter);
 
 #endif
