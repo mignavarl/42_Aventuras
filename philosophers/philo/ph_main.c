@@ -17,8 +17,8 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (philo->id % 2 == 0)
-		usleep(1000);
+	// if (philo->id % 2 == 0)
+	// 	usleep(1000);
 	while (42)
 	{
 		if (its_dead(philo) == 0)
@@ -27,10 +27,7 @@ void	*routine(void *arg)
 				break ;
 			pthread_mutex_lock(&philo->data->mutex_must_eat);
 			if (philo->data->argc == 6)
-			{
 				philo->must_eat--;
-				printf(RED"-----Philo %d -> %d-----\n"END, philo->id, philo->must_eat);
-			}
 			pthread_mutex_unlock(&philo->data->mutex_must_eat);
 			sleeping(philo);
 			think(philo);

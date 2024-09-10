@@ -42,12 +42,15 @@ int	all_args_nums(int argc, char **argv)
 
 	av = 1;
 	c = 0;
-	while (av < (argc - 1))
+	while (av < (argc))
 	{
 		while (argv[av][c] != '\0')
 		{
-			if (argv[av][c] < '0' && argv[av][c] > '9')
+			if (argv[av][c] < '0' || argv[av][c] > '9')
+			{
+				printf(RED"Error\nOnly Numbers\n"END);
 				return (1);
+			}
 			c++;
 		}
 		c = 0;
