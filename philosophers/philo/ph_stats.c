@@ -48,18 +48,25 @@ t_data	*stats_args(t_data *data, char **argv, int argc)
 	return (data);
 }
 
-void	init_all(t_data *data, char **argv, int argc)
+int	init_all(t_data *data, char **argv, int argc)
 {
 	data->num_ph = ft_atoi(argv[1]);
 	data->argc = argc;
 	data->array_philo = malloc((data->num_ph + 1) * sizeof(t_philo));
-	pthread_mutex_init(&data->mutex_text, NULL);
-	pthread_mutex_init(&data->mutex_dead, NULL);
-	pthread_mutex_init(&data->mutex_time, NULL);
-	pthread_mutex_init(&data->mutex_eat, NULL);
-	pthread_mutex_init(&data->mutex_reaper_time, NULL);
-	pthread_mutex_init(&data->mutex_must_eat, NULL);
+	if (pthread_mutex_init(&data->mutex_text, NULL))
+		return (0);
+	if (pthread_mutex_init(&data->mutex_dead, NULL))
+		return (0);
+	if (pthread_mutex_init(&data->mutex_time, NULL))
+		return (0);
+	if (pthread_mutex_init(&data->mutex_eat, NULL))
+		return (0);
+	if (pthread_mutex_init(&data->mutex_reaper_time, NULL))
+		return (0);
+	if (pthread_mutex_init(&data->mutex_must_eat, NULL))
+		return (0);
 	data = stats_args(data, argv, argc);
+	return (1);
 }
 
 void	close_all(t_data *data)

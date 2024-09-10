@@ -66,7 +66,7 @@ struct s_data
 };
 
 //STATS
-void	init_all(t_data *data, char **argv, int argc);
+int		init_all(t_data *data, char **argv, int argc);
 void	close_all(t_data *data);
 
 //ACTIONS

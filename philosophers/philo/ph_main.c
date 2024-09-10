@@ -17,8 +17,6 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	// if (philo->id % 2 == 0)
-	// 	usleep(1000);
 	while (42)
 	{
 		if (its_dead(philo) == 0)
@@ -38,17 +36,19 @@ void	*routine(void *arg)
 	return ((void *)0);
 }
 
-void	create_philos(t_data *data)
+int	create_philos(t_data *data)
 {
 	int	ph;
 
 	ph = 1;
 	while (ph <= data->num_ph)
 	{
-		pthread_create(&data->array_philo[ph].philo,
-			NULL, routine, &data->array_philo[ph]);
+		if (pthread_create(&data->array_philo[ph].philo,
+				NULL, routine, &data->array_philo[ph]))
+			return (0);
 		ph++;
 	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -56,25 +56,21 @@ int	main(int argc, char **argv)
 	int		ph;
 	t_data	data;
 
-	if (argc < 5 || argc > 6 || ft_atoi(argv[1]) == 0)
+	if (argc < 5 || argc > 6 || ft_atoi(argv[1]) <= 0)
 		return (EXIT_FAILURE);
 	if (all_args_nums(argc, argv) == 1)
 		return (EXIT_FAILURE);
 	memset(&data, 0, sizeof(data));
-	init_all(&data, argv, argc);
+	if (!init_all(&data, argv, argc))
+		return (1);
 	if (ft_atoi(argv[1]) == 1)
-	{
-		only_one(&data);
-		return (0);
-	}
-	create_philos(&data);
+		return (only_one(&data), 0);
+	if (!create_philos(&data))
+		return (1);
 	reaper(&data);
 	ph = 1;
 	while (ph <= data.num_ph)
-	{
-		pthread_join(data.array_philo[ph].philo, NULL);
-		ph++;
-	}
+		pthread_join(data.array_philo[ph++].philo, NULL);
 	close_all(&data);
 	return (0);
 }
