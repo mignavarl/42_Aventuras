@@ -17,6 +17,8 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->id % 2 == 0)
+		usleep(100);
 	while (42)
 	{
 		if (its_dead(philo) == 0)
