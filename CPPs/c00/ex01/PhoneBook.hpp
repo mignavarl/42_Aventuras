@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:22:30 by mignavar          #+#    #+#             */
-/*   Updated: 2025/07/29 11:27:00 by mignavar         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:10:45 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,16 @@
 #include "Contact.hpp"
 class PhoneBook
 {
-public:
-	Contact people[MAX_CONTACTS];
-	PhoneBook(/* args */);
-	~PhoneBook();
+	private:
+		Contact people[MAX_CONTACTS];
+	
+	public:
+		PhoneBook(/* args */);
+		~PhoneBook();
+		Contact *getContact(int cont);
+		bool	add_person(Contact *person);
+		void	search_people(PhoneBook book);
+		void	print_name(std::string name, bool final);
 };
 
 #endif

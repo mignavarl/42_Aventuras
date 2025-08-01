@@ -31,6 +31,8 @@ public:
 
 	Dog& operator=(Dog const& other);
 	void makeSound(void) const;
+	std::string getIdea(int i);
+	void setIdea(std::string idea, int i);
 };
 
 #endif // !_DOG_HPP

@@ -17,8 +17,8 @@ Cat::Cat(Cat const& other) : Animal()
 
 Cat::~Cat(void)
 {
-	std::cout << RED "Cat destructor called" NC << std::endl;
 	delete(this->brain);
+	std::cout << RED "Cat destructor called" NC << std::endl;
 }
 
 // OPERATORS--------------------------------------------------------------------
@@ -36,4 +36,15 @@ Cat& Cat::operator=(Cat const& other)
 void Cat::makeSound(void) const
 {
 	std::cout << this->type << " maulla: \"Nya\" 🐱\n";
+}
+
+std::string Cat::getIdea(int i)
+{
+	if (!this->brain->getBrainIdea(i).length())
+		return ("No Idea");
+	return (this->brain->getBrainIdea(i));
+}
+void Cat::setIdea(std::string idea, int i)
+{
+	this->brain->setBrainIdea(idea, i);
 }

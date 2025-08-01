@@ -31,6 +31,8 @@ public:
 
 	Cat& operator=(Cat const& other);
 	void makeSound(void) const;
+	std::string getIdea(int i);
+	void setIdea(std::string idea, int i);
 };
 
 #endif // !_CAT_HPP

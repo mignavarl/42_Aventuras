@@ -17,8 +17,8 @@ Dog::Dog(Dog const& other) : Animal()
 
 Dog::~Dog(void)
 {
-	std::cout << RED "Dog destructor called" NC << std::endl;
 	delete(this->brain);
+	std::cout << RED "Dog destructor called" NC << std::endl;
 }
 
 // OPERATORS--------------------------------------------------------------------
@@ -36,4 +36,15 @@ Dog& Dog::operator=(Dog const& other)
 void Dog::makeSound(void) const
 {
 	std::cout << this->type << " ladra: \"¡GUAU!\" 🐶\n";
+}
+
+std::string Dog::getIdea(int i)
+{
+	if (!this->brain->getBrainIdea(i).length())
+		return ("No Idea");
+	return (this->brain->getBrainIdea(i));
+}
+void Dog::setIdea(std::string idea, int i)
+{
+	this->brain->setBrainIdea(idea, i);
 }

@@ -29,8 +29,8 @@ public:
 	~Brain(void);
 
 	Brain& operator=(Brain const& other);
-	std::string getIdea(int i);
-	void 		setIdea(std::string idea, int i);
+	std::string getBrainIdea(int i);
+	void 		setBrainIdea(std::string idea, int i);
 };
 
 #endif // !_BRAIN_HPP

@@ -38,3 +38,15 @@ void Animal::makeSound(void) const
 {
 	std::cout << "Absoluto silencio\n";
 }
+
+std::string Animal::getIdea(int i)
+{
+	(void)i;
+	return ("Nada que hacer aquí");
+}
+void Animal::setIdea(std::string idea, int i)
+{
+	(void)idea;
+	(void)i;
+	std::cout << "Nada que hacer aquí\n";
+}

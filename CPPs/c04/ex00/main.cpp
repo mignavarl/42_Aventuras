@@ -11,8 +11,8 @@ int main()
 	const Animal* i = new Cat();
 	const WrongAnimal* w = new WrongAnimal();
 	const WrongAnimal* notcat = new WrongCat();
-	std::cout << "Type: " << i->getType() << " " << std::endl;
-	std::cout << "Type: " << j->getType() << " " << std::endl;
+	std::cout << "Type: " << i->getType() << std::endl;
+	std::cout << "Type: " << j->getType() << std::endl;
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();

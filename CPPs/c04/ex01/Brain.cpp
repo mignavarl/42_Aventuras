@@ -30,13 +30,11 @@ Brain& Brain::operator=(Brain const& other)
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
 
-std::string Brain::getIdea(int i)
+std::string Brain::getBrainIdea(int i)
 {
-	if (!this->ideas[i].length())
-		return (NULL);
 	return (this->ideas[i]);
 }
-void Brain::setIdea(std::string idea, int i)
+void Brain::setBrainIdea(std::string idea, int i)
 {
 	this->ideas[i] = idea;
 }
