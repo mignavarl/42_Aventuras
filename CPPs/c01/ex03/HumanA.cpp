@@ -16,7 +16,8 @@ HumanA::~HumanA(void)
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
 
-void	HumanA::attack(void)
+void	HumanA::attack(void) const
 {
-	std::cout << this->_name << " atacks with their " << this->_weapon.getType() << std::endl;
+	std::string wep = this->_weapon.getType();
+	std::cout << this->_name << " atacks with their " << wep << std::endl;
 }

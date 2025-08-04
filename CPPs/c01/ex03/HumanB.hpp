@@ -27,7 +27,7 @@ class HumanB {
 		HumanB(void);
 		HumanB(std::string);
 		~HumanB(void);
-		void	attack();
+		void	attack() const;
 		void	setWeapon(Weapon &weapon);
 };
 

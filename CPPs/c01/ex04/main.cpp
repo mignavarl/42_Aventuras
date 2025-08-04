@@ -1,5 +1,4 @@
 #include "File.hpp"
-#include <bits/stdc++.h>
 
 int	main(int argc, char **argv)
 {
@@ -19,23 +18,7 @@ int	main(int argc, char **argv)
 	r_name += ".replace";
 	std::ofstream new_file;
 	new_file.open(r_name.c_str());
-	std::string to_erase = argv[2];
-	size_t	pos;
-	while (std::getline(arg, copy._file))
-	{
-		pos = 0;
-		while (pos <= 0)
-		{
-			pos = copy._file.find(argv[2]);
-			if (pos >= 0 && pos < copy._file.length())
-			{
-				copy._file.erase(pos, to_erase.length());
-				copy._file.insert(pos, argv[3]);
-			}
-		}
-		new_file << copy._file;
-		new_file << "\n";
-	}	
+	copy.replacing(&arg, argv, &new_file);
 	arg.close();
 	new_file.close();
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:16:44 by mignavar          #+#    #+#             */
-/*   Updated: 2025/07/30 11:10:37 by mignavar         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:42:37 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	PhoneBook::print_name(std::string name, bool final)
 		return;
 	}
 	if (!final)
-		std::cout << std::setw(10) << std::right << name << MAGENTA << "│" << NC;
+		std::cout << std::setw(10) << std::right << name << MAGENTA << ".│" << NC;
 	else
 		std::cout << std::setw(10) << std::right << name << MAGENTA << "║\n" << NC;
 }

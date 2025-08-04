@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 18:23:42 by mignavar          #+#    #+#             */
-/*   Updated: 2025/05/28 15:37:58 by mignavar         ###   ########.fr       */
+/*   Updated: 2025/08/01 13:55:12 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	Zombie::announce(void)
 
 void	Zombie::SetName(std::string n)
 {
-	name = n;
+	this->name = n;
 }

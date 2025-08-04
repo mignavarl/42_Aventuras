@@ -26,7 +26,7 @@ void Harl::warning(void)
 }
 void Harl::error(void)
 {
-	std::cout << RED << "[ ERROR ]\n🍋¡ESTO ES INACEPTABLE!🍋 Quiero hablar con el gerente ahora.\n" << NC;
+	std::cout << YELLOW << "[ ERROR ]\n🍋¡ESTO ES INACEPTABLE!🍋 Quiero hablar con el gerente ahora.\n" << NC;
 }
 
 void Harl::complain(std::string level)

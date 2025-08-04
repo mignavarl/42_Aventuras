@@ -37,6 +37,6 @@ public:
 	float	toFloat(void) const;
 	int		toInt(void) const;
 };
-std::ostream &operator<<(std::ostream &o, Fixed const &fixed);
+std::ostream &operator<<(std::ostream &nbr, Fixed const &fixed);
 
 #endif // !_FIXED_HPP

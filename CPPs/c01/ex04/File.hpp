@@ -22,12 +22,15 @@
 #include <iostream>
 #include <fstream>
 #include <strings.h>
+#include <bits/stdc++.h>
 
 class File {
+	private:
+		std::string _line;
 	public:
 		File(void);
 		~File(void);
-		std::string _file;
+		void	replacing(std::ifstream *arg, char **argv, std::ofstream *new_file);
 };
 
 #endif // !_FILE_HPP

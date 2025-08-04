@@ -26,7 +26,7 @@ void Harl::warning(void)
 }
 void Harl::error(void)
 {
-	std::cout << RED << "🍋¡ESTO ES INACEPTABLE!🍋 Quiero hablar con el gerente ahora.\n" << NC;
+	std::cout << YELLOW << "🍋¡ESTO ES INACEPTABLE!🍋 Quiero hablar con el gerente ahora.\n" << NC;
 }
 
 void Harl::complain(std::string level)
@@ -38,7 +38,12 @@ void Harl::complain(std::string level)
 	while (i < 4)
 	{
 		if (lvl[i] == level)
+		{
 			(this->*f[i])();
+			return ;
+		}
 		i++;
 	}
+	if (i == 4)
+		std::cout << RED << level << " : not found\n" << NC;
 }

@@ -21,9 +21,8 @@ Fixed::~Fixed(void)
 // OPERATORS--------------------------------------------------------------------
 Fixed& Fixed::operator=(Fixed const& other)
 {
-	if (this == &other) {
-		return *this;
-	}
+	if (this != &other) 
+		this->value = other.getRawBits();
 	return *this;
 }
 

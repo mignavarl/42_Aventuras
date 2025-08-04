@@ -16,9 +16,10 @@ HumanB::~HumanB(void)
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
 
-void	HumanB::attack(void)
+void	HumanB::attack(void) const
 {
-	std::cout << this->_name << " atacks with their " << _weapon->getType() << std::endl;
+	std::string wep = this->_weapon->getType();
+	std::cout << this->_name << " atacks with their " << wep << std::endl;
 }
 
 void	HumanB::setWeapon(Weapon &weapon)

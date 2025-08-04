@@ -9,13 +9,13 @@ Fixed::Fixed(void)
 
 Fixed::Fixed(const int nbr)
 {
-	std::cout << GREEN "Fixed default constructor called" NC << std::endl;
+	std::cout << GREEN "Fixed int constructor called" NC << std::endl;
 	this->value = nbr << this->bits;
 }
 
 Fixed::Fixed(const float nbr)
 {
-	std::cout << GREEN "Fixed default constructor called" NC << std::endl;
+	std::cout << GREEN "Fixed float constructor called" NC << std::endl;
 	this->value = roundf(nbr * (1 << this->bits));
 }
 
@@ -33,9 +33,8 @@ Fixed::~Fixed(void)
 // OPERATORS--------------------------------------------------------------------
 Fixed& Fixed::operator=(Fixed const& other)
 {
-	if (this == &other) {
+	if (this != &other) 
 		this->value = other.getRawBits();
-	}
 	return *this;
 }
 

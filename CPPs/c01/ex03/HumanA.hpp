@@ -27,7 +27,7 @@ class HumanA {
 	public:
 		HumanA(std::string, Weapon &weapon);
 		~HumanA(void);
-		void	attack();
+		void	attack() const;
 };
 
 #endif // !_HUMANA_HPP
