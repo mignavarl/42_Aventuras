@@ -29,10 +29,11 @@ class Animal {
 		virtual ~Animal(void);
 
 		Animal& operator=(Animal const& other);
-		virtual std::string  getType(void) const;
-		virtual void makeSound(void) const;
-		virtual std::string getIdea(int i);
-		virtual void setIdea(std::string idea, int i);
+		virtual std::string  getType(void) const
+		;
+		virtual void makeSound(void) const = 0;
+		virtual std::string getIdea(int i) = 0;
+		virtual void setIdea(std::string idea, int i) = 0;
 };
 
 #endif // !_ANIMAL_HPP

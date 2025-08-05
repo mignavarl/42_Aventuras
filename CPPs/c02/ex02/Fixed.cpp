@@ -107,24 +107,36 @@ bool	Fixed::operator!=(Fixed fixed)const
 	return (false);
 }
 
-float	Fixed::operator+(Fixed fixed)const
+Fixed	Fixed::operator+(Fixed fixed)const
 {
-	return(this->toFloat() + fixed.toFloat());
+	Fixed tmp;
+
+	tmp.setRawBits(this->getRawBits() + fixed.getRawBits());
+	return(tmp);
 }
 
-float	Fixed::operator-(Fixed fixed)const
+Fixed	Fixed::operator-(Fixed fixed)const
 {
-	return(this->toFloat() - fixed.toFloat());
+	Fixed tmp;
+
+	tmp.setRawBits(this->getRawBits() - fixed.getRawBits());
+	return(tmp);
 }
 
-float	Fixed::operator*(Fixed fixed)const
+Fixed	Fixed::operator*(Fixed fixed)const
 {
-	return(this->toFloat() * fixed.toFloat());
+	Fixed tmp;
+
+	tmp.setRawBits(this->getRawBits() * fixed.getRawBits());
+	return(tmp);
 }
 
-float	Fixed::operator/(Fixed fixed)const
+Fixed	Fixed::operator/(Fixed fixed)const
 {
-	return(this->toFloat() / fixed.toFloat());
+	Fixed tmp;
+
+	tmp.setRawBits(this->getRawBits() / fixed.getRawBits());
+	return(tmp);
 }
 
 Fixed	Fixed::operator++()

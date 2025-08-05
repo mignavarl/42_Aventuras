@@ -36,7 +36,6 @@ std::string Animal::getType(void) const
 
 void Animal::makeSound(void) const
 {
-	std::cout << "Absoluto silencio\n";
 }
 
 std::string Animal::getIdea(int i)

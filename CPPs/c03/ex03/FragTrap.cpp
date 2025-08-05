@@ -16,6 +16,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	std::cout << GREEN "FragTrap name constructor called" NC << std::endl;
 	this->_name = name;
 	this->_health = 100;
+	this->_energy = 100;
 	this->_attack_damage = 30;
 }
 

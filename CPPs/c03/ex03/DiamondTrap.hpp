@@ -38,6 +38,7 @@ public:
 	DiamondTrap& operator=(DiamondTrap const& other);
 	void	whoAmI(void);
 	void	getDiam_stats(void);
+	using ScavTrap::attack;
 };
 
 

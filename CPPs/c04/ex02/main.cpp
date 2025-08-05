@@ -6,31 +6,21 @@
 
 int main()
 {
-	Animal *animal[10];
-	int i = 0;
-	while (i <= 10)
-	{
-		std::cout << MAGENTA << "---- Creando Animal Nº" << i << " ----\n" NC;
-		if (i%2 == 0)
-			animal[i] = new Dog();
-		else
-			animal[i] = new Cat();
-		i++;
-	}
+	Animal *cat = new Cat();
+	Animal *dog = new Dog();
+	//Animal *a = new Animal();
+
 	std::cout << "--------------------------------------------------\n";
-	std::cout << "Type Animal 0: " << animal[0]->getType() << std::endl;
-	std::cout << "Type Animal 1: " << animal[1]->getType() << std::endl;
-	animal[4]->makeSound();
-	animal[7]->makeSound();
-	std::cout << "Idea 20 = " << animal[0]->getIdea(20) << std::endl;
-	animal[0]->setIdea("Patata", 20);
-	std::cout << "Idea 20 = " << animal[0]->getIdea(20) << std::endl;
-	std::cout << "Idea 20 = " << animal[1]->getIdea(20) << std::endl;
+	std::cout << "Type Animal 0: " << dog->getType() << std::endl;
+	std::cout << "Type Animal 1: " << cat->getType() << std::endl;
+	dog->makeSound();
+	cat->makeSound();
+	std::cout << "Idea 20 = " << dog->getIdea(20) << std::endl;
+	dog->setIdea("Patata", 20);
+	std::cout << "Idea 20 = " << dog->getIdea(20) << std::endl;
+	std::cout << "Idea 20 = " << cat->getIdea(20) << std::endl;
 	std::cout << "--------------------------------------------------\n";
-	while (i-- > 0)
-	{
-		std::cout << MAGENTA << "---- Borrando Animal Nº" << i << " ----\n" NC;
-		delete(animal[i]);
-	}
+	delete(dog);
+	delete(cat);
 	return 0;
 }

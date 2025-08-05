@@ -43,10 +43,10 @@ public:
 	bool	operator==(Fixed fixed)const;
 	bool	operator!=(Fixed fixed)const;
 
-	float	operator+(Fixed fixed)const;
-	float	operator-(Fixed fixed)const;
-	float	operator*(Fixed fixed)const;
-	float	operator/(Fixed fixed)const;
+	Fixed	operator+(Fixed fixed)const;
+	Fixed	operator-(Fixed fixed)const;
+	Fixed	operator*(Fixed fixed)const;
+	Fixed	operator/(Fixed fixed)const;
 
 	Fixed	operator++();
 	Fixed	operator--();

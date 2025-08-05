@@ -17,7 +17,7 @@ Weapon::~Weapon(void)
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
 
-std::string Weapon::getType(void)
+const std::string& Weapon::getType(void)
 {
 	return (this->type);
 }
