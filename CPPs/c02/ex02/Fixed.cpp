@@ -3,31 +3,31 @@
 // CONSTRUCTORS AND DESTRUCTORS-------------------------------------------------
 Fixed::Fixed(void)
 {
-	std::cout << GREEN "Fixed default constructor called" NC << std::endl;
+	//std::cout << GREEN "Fixed default constructor called" NC << std::endl;
 	this->value = 0;
 }
 
 Fixed::Fixed(const int nbr)
 {
-	std::cout << GREEN "Fixed int constructor called" NC << std::endl;
+	//std::cout << GREEN "Fixed int constructor called" NC << std::endl;
 	this->value = nbr << this->bits;
 }
 
 Fixed::Fixed(const float nbr)
 {
-	std::cout << GREEN "Fixed float constructor called" NC << std::endl;
+	//std::cout << GREEN "Fixed float constructor called" NC << std::endl;
 	this->value = roundf(nbr * (1 << this->bits));
 }
 
 Fixed::Fixed(Fixed const& other)
 {
-	std::cout << GREEN "Fixed copy constructor called" NC << std::endl;
+	//std::cout << GREEN "Fixed copy constructor called" NC << std::endl;
 	this->value = other.value;
 }
 
 Fixed::~Fixed(void)
 {
-	std::cout << RED "Fixed destructor called" NC << std::endl;
+	//std::cout << RED "Fixed destructor called" NC << std::endl;
 }
 
 // OPERATORS--------------------------------------------------------------------
@@ -127,7 +127,7 @@ Fixed	Fixed::operator*(Fixed fixed)const
 {
 	Fixed tmp;
 
-	tmp.setRawBits(this->getRawBits() * fixed.getRawBits());
+	tmp.setRawBits(this->getRawBits() * fixed.getRawBits() >> this->bits);
 	return(tmp);
 }
 
@@ -135,7 +135,7 @@ Fixed	Fixed::operator/(Fixed fixed)const
 {
 	Fixed tmp;
 
-	tmp.setRawBits(this->getRawBits() / fixed.getRawBits());
+	tmp.setRawBits(this->getRawBits() / fixed.getRawBits() << this->bits);
 	return(tmp);
 }
 
@@ -153,18 +153,18 @@ Fixed	Fixed::operator--()
 
 Fixed	Fixed::operator++(int)
 {
-	Fixed	*tmp = this;
+	Fixed	tmp(*this);
 
 	++this->value;
-	return(*tmp);
+	return(tmp);
 }
 
 Fixed	Fixed::operator--(int)
 {
-	Fixed	*tmp = this;
+	Fixed	tmp(*this);
 
 	--this->value;
-	return(*tmp);
+	return(tmp);
 }
 
 Fixed &Fixed::min(Fixed &first, Fixed &second)
