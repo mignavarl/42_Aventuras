@@ -22,10 +22,8 @@ WrongCat::~WrongCat(void)
 // OPERATORS--------------------------------------------------------------------
 WrongCat& WrongCat::operator=(WrongCat const& other)
 {
-	if (this == &other) {
-		return *this;
-	}
-	// DO THINGS
+	if (this != &other)
+		this->type = other.type;
 	return *this;
 }
 

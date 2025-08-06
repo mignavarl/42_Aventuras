@@ -34,10 +34,13 @@ FragTrap::~FragTrap(void)
 // OPERATORS--------------------------------------------------------------------
 FragTrap& FragTrap::operator=(FragTrap const& other)
 {
-	if (this == &other) {
-		return *this;
+	if (this != &other)
+	{
+		this->_name = other._name;
+		this->_health = other._health;
+		this->_energy = other._energy;
+		this->_attack_damage = other._attack_damage;	
 	}
-	// DO THINGS
 	return *this;
 }
 

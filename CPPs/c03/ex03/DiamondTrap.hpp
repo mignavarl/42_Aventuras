@@ -21,24 +21,23 @@
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap{
+class DiamondTrap : public ScavTrap, public FragTrap
+{
 	private:
-	std::string _name;
-public:
-	DiamondTrap(void);
-	DiamondTrap(std::string name);
-	DiamondTrap(DiamondTrap const& other);
-	~DiamondTrap(void);
+		std::string _name;
+	public:
+		DiamondTrap(void);
+		DiamondTrap(std::string name);
+		DiamondTrap(DiamondTrap const& other);
+		~DiamondTrap(void);
 
-	std::string	&getName(void);
-	int 		&getHealth(void);
-	int 		&getEnergy(void);
-	int 		&getAttack(void);
+		std::string	&getName(void);
+		int 		&getHealth(void);
+		int 		&getEnergy(void);
+		int 		&getAttack(void);
 
-	DiamondTrap& operator=(DiamondTrap const& other);
-	void	whoAmI(void);
-	void	getDiam_stats(void);
-	using ScavTrap::attack;
+		DiamondTrap& operator=(DiamondTrap const& other);
+		void	whoAmI(void);
 };
 
 

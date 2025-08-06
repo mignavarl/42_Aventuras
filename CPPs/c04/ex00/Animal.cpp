@@ -21,10 +21,8 @@ Animal::~Animal(void)
 // OPERATORS--------------------------------------------------------------------
 Animal& Animal::operator=(Animal const& other)
 {
-	if (this == &other) {
-		return *this;
-	}
-	// DO THINGS
+	if (this != &other)
+		this->type = other.type;
 	return *this;
 }
 

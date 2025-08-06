@@ -22,10 +22,8 @@ Dog::~Dog(void)
 // OPERATORS--------------------------------------------------------------------
 Dog& Dog::operator=(Dog const& other)
 {
-	if (this == &other) {
-		return *this;
-	}
-	// DO THINGS
+	if (this != &other)
+		this->type = other.type;
 	return *this;
 }
 

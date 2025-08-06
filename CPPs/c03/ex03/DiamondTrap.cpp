@@ -40,10 +40,13 @@ DiamondTrap::~DiamondTrap(void)
 // OPERATORS--------------------------------------------------------------------
 DiamondTrap& DiamondTrap::operator=(DiamondTrap const& other)
 {
-	if (this == &other) {
-		return *this;
+	if (this != &other)
+	{
+		this->_name = other._name;
+		this->_health = other._health;
+		this->_energy = other._energy;
+		this->_attack_damage = other._attack_damage;	
 	}
-	// DO THINGS
 	return *this;
 }
 
@@ -69,18 +72,9 @@ int &DiamondTrap::getAttack(void)
 	return (this->_attack_damage);
 }
 
-
-
 void DiamondTrap::whoAmI(void)
 {
 	std::cout << "Soy DiamondTrap y me llamo: " << this->_name << std::endl;
 	std::cout << "Soy ClapTrap y me llamo: " << ClapTrap::_name << std::endl;
 }
 
-void	DiamondTrap::getDiam_stats(void)
-{
-	std::cout << "Stats de " << this->_name << std::endl;
-	std::cout << "Vida:......" << this->_health << std::endl;
-	std::cout << "Energía:..." << this->_energy << std::endl;
-	std::cout << "Ataque:...." << this->_attack_damage << std::endl;
-}

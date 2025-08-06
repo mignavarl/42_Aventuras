@@ -21,10 +21,17 @@ Brain::~Brain(void)
 // OPERATORS--------------------------------------------------------------------
 Brain& Brain::operator=(Brain const& other)
 {
-	if (this == &other) {
+	int i;
+
+	i = 0;
+	if (this == &other)
 		return *this;
+	while (i < 100)
+	{
+		if (other.ideas[i].length() > 0)
+			this->setBrainIdea(other.ideas[i], i);
+		i++;
 	}
-	// DO THINGS
 	return *this;
 }
 
