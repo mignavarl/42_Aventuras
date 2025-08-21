@@ -6,7 +6,7 @@
 /*   By: mignavar <mignavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:16:44 by mignavar          #+#    #+#             */
-/*   Updated: 2025/08/04 11:42:37 by mignavar         ###   ########.fr       */
+/*   Updated: 2025/08/07 11:42:50 by mignavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,6 @@ bool	check_word(std::string word)
 	return (true);
 }
 
-void	PhoneBook::print_name(std::string name, bool final)
-{
-	int c;
-
-	c = 0;
-	if (name.length() > 10)
-	{
-		while (c < 9)
-		{
-			std::cout << name[c];
-			c++;
-		}
-		if (!final)
-			std::cout << "." << MAGENTA << "│" << NC;
-		else
-			std::cout << "." << MAGENTA << "║\n" << NC;
-		return;
-	}
-	if (!final)
-		std::cout << std::setw(10) << std::right << name << MAGENTA << ".│" << NC;
-	else
-		std::cout << std::setw(10) << std::right << name << MAGENTA << "║\n" << NC;
-}
 
 bool	PhoneBook::add_person(Contact *person)
 {
@@ -87,6 +64,30 @@ bool	PhoneBook::add_person(Contact *person)
 	}
 	std::cout << "Contacto guardado correctamente 👌\n";
 	return (true);
+}
+
+void	PhoneBook::print_name(std::string name, bool final)
+{
+	int c;
+
+	c = 0;
+	if (name.length() > 10)
+	{
+		while (c < 9)
+		{
+			std::cout << name[c];
+			c++;
+		}
+		if (!final)
+			std::cout << "." << MAGENTA << "│" << NC;
+		else
+			std::cout << "." << MAGENTA << "║\n" << NC;
+		return;
+	}
+	if (!final)
+		std::cout << std::setw(10) << std::right << name << MAGENTA << ".│" << NC;
+	else
+		std::cout << std::setw(10) << std::right << name << MAGENTA << "║\n" << NC;
 }
 
 void	PhoneBook::search_people(PhoneBook book)

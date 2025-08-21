@@ -23,7 +23,10 @@ ClapTrap::ClapTrap(std::string name)
 ClapTrap::ClapTrap(ClapTrap const& other)
 {
 	std::cout << GREEN "ClapTrap copy constructor called" NC << std::endl;
-	*this = other;
+	this->_name = other._name;
+	this->_health = other._health;
+	this->_energy = other._energy;
+	this->_attack_damage = other._attack_damage;
 }
 
 ClapTrap::~ClapTrap(void)

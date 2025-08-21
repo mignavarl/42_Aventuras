@@ -6,7 +6,7 @@ int main( void )
 	Fixed b(a);
 	Fixed c;
 
-	b.setRawBits(3);
+	b.setRawBits(0);
 
 	c = b;
 

@@ -15,26 +15,26 @@
 
 // AMateria declaration --------------------------------------------------------
 
-#ifndef AMATERIA_HPP
-# define AMATERIA_HPP
+#ifndef MATERIA_HPP
+# define MATERIA_HPP
 
 #include <iostream>
-#include "ICharacter.hpp"
-
+#include "Character.hpp"
 
 class AMateria
 {
-protected:
-	std::string _type;
-public:
-	AMateria();
-	AMateria(std::string const & type);
-	~AMateria();
-	AMateria& operator=(AMateria const& other);
-	
-	std::string const & getType() const; //Returns the materia type
-	virtual AMateria* clone() const = 0;
-	virtual void use(ICharacter& target);
+	protected:
+		std::string _type;
+	public:
+		AMateria();
+		AMateria(std::string const & type);
+		AMateria(AMateria const& other);
+		~AMateria();
+		AMateria& operator=(AMateria const& other);
+
+		std::string const & getType() const; //Returns the materia type
+		virtual AMateria* clone() const = 0;
+		virtual void use(ICharacter& target);
 };
 
 #endif

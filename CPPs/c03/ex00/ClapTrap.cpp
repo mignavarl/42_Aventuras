@@ -23,7 +23,10 @@ ClapTrap::ClapTrap(std::string name)
 ClapTrap::ClapTrap(ClapTrap const& other)
 {
 	std::cout << GREEN "ClapTrap copy constructor called" NC << std::endl;
-	*this = other;
+	this->_name = other._name;
+	this->_health = other._health;
+	this->_energy = other._energy;
+	this->_attack_damage = other._attack_damage;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -60,6 +63,7 @@ void ClapTrap::attack(const std::string& target)
 	std::cout << "ClapTrap " << this->_name << " ataca a " << target << ", causando " << this->_attack_damage << " puntos de daño\n";
 	this->_energy--;
 }
+
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_health <= 0)
@@ -72,6 +76,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	if (this->_health <= 0)
 		std::cout << "ClapTrap " << this->_name << " ha muerto\n";
 }
+
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_health <= 0)

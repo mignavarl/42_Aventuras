@@ -20,13 +20,12 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->_attack_damage = 20;
 }
 
-ScavTrap::ScavTrap(ScavTrap const& other) : ClapTrap(this->_name)
+ScavTrap::ScavTrap(ScavTrap const& other) : ClapTrap(other._name)
 {
 	std::cout << GREEN "ScavTrap copy constructor called" NC << std::endl;
-	this->_name = other._name;
-	this->_health = 100;
-	this->_energy = 50;
-	this->_attack_damage = 20;
+	this->_health = other._health;
+	this->_energy = other._energy;
+	this->_attack_damage = other._attack_damage;
 }
 
 ScavTrap::~ScavTrap(void)
