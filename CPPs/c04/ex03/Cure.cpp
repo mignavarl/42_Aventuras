@@ -1,13 +1,13 @@
-#include "Cure.hpp"
+#include "Alchemy.hpp"
 
 // CONSTRUCTORS AND DESTRUCTORS-------------------------------------------------
-Cure::Cure(void)
+Cure::Cure(void) : AMateria("cure")
 {
 	std::cout << GREEN "Cure default constructor called" NC << std::endl;
 	this->_type = "cure";
 }
 
-Cure::Cure(Cure const& other)
+Cure::Cure(Cure const& other) : AMateria("cure")
 {
 	std::cout << GREEN "Cure copy constructor called" NC << std::endl;
 	this->_type = other._type;
@@ -30,7 +30,8 @@ Cure& Cure::operator=(Cure const& other)
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
 
-void Cure::use(ICharacter& target)
+AMateria* Cure::clone(void) const
 {
-	std::cout << "Disparas un rayo de hielo a " << target.getName() << std::endl;
+	Cure *aux = new Cure(*this); 
+	return (aux);
 }

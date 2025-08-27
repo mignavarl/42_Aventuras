@@ -1,5 +1,5 @@
 NAME = final
-SRC = main.cpp
+SRC = main.cpp Character.cpp Cure.cpp Ice.cpp Materia.cpp MateriaSource.cpp
 OBJ = ${SRC:.cpp=.o}
 CXX = c++
 

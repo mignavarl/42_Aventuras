@@ -18,9 +18,10 @@
 #ifndef MATERIA_HPP
 # define MATERIA_HPP
 
-#include <iostream>
-#include "Character.hpp"
-
+// #include <iostream>
+// #include "Character.hpp"
+#include "Alchemy.hpp"
+class ICharacter;
 class AMateria
 {
 	protected:
@@ -29,7 +30,7 @@ class AMateria
 		AMateria();
 		AMateria(std::string const & type);
 		AMateria(AMateria const& other);
-		~AMateria();
+		virtual ~AMateria();
 		AMateria& operator=(AMateria const& other);
 
 		std::string const & getType() const; //Returns the materia type

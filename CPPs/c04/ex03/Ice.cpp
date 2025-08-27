@@ -1,15 +1,16 @@
 #include "Ice.hpp"
 
 // CONSTRUCTORS AND DESTRUCTORS-------------------------------------------------
-Ice::Ice(void)
+Ice::Ice(void) : AMateria("ice")
 {
 	std::cout << GREEN "Ice default constructor called" NC << std::endl;
+	this->_type = "ice";
 }
 
-Ice::Ice(Ice const& other) :
+Ice::Ice(Ice const& other) : AMateria("ice")
 {
 	std::cout << GREEN "Ice copy constructor called" NC << std::endl;
-	*this = other;
+	this->_type = other._type;
 }
 
 Ice::~Ice(void)
@@ -29,7 +30,8 @@ Ice& Ice::operator=(Ice const& other)
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
 
-void Ice::use(ICharacter& target)
+AMateria* Ice::clone(void) const
 {
-	std::cout << "Disparas un rayo de hielo a " << target.getName() << std::endl;
+	Ice *aux = new Ice(*this); 
+	return (aux);
 }

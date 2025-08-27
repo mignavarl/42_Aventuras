@@ -18,18 +18,18 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 
-#include "Materia.hpp"
+#include "Alchemy.hpp"
 
-class Cure : public AMateria
+class Cure : virtual public AMateria
 {
 	public:
 		Cure(void);
-		Cure(std::string const &type);
 		Cure(Cure const& other);
 		~Cure(void);
 
 		Cure& operator=(Cure const& other);
-		void use(ICharacter& target);
+		AMateria* clone() const;
+		//void use(ICharacter& target);
 };
 
 #endif // !_CURE_HPP

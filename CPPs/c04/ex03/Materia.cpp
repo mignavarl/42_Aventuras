@@ -1,4 +1,4 @@
-#include "Materia.hpp"
+#include "Alchemy.hpp"
 
 AMateria::AMateria()
 {
@@ -38,5 +38,15 @@ std::string const &AMateria::getType() const
 
 void AMateria::use(ICharacter& target)
 {
-	std::cout << "Gatillazo. " << target.getName() << " se ha reído de ti\n";
+	if (this->_type == "ice")
+		std::cout << "Disparas un rayo de hielo a " << target.getName() << " 🥶 ¡Qué frío! 🥶" << std::endl;
+	else if (this->_type == "cure")
+		std::cout << "Curas las heridas de " << target.getName() << std::endl;
+	else
+		std::cout << "Gatillazo. " << target.getName() << " se ha reído de ti\n";
+}
+
+AMateria* AMateria::clone(void)const
+{
+	return (0);
 }
