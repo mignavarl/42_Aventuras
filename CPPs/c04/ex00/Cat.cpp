@@ -11,7 +11,7 @@ Cat::Cat(void) : Animal()
 Cat::Cat(Cat const& other) : Animal()
 {
 	std::cout << GREEN "Cat copy constructor called" NC << std::endl;
-	*this = other;
+	this->type = other.type;
 }
 
 Cat::~Cat(void)

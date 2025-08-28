@@ -11,7 +11,7 @@ WrongCat::WrongCat(void) : WrongAnimal()
 WrongCat::WrongCat(WrongCat const& other) : WrongAnimal()
 {
 	std::cout << GREEN "WrongCat copy constructor called" NC << std::endl;
-	*this = other;
+	this->type = other.type;
 }
 
 WrongCat::~WrongCat(void)

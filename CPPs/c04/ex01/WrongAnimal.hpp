@@ -30,7 +30,7 @@ public:
 
 	WrongAnimal& operator=(WrongAnimal const& other);
 	virtual std::string getType(void) const;
-	virtual void makeSound(void) const;
+	void makeSound(void) const;
 };
 
 #endif // !_WRONGANIMAL_HPP

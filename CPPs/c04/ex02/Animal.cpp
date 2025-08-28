@@ -10,7 +10,7 @@ Animal::Animal(void)
 Animal::Animal(Animal const& other)
 {
 	std::cout << GREEN "Animal copy constructor called" NC << std::endl;
-	*this = other;
+	this->type = other.type;
 }
 
 Animal::~Animal(void)

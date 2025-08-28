@@ -10,7 +10,15 @@ Brain::Brain(void)
 Brain::Brain(Brain const& other)
 {
 	std::cout << GREEN "Brain copy constructor called" NC << std::endl;
-	*this = other;
+	int i;
+
+	i = 0;
+	while (i < 100)
+	{
+		if (other.ideas[i].length() > 0)
+			this->setBrainIdea(other.ideas[i], i);
+		i++;
+	}
 }
 
 Brain::~Brain(void)

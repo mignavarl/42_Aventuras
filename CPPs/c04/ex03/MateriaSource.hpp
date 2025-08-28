@@ -20,7 +20,7 @@
 
 #include "Materia.hpp"
 
-#define MAX_SRC 3
+#define MAX_SRC 4
 class IMateriaSource
 {
 	public:

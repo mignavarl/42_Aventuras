@@ -10,7 +10,7 @@ WrongAnimal::WrongAnimal(void)
 WrongAnimal::WrongAnimal(WrongAnimal const& other)
 {
 	std::cout << GREEN "WrongAnimal copy constructor called" NC << std::endl;
-	*this = other;
+	this->type = other.type;
 }
 
 WrongAnimal::~WrongAnimal(void)

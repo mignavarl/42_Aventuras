@@ -20,8 +20,8 @@
 
 #include <iostream>
 #include "Alchemy.hpp"
-#define MAX_INV 3
-#define MAX_FLR 3
+#define MAX_INV 4
+#define MAX_FLR 4
 class AMateria;
 class ICharacter
 {
