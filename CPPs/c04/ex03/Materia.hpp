@@ -18,8 +18,6 @@
 #ifndef MATERIA_HPP
 # define MATERIA_HPP
 
-// #include <iostream>
-// #include "Character.hpp"
 #include "Alchemy.hpp"
 class ICharacter;
 class AMateria

@@ -27,12 +27,12 @@ Character::Character(Character const &other)
 
 Character::~Character(void)
 {
-	std::cout << RED "Destructor called\n   GAME OVER" NC << std::endl;
-	for (size_t i = 0; inventory[i] && i <= MAX_INV; i++)
+	std::cout << RED "Character destructor called\n   GAME OVER" NC << std::endl;
+	for (size_t i = 0; this->inventory[i] && i <= MAX_INV; i++)
 	{
 		delete this->inventory[i];
 	}
-    for (size_t i = 0; floor[i] && i <= MAX_FLR; i++)
+	for (size_t i = 0; floor[i] && i <= MAX_FLR; i++)
 	{
 		delete floor[i];
 	}
@@ -77,6 +77,8 @@ void Character::unequip(int idx)
 		for (i = 0; floor[i] && i <= MAX_FLR; i++)
 			;
 		floor[i] = inventory[idx]->clone();
+		std::cout << "Magia nº" << idx << " desequipado\n";
+		delete inventory[idx];
 		inventory[idx] = NULL;
 	}
 }

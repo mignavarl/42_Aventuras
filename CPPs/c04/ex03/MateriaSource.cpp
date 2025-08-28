@@ -9,7 +9,8 @@ MateriaSource::MateriaSource(void)
 MateriaSource::MateriaSource(MateriaSource const& other)
 {
 	std::cout << GREEN "MateriaSource copy constructor called" NC << std::endl;
-	*this = other;
+	for (size_t i = 0; list[i] && i < MAX_SRC; i++)
+		this->list[i] = other.list[i];
 }
 
 MateriaSource::~MateriaSource(void)
@@ -22,10 +23,11 @@ MateriaSource::~MateriaSource(void)
 // OPERATORS--------------------------------------------------------------------
 MateriaSource& MateriaSource::operator=(MateriaSource const& other)
 {
-	if (this == &other) {
-		return *this;
+	if (this != &other)
+	{
+		for (size_t i = 0; list[i] && i < MAX_SRC; i++)
+			this->list[i] = other.list[i];
 	}
-	// DO THINGS
 	return *this;
 }
 
