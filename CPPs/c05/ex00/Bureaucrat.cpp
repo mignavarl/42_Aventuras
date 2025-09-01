@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include <iostream>
 
 // CONSTRUCTORS AND DESTRUCTORS-------------------------------------------------
 Bureaucrat::Bureaucrat(std::string name, int grade): _name(name), _grade(grade)
@@ -55,4 +54,10 @@ void Bureaucrat::decrement_grade(void)
 		std::cout << "Imposible descender más\n";
 	else
 		this->_grade--;
+}
+
+std::ostream &operator<<(std::ostream &o, Bureaucrat &bur)
+{
+	o << bur.get_name() << ", burócrata de grado " << bur.get_grade();
+	return (o);
 }

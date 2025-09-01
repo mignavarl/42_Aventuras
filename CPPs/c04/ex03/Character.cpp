@@ -77,7 +77,7 @@ void Character::unequip(int idx)
 		for (i = 0; floor[i] && i <= MAX_FLR; i++)
 			;
 		floor[i] = inventory[idx]->clone();
-		std::cout << "Magia nº" << idx << " desequipado\n";
+		std::cout << "Magia nº" << idx << " desequipada\n";
 		delete inventory[idx];
 		inventory[idx] = NULL;
 	}

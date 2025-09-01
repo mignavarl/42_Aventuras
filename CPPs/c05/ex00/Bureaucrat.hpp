@@ -52,8 +52,8 @@ class Bureaucrat
 				return ("Grado demasiado bajo");
 			};
 	};
-	
 };
+std::ostream &operator<<(std::ostream &o, Bureaucrat &bur);
 
 #endif // !_BUREAUCRAT_HPP
 
