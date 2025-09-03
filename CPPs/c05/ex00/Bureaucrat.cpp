@@ -30,12 +30,12 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat const& other)
 }
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
-std::string Bureaucrat::get_name(void)
+const std::string Bureaucrat::get_name(void) const
 {
 	return (this->_name);
 }
 
-int Bureaucrat::get_grade(void)
+int Bureaucrat::get_grade(void) const
 {
 	return (this->_grade);
 }
@@ -45,7 +45,7 @@ void Bureaucrat::increment_grade(void)
 	if (this->_grade == 1)
 		std::cout << "Imposible ascender más\n";
 	else
-		this->_grade++;
+		this->_grade--;
 }
 
 void Bureaucrat::decrement_grade(void)
@@ -53,10 +53,10 @@ void Bureaucrat::decrement_grade(void)
 	if (this->_grade == 150)
 		std::cout << "Imposible descender más\n";
 	else
-		this->_grade--;
+		this->_grade++;
 }
 
-std::ostream &operator<<(std::ostream &o, Bureaucrat &bur)
+std::ostream &operator<<(std::ostream &o, const Bureaucrat &bur)
 {
 	o << bur.get_name() << ", burócrata de grado " << bur.get_grade();
 	return (o);

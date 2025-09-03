@@ -4,7 +4,7 @@ int main(void)
 {
 	try
 	{
-		Bureaucrat paco = Bureaucrat("Paco", 50);
+		Bureaucrat paco("Paco", 50);
 		paco.increment_grade();
 		std::cout << paco << std::endl;
 	}
@@ -15,7 +15,7 @@ int main(void)
 	std::cout << "---------------------\n";
 	try
 	{
-		Bureaucrat paca = Bureaucrat("Paca", 0);
+		Bureaucrat paca("Paca", 0);
 	}
 	catch(const std::exception& e)
 	{
@@ -24,7 +24,7 @@ int main(void)
 	std::cout << "---------------------\n";
 	try
 	{
-		Bureaucrat regildo = Bureaucrat("Regildo", 151);
+		Bureaucrat regildo("Regildo", 151);
 	}
 	catch(const std::exception& e)
 	{
@@ -33,7 +33,7 @@ int main(void)
 	std::cout << "---------------------\n";
 	try
 	{
-		Bureaucrat aitor = Bureaucrat("Aitor", 150);
+		Bureaucrat aitor("Aitor", 150);
 		aitor.decrement_grade();
 	}
 	catch(const std::exception& e)

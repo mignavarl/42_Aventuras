@@ -30,8 +30,8 @@ class Bureaucrat
 		~Bureaucrat(void);
 
 		Bureaucrat& operator=(Bureaucrat const& other);
-		std::string get_name(void);
-		int get_grade(void);
+		const std::string get_name(void) const;
+		int get_grade(void) const;
 		void increment_grade(void);
 		void decrement_grade(void);
 
@@ -53,7 +53,7 @@ class Bureaucrat
 			};
 	};
 };
-std::ostream &operator<<(std::ostream &o, Bureaucrat &bur);
+std::ostream &operator<<(std::ostream &o, const Bureaucrat &bur);
 
 #endif // !_BUREAUCRAT_HPP
 
