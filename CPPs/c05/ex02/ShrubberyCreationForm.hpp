@@ -18,13 +18,18 @@
 #ifndef _SHRUBBERYCREATIONFORM_HPP
 # define _SHRUBBERYCREATIONFORM_HPP
 
-class ShrubberyCreationForm {
-public:
-	ShrubberyCreationForm(void);
-	ShrubberyCreationForm(ShrubberyCreationForm const& other);
-	~ShrubberyCreationForm(void);
+#include <iostream>
+#include "AForm.hpp"
 
-	ShrubberyCreationForm& operator=(ShrubberyCreationForm const& other);
+class ShrubberyCreationForm : public AForm
+{
+	public:
+		ShrubberyCreationForm(void);
+		ShrubberyCreationForm(ShrubberyCreationForm const& other);
+		~ShrubberyCreationForm(void);
+
+		ShrubberyCreationForm& operator=(ShrubberyCreationForm const& other);
+		void execute(Bureaucrat const & executor) const;
 };
 
 #endif // !_SHRUBBERYCREATIONFORM_HPP

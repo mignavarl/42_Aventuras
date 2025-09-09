@@ -29,6 +29,7 @@ class PresidentialPardonForm : public AForm
 		~PresidentialPardonForm(void);
 
 		PresidentialPardonForm& operator=(PresidentialPardonForm const& other);
+		void execute(Bureaucrat const & executor) const;
 };
 
 #endif // !_PRESIDENTIALPARDONFORM_HPP

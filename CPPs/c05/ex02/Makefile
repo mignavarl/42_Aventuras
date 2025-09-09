@@ -1,5 +1,5 @@
-NAME = form
-SRC = main.cpp Bureaucrat.cpp AForm.cpp
+NAME = basic_forms
+SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp 
 OBJ = ${SRC:.cpp=.o}
 CXX = c++
 

@@ -29,3 +29,10 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm
 }
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const
+{
+	if (executor.get_grade() <= this->_execute_grade)
+		std::cout << BLUE << executor.get_name() << " ha sido perdonado por Zaphod Beeblebrox\n" << NC;
+	else
+		throw (GradeTooLowException());
+}

@@ -58,3 +58,8 @@ void AForm::beSigned(Bureaucrat *bur)
 	else
 		throw (GradeTooLowException());
 }
+
+void execute(Bureaucrat const & executor)
+{
+	(void)executor;
+}

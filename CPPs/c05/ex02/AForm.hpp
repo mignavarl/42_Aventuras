@@ -35,10 +35,11 @@ class AForm
 		AForm(AForm const& other);
 		virtual ~AForm(void);
 
-		virtual const std::string get_name(void) const = 0;
-		virtual int get_sign_grade(void) const = 0;
-		virtual int	get_execute_grade(void) const = 0;
-		virtual void beSigned(Bureaucrat *bur) = 0;
+		virtual const std::string get_name(void) const;
+		virtual int get_sign_grade(void) const;
+		virtual int	get_execute_grade(void) const;
+		virtual void beSigned(Bureaucrat *bur);
+		virtual void execute(Bureaucrat const & executor) const = 0;
 
 		AForm& operator=(AForm const& other);
 		

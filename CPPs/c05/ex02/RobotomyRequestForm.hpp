@@ -18,13 +18,21 @@
 #ifndef _ROBOTOMYREQUESTFORM_HPP
 # define _ROBOTOMYREQUESTFORM_HPP
 
-class RobotomyRequestForm {
-public:
-	RobotomyRequestForm(void);
-	RobotomyRequestForm(RobotomyRequestForm const& other);
-	~RobotomyRequestForm(void);
+#include <iostream>
+#include "AForm.hpp"
+#include <cstdlib>
+#include <ctime>
+#include <unistd.h>
 
-	RobotomyRequestForm& operator=(RobotomyRequestForm const& other);
+class RobotomyRequestForm : public AForm
+{
+	public:
+		RobotomyRequestForm(void);
+		RobotomyRequestForm(RobotomyRequestForm const& other);
+		~RobotomyRequestForm(void);
+
+		RobotomyRequestForm& operator=(RobotomyRequestForm const& other);
+		void execute(Bureaucrat const & executor) const;
 };
 
 #endif // !_ROBOTOMYREQUESTFORM_HPP
