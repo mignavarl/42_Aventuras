@@ -20,6 +20,8 @@
 
 #include <iostream>
 #include "Forms.hpp"
+#include <string>
+#include <functional>
 
 class Intern 
 {

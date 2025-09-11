@@ -21,32 +21,40 @@ Intern::~Intern(void)
 // OPERATORS--------------------------------------------------------------------
 Intern& Intern::operator=(Intern const& other)
 {
-	if (this == &other) {
+	if (this == &other)
 		return *this;
-	}
-	// DO THINGS
 	return *this;
 }
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
+AForm *makeShrubbery(std::string target)
+{
+	return (new ShrubberyCreationForm(target));
+}
+
+AForm *makeRobotomy(std::string target)
+{
+	return (new RobotomyRequestForm(target));
+}
+
+AForm *makePardon(std::string target)
+{
+	return (new PresidentialPardonForm(target));
+}
+
 AForm *Intern::makeForm(std::string form_name, std::string target)
 {
-	if (form_name == "shrubbery creation")
+	std::string classes[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	AForm *(*forms[3])(std::string target) = {&makeShrubbery, &makeRobotomy, &makePardon};
+
+	for (size_t i = 0; i < 3; i++)
 	{
-		AForm *form = new ShrubberyCreationForm();
-		return (form);
+		if (form_name == classes[i])
+		{
+			std::cout << "Becario creó " << classes[i] << std::endl;
+			return (forms[i](target));
+		}
 	}
-	else if (form_name == "robotomy request")
-	{
-		;
-	}
-	else if (form_name == "presidential pardon")
-	{
-		;
-	}
-	else
-	{
-		std::cout << RED "Formulario Incorrecto\n" "Los disponibles son:\n\t- shrubbery creation\n\t- robotomy request\n\t- presidential pardon\n";
-		return (NULL);
-	}
+	std::cout << RED "Formulario Incorrecto\n" "Los disponibles son:\n\t- shrubbery creation\n\t- robotomy request\n\t- presidential pardon\n" NC;
+	return (NULL);
 }

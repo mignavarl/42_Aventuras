@@ -1,28 +1,19 @@
 #include "Bureaucrat.hpp"
 #include "Forms.hpp"
+#include "Intern.hpp"
 
 int main(void)
 {
+	Intern someRandomIntern;
+	AForm* rrf;
+	AForm* wrong;
+	Bureaucrat Aitor("Aitor", 31);
 
-	Bureaucrat Paco("Paco", 50);
-	Bureaucrat Aitor = Bureaucrat("Aitor", 31);
-	Bureaucrat Alicia("Alicia", 6); 
-
-	AForm *bery = new ShrubberyCreationForm();
-	AForm *robo = new RobotomyRequestForm();
-	AForm *pres = new PresidentialPardonForm();
-
-	Paco.signForm(bery);
-	Paco.executeForm(*bery);
-	std::cout << "----------------------------------\n";
-	Aitor.signForm(robo);
-	Aitor.executeForm(*robo);
-	std::cout << "----------------------------------\n";
-	Alicia.signForm(pres);
-	Alicia.executeForm(*pres);
-	Alicia.increment_grade();
-	Alicia.executeForm(*pres);
-	delete(bery);
-	delete(robo);
-	delete(pres);
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	rrf->beSigned(&Aitor);
+	rrf->execute(Aitor);
+	std::cout << "------------------------------------------\n";
+	wrong = someRandomIntern.makeForm("Tortilla de patata request", "Tu primo");
+	std::cout << "------------------------------------------\n";
+	delete (rrf);
 }

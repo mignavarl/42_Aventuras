@@ -63,6 +63,11 @@ void Bureaucrat::decrement_grade(void)
 
 void Bureaucrat::signForm(AForm *form)
 {
+	if (!form)
+	{
+		std::cout << RED "Formulario corrupto\n" NC;
+		return;
+	}
 	try
 	{
 		form->beSigned(this);
@@ -72,7 +77,6 @@ void Bureaucrat::signForm(AForm *form)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	
 }
 
 void Bureaucrat::executeForm(AForm const & form) const

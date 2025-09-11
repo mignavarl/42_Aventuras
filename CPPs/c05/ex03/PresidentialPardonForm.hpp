@@ -23,8 +23,11 @@
 
 class PresidentialPardonForm : public AForm
 {
+	private:
+		std::string _target;
 	public:
 		PresidentialPardonForm(void);
+		PresidentialPardonForm(std::string taget);
 		PresidentialPardonForm(PresidentialPardonForm const& other);
 		~PresidentialPardonForm(void);
 
@@ -33,4 +36,3 @@ class PresidentialPardonForm : public AForm
 };
 
 #endif // !_PRESIDENTIALPARDONFORM_HPP
-

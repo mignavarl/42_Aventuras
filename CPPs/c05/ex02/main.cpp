@@ -3,14 +3,13 @@
 
 int main(void)
 {
-
 	Bureaucrat Paco("Paco", 50);
 	Bureaucrat Aitor = Bureaucrat("Aitor", 31);
 	Bureaucrat Alicia("Alicia", 6); 
 
-	AForm *bery = new ShrubberyCreationForm();
-	AForm *robo = new RobotomyRequestForm();
-	AForm *pres = new PresidentialPardonForm();
+	AForm *bery = new ShrubberyCreationForm("casa");
+	AForm *robo = new RobotomyRequestForm("Inés");
+	AForm *pres = new PresidentialPardonForm("Tu tía de Granada");
 
 	Paco.signForm(bery);
 	Paco.executeForm(*bery);

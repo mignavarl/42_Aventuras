@@ -20,11 +20,15 @@
 
 #include <iostream>
 #include "AForm.hpp"
+#include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {
+	private:
+		std::string _target;
 	public:
 		ShrubberyCreationForm(void);
+		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(ShrubberyCreationForm const& other);
 		~ShrubberyCreationForm(void);
 
@@ -33,4 +37,3 @@ class ShrubberyCreationForm : public AForm
 };
 
 #endif // !_SHRUBBERYCREATIONFORM_HPP
-
