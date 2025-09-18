@@ -41,7 +41,7 @@ bool type_double(std::string str)
 bool type_float(std::string str)
 {
 	int last = str.length();
-	if (str[last] != 'f')
+	if (str[last - 1] != 'f')
 		return false;
 	bool dot_flag = false;
 	for (size_t i = 0; str[i]; i++)

@@ -16,7 +16,7 @@ void print_char(std::string str)
 
 void print_int(std::string str)
 {
-	long n = atol(str.c_str());
+	long double n = atol(str.c_str());
 
 	if (str.length() < 4 && isalpha(n))
 		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
@@ -32,12 +32,43 @@ void print_int(std::string str)
 
 void print_float(std::string str)
 {
-	(void)str;
+	long double n = atof(str.c_str());
+
+	if (str.length() < 4 && isalpha(n))
+		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+	if (n > INT_MAX || n < INT_MIN)
+		std::cout << "int: imposible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(n) << std::endl;
+	if (n > FLT_MAX || n < FLT_MIN)
+		std::cout << "float: imposible" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(n) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(n) << ".0" << std::endl;
 }
 
 void print_double(std::string str)
 {
-	(void)str;
+		long double n = atof(str.c_str());
+
+	if (str.length() < 4 && isalpha(n))
+		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+	if (n > INT_MAX || n < INT_MIN)
+		std::cout << "int: imposible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(n) << std::endl;
+	if (n > FLT_MAX || n < FLT_MIN)
+		std::cout << "float: imposible" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(n) << ".0f" << std::endl;
+	if (n > DBL_MAX || n < DBL_MIN)
+		std::cout << "double: imposible" << std::endl;
+	else
+		std::cout << "double: " << static_cast<double>(n) << ".0" << std::endl;
 }
 
 void print_pseudo(std::string str)

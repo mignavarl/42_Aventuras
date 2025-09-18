@@ -21,6 +21,7 @@
 # include <iostream>
 # include <limits.h>
 # include <stdlib.h>
+# include <cfloat>
 
 enum e_type
 {
