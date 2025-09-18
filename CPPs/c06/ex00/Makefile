@@ -1,5 +1,5 @@
 NAME = convert
-SRC = main.cpp
+SRC = main.cpp ScalarConverter.cpp find_type.cpp prints_type.cpp
 OBJ = ${SRC:.cpp=.o}
 CXX = c++
 
