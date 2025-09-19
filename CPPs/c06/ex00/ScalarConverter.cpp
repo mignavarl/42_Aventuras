@@ -32,7 +32,6 @@ ScalarConverter& ScalarConverter::operator=(ScalarConverter const& other)
 void ScalarConverter::convert(std::string str)
 {
 	e_type type = find_type(str);
-	std::cout << "TYPE: " << type << "\n------------------------\n";
 	switch (type)
 	{
 	case CHAR:
@@ -51,8 +50,7 @@ void ScalarConverter::convert(std::string str)
 		print_pseudo(str);
 		break;
 	case NO_TYPE:
-		//imprimir error o algo
-		std::cout << "💩\n";
+		std::cout << RED "No Char\nNo Int\nNo Float\nNo Double\nTipo indefinido\n" NC;
 		break;
 	}
 }

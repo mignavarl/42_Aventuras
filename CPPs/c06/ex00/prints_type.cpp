@@ -3,72 +3,71 @@
 void print_char(std::string str)
 {
 	char c = str[0];
-	std::cout << "c = " << c << std::endl;
 	if (isprint(c))
-		std::cout << "char: '" << str << "'" << std::endl;
+		std::cout << "char:\t'" << str << "'" << std::endl;
 	else
-		std::cout << "char: Non displayable" << std::endl;
+		std::cout << "char:\tNo mostrable" << std::endl;
 	
-	std::cout << "int: " << static_cast<int>(c) << std::endl;
-	std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl; 
+	std::cout << "int:\t" << static_cast<int>(c) << std::endl;
+	std::cout << "float:\t" << static_cast<float>(c) << ".0f" << std::endl;
+	std::cout << "double:\t" << static_cast<double>(c) << ".0" << std::endl; 
 }
 
 void print_int(std::string str)
 {
 	long double n = atol(str.c_str());
 
-	if (str.length() < 4 && isalpha(n))
-		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
+	if (str.length() < 4 && isprint(n))
+		std::cout << "char:\t'" << static_cast<char>(n) << "'" << std::endl;
 	else
-		std::cout << "char: Non displayable" << std::endl;
+		std::cout << "char:\tNo mostrable" << std::endl;
 	if (n > INT_MAX || n < INT_MIN)
-		std::cout << "int: imposible" << std::endl;
+		std::cout << "int:\timposible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(n) << std::endl;
-	std::cout << "float: " << static_cast<float>(n) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(n) << ".0" << std::endl;
+		std::cout << "int:\t" << static_cast<int>(n) << std::endl;
+	std::cout << "float:\t" << static_cast<float>(n) << ".0f" << std::endl;
+	std::cout << "double:\t" << static_cast<double>(n) << ".0" << std::endl;
 }
 
 void print_float(std::string str)
 {
 	long double n = atof(str.c_str());
 
-	if (str.length() < 4 && isalpha(n))
-		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
+	if (str.length() < 7 && isprint(n))
+		std::cout << "char:\t'" << static_cast<char>(n) << "'" << std::endl;
 	else
-		std::cout << "char: Non displayable" << std::endl;
+		std::cout << "char:\tNo mostrable" << std::endl;
 	if (n > INT_MAX || n < INT_MIN)
-		std::cout << "int: imposible" << std::endl;
+		std::cout << "int:\timposible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(n) << std::endl;
+		std::cout << "int:\t" << static_cast<int>(n) << std::endl;
 	if (n > FLT_MAX || n < FLT_MIN)
-		std::cout << "float: imposible" << std::endl;
+		std::cout << "float:\timposible" << std::endl;
 	else
-		std::cout << "float: " << static_cast<float>(n) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(n) << ".0" << std::endl;
+		std::cout << "float:\t" << static_cast<float>(n) << ".0f" << std::endl;
+	std::cout << "double:\t" << static_cast<double>(n) << ".0" << std::endl;
 }
 
 void print_double(std::string str)
 {
 		long double n = atof(str.c_str());
 
-	if (str.length() < 4 && isalpha(n))
-		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
+	if (str.length() < 6 && isprint(n))
+		std::cout << "char:\t'" << static_cast<char>(n) << "'" << std::endl;
 	else
-		std::cout << "char: Non displayable" << std::endl;
+		std::cout << "char:\tNo mostrable" << std::endl;
 	if (n > INT_MAX || n < INT_MIN)
-		std::cout << "int: imposible" << std::endl;
+		std::cout << "int:\timposible" << std::endl;
 	else
-		std::cout << "int: " << static_cast<int>(n) << std::endl;
+		std::cout << "int:\t" << static_cast<int>(n) << std::endl;
 	if (n > FLT_MAX || n < FLT_MIN)
-		std::cout << "float: imposible" << std::endl;
+		std::cout << "float:\timposible" << std::endl;
 	else
-		std::cout << "float: " << static_cast<float>(n) << ".0f" << std::endl;
+		std::cout << "float:\t" << static_cast<float>(n) << ".0f" << std::endl;
 	if (n > DBL_MAX || n < DBL_MIN)
-		std::cout << "double: imposible" << std::endl;
+		std::cout << "double:\timposible" << std::endl;
 	else
-		std::cout << "double: " << static_cast<double>(n) << ".0" << std::endl;
+		std::cout << "double:\t" << static_cast<double>(n) << ".0" << std::endl;
 }
 
 void print_pseudo(std::string str)
