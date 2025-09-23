@@ -1,5 +1,5 @@
 NAME = array
-SRC = main.cpp Array.tpp
+SRC = main.cpp
 OBJ = ${SRC:.cpp=.o}
 CXX = c++
 
