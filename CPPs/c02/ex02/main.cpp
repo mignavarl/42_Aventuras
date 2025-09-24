@@ -14,7 +14,7 @@ int main( void )
 	//Arithmetic Operations
 	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 	std::cout << "Mult     '*' = " << b << std::endl;
-	Fixed const c(Fixed(10) / Fixed(2));
+	Fixed const c(Fixed(13.05f) / Fixed(2));
 	std::cout << "Division '/' = " << c << std::endl;
 	Fixed const d(Fixed(10.05f) + Fixed(5.05f));
 	std::cout << "Suma     '+' = " << d << std::endl;

@@ -26,6 +26,7 @@ class Array
 {
 	private:
 		T *_array;
+		unsigned int _size;
 	public:
 		Array(void);
 		Array(unsigned int n);
@@ -36,6 +37,15 @@ class Array
 		unsigned int size(void);
 		int& operator[](int index);
 		int& operator[](int index) const;
+
+	class IndexIncorrectException : public std::exception
+	{
+		public:
+			const char*  what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW
+			{
+				return ("Index no en rango");
+			};
+	};
 };
 #include "Array.tpp"
 
