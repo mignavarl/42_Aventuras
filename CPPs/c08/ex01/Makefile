@@ -1,5 +1,5 @@
 NAME = span_comido
-SRC = main.cpp
+SRC = main.cpp Span.cpp
 OBJ = ${SRC:.cpp=.o}
 CXX = c++
 

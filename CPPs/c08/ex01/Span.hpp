@@ -19,12 +19,13 @@
 # define _SPAN_HPP
 
 # include <iostream>
+# include <vector>
+# include <algorithm>
 
 class Span 
 {
 	private:
-		int	*_array;
-		unsigned int _size;
+		std::vector<int> _array;
 		unsigned int _max;
 	public:
 		Span(void);
