@@ -35,6 +35,7 @@ class Span
 
 		Span& operator=(Span const& other);
 		void addNumber(int num);
+		void addNumber(int min, int max);
 		int shortestSpan(void);
 		int longestSpan(void);
 

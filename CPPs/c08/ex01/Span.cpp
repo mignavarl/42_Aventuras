@@ -49,6 +49,23 @@ void Span::addNumber(int num)
 	this->_array.push_back(num);
 }
 
+void Span::addNumber(int min, int max)
+{
+	std::vector<int> b;
+
+	b.reserve(max - min);
+	for (int i = min; i < max; i++)
+	{
+		b.push_back(i);
+	}
+	srand(time(0));
+	for (unsigned int i = this->_array.size(); i < this->_max; i++)
+	{
+		int r = rand() % b.size();
+		this->_array.push_back(b.at(r));
+	}
+}
+
 int Span::shortestSpan(void)
 {
 	if (this->_array.size() < 2)
