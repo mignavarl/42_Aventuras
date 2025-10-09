@@ -94,5 +94,3 @@ void print_pseudo(std::string str)
 		<< "double:\t-inf\n"; 
 	}
 }
-
-//static_cast<char>

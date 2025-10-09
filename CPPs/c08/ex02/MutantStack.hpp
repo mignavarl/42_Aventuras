@@ -22,26 +22,24 @@
 # include <stack>
 
 template <typename T>
-class MutantStack
+class MutantStack : public std::stack<T>
 {
-	private:
-		T *_stack;
 	public:
 		MutantStack(void);
 		MutantStack(MutantStack const& other);
 		~MutantStack(void);
-	
-		MutantStack& operator=(MutantStack const& other);
 
-		size_t	size(void);
-		bool	empty(void);
-		MutantStack<int> &top(void);
-		void	push(int n);
-		void	pop(void);
-		MutantStack<int> begin(void);
-		MutantStack<int> end(void);
+		MutantStack& operator=(MutantStack const& other);
+		typedef typename std::stack<T>::container_type::iterator iterator;
+		iterator begin()
+		{
+			return (std::stack<T>::c.begin());
+		}
+		iterator end()
+		{
+			return (std::stack<T>::c.end());
+		}
 };
-std::ostream &operator<<(std::ostream &o, const MutantStack<int> &ms);
 # include "MutantStack.tpp"
 
 #endif // !_MUTANTSTACK_HPP

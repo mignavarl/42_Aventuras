@@ -1,4 +1,4 @@
-NAME = span_comido
+NAME = mutated
 SRC = main.cpp
 OBJ = ${SRC:.cpp=.o}
 CXX = c++
