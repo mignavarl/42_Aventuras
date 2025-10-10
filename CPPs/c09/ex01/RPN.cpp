@@ -66,7 +66,6 @@ bool	RPN::calcule(std::stack<int> *buff, char token)
 	default:
 		break;
 	}
-
 	return (true);
 }
 
@@ -90,5 +89,8 @@ void	RPN::reverse_polish_notation(void)
 			buff.push(atoi(tok.c_str()));
 		this->pile.pop();
 	}
-	std::cout << GREEN << buff.top() << NC << std::endl;
+	if (buff.size() == 1)
+		std::cout << GREEN << buff.top() << NC << std::endl;
+	else
+		std::cout << RED "Error: faltan símbolos\n" NC;
 }
