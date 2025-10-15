@@ -34,6 +34,7 @@ class Array
 		~Array(void);
 		
 		Array& operator=(Array const& other);
+		
 		unsigned int size(void);
 		int& operator[](int index);
 		int& operator[](int index) const;

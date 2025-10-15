@@ -3,11 +3,11 @@
 template <typename T>
 void swap(T &a, T &b)
 {
-	T c;
+	T temp;
 
-	c = a;
+	temp = a;
 	a = b;
-	b = c;
+	b = temp;
 }
 
 template <typename T>
