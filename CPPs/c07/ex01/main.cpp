@@ -5,7 +5,7 @@ void iter(T_string &str, T_size len, T_func f)
 {
 	for (T_size i = 0; i < len; i++)
 	{
-		str[i] = f(str[i]);
+		f(str[i]);
 	}
 }
 
