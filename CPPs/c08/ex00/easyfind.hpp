@@ -19,6 +19,8 @@
 # define EASYFIND_HPP
 
 #include <iostream>
+#include <algorithm>
+#include <vector>
 
 
 class NumberNotFoundException : public std::exception
@@ -29,5 +31,18 @@ class NumberNotFoundException : public std::exception
 				return (RED"Número no encontrado\033[0m");
 			};
 	};
+
+template <typename T>
+void easyfind(T array, int n_find)
+{
+	std::vector<int>::iterator it;
+	
+	std::cout << GREEN "Número a buscar: " << n_find << NC << std::endl;
+	it = find(array.begin(), array.end(), n_find);
+	if (it != array.end())
+		std::cout << n_find << " encontrado en el array\n";
+	else
+		throw (NumberNotFoundException());
+}
 
 #endif
