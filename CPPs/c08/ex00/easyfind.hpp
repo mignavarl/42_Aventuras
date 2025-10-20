@@ -20,6 +20,7 @@
 
 #include <iostream>
 
+
 class NumberNotFoundException : public std::exception
 	{
 		public:

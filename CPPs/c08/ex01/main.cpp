@@ -27,7 +27,7 @@ int main(void)
 		std::cerr << e.what() << '\n';
 	}
 	//---------------------------------------------------------------------------------------------------------------------
-	std::cout << GREEN "------------ TEST RANDOM NUMBERS ----------------\n" NC;
+	std::cout << GREEN "------------ TEST NÚMEROS ALEATORIOS ----------------\n" NC;
 	Span sp2 = Span(10000);
 	try
 	{
@@ -52,7 +52,7 @@ int main(void)
 		std::cerr << e.what() << '\n';
 	}
 	//---------------------------------------------------------------------------------------------------------------------
-	std::cout << GREEN "------------ TEST RANGE ITERATORS ----------------\n" NC;
+	std::cout << GREEN "------------ TEST RANGO DE NÚMEROS ----------------\n" NC;
 	Span sp3 = Span(5);
 	try
 	{

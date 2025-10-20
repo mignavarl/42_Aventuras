@@ -31,5 +31,3 @@ MutantStack<T>& MutantStack<T>::operator=(MutantStack const& other)
 	// DO THINGS
 	return *this;
 }
-
-// METHODS AND MEMBER FUNCTIONS-------------------------------------------------

@@ -1,4 +1,6 @@
 #include "easyfind.hpp"
+#include <vector>
+
 
 template <typename T>
 void easyfind(T array, int find)
@@ -17,6 +19,9 @@ void easyfind(T array, int find)
 int main(void)
 {
 	int array[] = {1,2,6,12,42,74,9,12,58};
+	// std::vector<int> array;
+	// for (int i=1; i<=5; i++)
+	// 	array.push_back(i);
 
 	try
 	{

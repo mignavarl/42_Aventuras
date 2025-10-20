@@ -4,27 +4,27 @@
 // CONSTRUCTORS AND DESTRUCTORS-------------------------------------------------
 Span::Span(void)
 {
-	std::cout << GREEN "Span default constructor called" NC << std::endl;
+	//std::cout << GREEN "Span default constructor called" NC << std::endl;
 	this->_max = 0;
 	this->_array.reserve(0);
 }
 Span::Span(unsigned int N)
 {
-	std::cout << GREEN "Span N constructor called" NC << std::endl;
+	//std::cout << GREEN "Span N constructor called" NC << std::endl;
 	this->_max = N;
 	this->_array.reserve(N);
 }
 
 Span::Span(Span const& other)
 {
-	std::cout << GREEN "Span copy constructor called" NC << std::endl;
+	//std::cout << GREEN "Span copy constructor called" NC << std::endl;
 	this->_array = other._array;
 	this->_max = other._max;
 }
 
 Span::~Span(void)
 {
-	std::cout << RED "Span destructor called" NC << std::endl;
+	//std::cout << RED "Span destructor called" NC << std::endl;
 }
 
 // OPERATORS--------------------------------------------------------------------
