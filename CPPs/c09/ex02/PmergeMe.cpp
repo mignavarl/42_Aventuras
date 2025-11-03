@@ -29,3 +29,28 @@ PmergeMe& PmergeMe::operator=(PmergeMe const& other)
 }
 
 // METHODS AND MEMBER FUNCTIONS-------------------------------------------------
+
+void PmergeMe::parse(std::stringstream &arg)
+{
+	long	num;
+	
+	while (arg >> num)
+	{
+		if (num > INT_MAX)
+			throw (PMergeException(RED"Error: número muy alto\n\033[0m"));
+		if (num < 0)
+			throw (PMergeException(RED"Eror: número negativo\n\033[0m"));
+		this->_vect.push_back(num);
+		this->_list.push_back(num);
+	}
+}
+
+
+void PmergeMe::init(std::stringstream &arg)
+{
+	(void)arg;
+	print_num(this->_vect, "Antes: ");
+	//Vector
+	sort_vector();
+	//List
+}
