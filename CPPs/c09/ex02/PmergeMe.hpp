@@ -18,14 +18,12 @@
 #ifndef _PMERGEME_HPP
 # define _PMERGEME_HPP
 
-# include <string>
-# include <vector>
-# include <list>
-# include <cstdlib>
-# include <sstream>
-# include <iostream>
-# include <algorithm>
-# include <climits>
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <algorithm>
+#include <deque>
+#include <climits>
 
 
 template <typename T>
@@ -52,7 +50,7 @@ class PmergeMe
 {
 	private:
 		std::vector<long> _vect;
-		std::list<long> _list;
+		std::deque<long> _dequ;
 	public:
 		PmergeMe(void);
 		PmergeMe(PmergeMe const& other);
@@ -63,9 +61,7 @@ class PmergeMe
 		void parse(std::stringstream &arg);
 		void init(std::stringstream &arg);
 		//VECTOR
-		void sort_vector();
-		void PmergeMe::make_pairs(std::vector<std::pair<long, long>> &pairs, long &last_odd);
-
+		void sort_vector(std::vector<long> &vector);
 	class PMergeException : public std::exception
 	{
 		private:

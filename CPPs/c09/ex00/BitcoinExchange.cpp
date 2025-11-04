@@ -38,7 +38,6 @@ void BitcoinExchange::extract_data(std::ifstream &data_file)
 	std::getline(data_file, line);
 	for (size_t i = 0; std::getline(data_file, line); i++)
 	{
-
 		key.insert(0, line, 0, line.find(','));
 		s_value.insert(0, line, (line.find(',') + 1), line.size());
 		ch_val = s_value.c_str();
@@ -73,6 +72,8 @@ bool BitcoinExchange::check_date(std::string key)
 
 	for (size_t i = 0; key[i]; i++)
 	{
+		if (key == "date")
+			return (false);
 		if ((isalnum(key[i]) && key[i] == '-') || (!isalnum(key[i]) && key[i] != '-'))
 		{
 			std::cout << RED "Error: fecha mal => " << key << NC << std::endl;
