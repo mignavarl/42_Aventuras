@@ -89,19 +89,30 @@ bool BitcoinExchange::check_date(std::string key)
 			}
 		}
 	}
-	//std::cout << "----------------------------\n";
 	save = key.substr(0, (key.find_first_of('-')));
 	year = atoi(save.c_str());
-	//std::cout << "year string = " << save << "/ int = " << year << std::endl;
 	save = key.substr(key.find_first_of('-') + 1, key.rfind('-'));
 	month = atoi(save.c_str());
-	//std::cout << "month string = " << save << "/ int = " << month << std::endl;
 	save =  key.substr(key.rfind('-') + 1, key.length());
 	day = atoi(save.c_str());
-	//std::cout << "day string = " << save << "/ int = " << day << std::endl;
 	if (year > 2025 || year < 2000 || month < 1 || month > 12 || day < 0 || day > 31)
 	{
 		std::cout << RED "Error: fecha mal => " << key << NC << std::endl;
+		return (false);
+	}
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+	{
+		std::cout << RED "Error: fecha mal => " << key << NC << std::endl;
+		return (false);
+	}
+	if (month == 2 && day > 29)
+	{
+		std::cout << RED "Error: fecha mal => " << key << NC << std::endl;
+		return (false);
+	}
+	if ((year % 4 != 0 && month == 2 && day > 28) || (year % 4 == 0 && month == 2 && day > 29))
+	{
+		std::cout << RED "¿Qué? ¿Buscando bisiestos, eh?" NC << std::endl;
 		return (false);
 	}
 	return (true);
@@ -121,15 +132,12 @@ void BitcoinExchange::calc_bitcoin(std::ifstream &file)
 		key.insert(0, line, 0, (line.find('|') - 1));
 		s_value.insert(0, line, (line.find('|') + 1), line.size());
 		value = atof(s_value.c_str());
-		//std::cout << "---------------------------------\n";
-		//std::cout << "key = " << key << "\nvalue = " << s_value << "\nfloat = " << value << std::endl;
 		if (check_values(value) && check_date(key))
 		{
 			pos = this->data.lower_bound(key);
 			if (pos->first != key)
 				pos--;
 			res = value * pos->second;
-			//std::cout << value << " * " << pos->second << " = " << res << std::endl;
 			std::cout << key << " => " << s_value << " = " << res << std::endl;
 		}
 		key.clear();
