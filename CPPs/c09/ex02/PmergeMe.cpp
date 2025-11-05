@@ -37,17 +37,18 @@ void PmergeMe::parse(std::stringstream &arg)
 	while (arg >> num)
 	{
 		if (num > INT_MAX)
-			throw (PMergeException(RED"Error: número muy alto\n\033[0m"));
+			throw (PMergeException(RED"Error: número muy alto\033[0m"));
 		if (num < 0)
-			throw (PMergeException(RED"Eror: número negativo\n\033[0m"));
+			throw (PMergeException(RED"Eror: número negativo\033[0m"));
 		if (std::find(_vect.begin(), _vect.end(), num) != _vect.end())
-			throw (PMergeException(RED"Eror: número repetido\n\033[0m"));
+			throw (PMergeException(RED"Eror: número repetido\033[0m"));
 		this->_vect.push_back(num);
 		this->_dequ.push_back(num);
 	}
 }
 
-std::vector<size_t> jacob_seq(size_t n)
+// JACOB --------------------------------------------------------------------------
+std::vector<size_t> jacob_seq_vec(size_t n)
 {
 	std::vector<size_t> seq;
 	seq.push_back(0);
@@ -57,7 +58,67 @@ std::vector<size_t> jacob_seq(size_t n)
 	return seq;
 }
 
+std::deque<size_t> jacob_seq_deq(size_t n)
+{
+	std::deque<size_t> seq;
+	seq.push_back(0);
+	seq.push_back(1);
+	while (seq.back() < n)
+		seq.push_back(seq[seq.size() - 1] + 2 * seq[seq.size() - 2]);
+	return seq;
+}
 
+// SORTS --------------------------------------------------------------------------
+void PmergeMe::sort_deque(std::deque<long> &deque)
+{
+	if (deque.size() <= 1)
+		return ;
+
+	std::deque<long> small;
+	std::deque<long> big;
+
+	for (size_t i = 0; i < deque.size() - 1; i+=2)
+	{
+		long a = deque[i];
+		long b = deque[i + 1];
+
+		if (a < b)
+		{
+			small.push_back(a);
+			big.push_back(b);
+		}
+		else
+		{
+			small.push_back(b);
+			big.push_back(a);
+		}
+	}
+	if (deque.size() % 2 != 0)
+		big.push_back(deque.back());
+	sort_deque(big);
+
+	std::deque<size_t> jacob = jacob_seq_deq(small.size());
+	std::deque<size_t> order;
+	size_t prev = 0;
+	for (size_t i = 1; i < jacob.size(); ++i)
+	{
+		size_t limit = std::min(jacob[i], small.size());
+		for (size_t j = limit; j > prev; --j)
+			order.push_back(j - 1);
+		prev = limit;
+		if (limit == small.size())
+			break;
+	}
+	
+	for (size_t i = 0; i < small.size(); i++)
+	{
+		long val = small[order[i]];
+		std::deque<long>::iterator it = std::lower_bound(big.begin(), big.end(), val);
+		big.insert(it, val);
+	}
+	
+	deque = big;
+}
 
 void PmergeMe::sort_vector(std::vector<long> &vector)
 {
@@ -67,7 +128,7 @@ void PmergeMe::sort_vector(std::vector<long> &vector)
 	std::vector<long> small;
 	std::vector<long> big;
 
-	for (size_t i = 0; i < vector.size(); i += 2)
+	for (size_t i = 0; i < vector.size() - 1; i += 2)
 	{
 		long a = vector[i];
 		long b = vector [i + 1];
@@ -77,7 +138,7 @@ void PmergeMe::sort_vector(std::vector<long> &vector)
 			small.push_back(a);
 			big.push_back(b);
 		}
-		else if (a > b)
+		else
 		{
 			small.push_back(b);
 			big.push_back(a);
@@ -87,19 +148,19 @@ void PmergeMe::sort_vector(std::vector<long> &vector)
 		big.push_back(vector.back());
 	sort_vector(big);
 
-	std::vector<size_t> jacob = jacob_seq(small.size());
-    std::vector<size_t> order;
-    size_t prev = 0;
+	std::vector<size_t> jacob = jacob_seq_vec(small.size());
+	std::vector<size_t> order;
+	size_t prev = 0;
 
-    for (size_t i = 1; i < jacob.size(); ++i)
-    {
-        size_t limit = std::min(jacob[i], small.size());
-        for (size_t j = limit; j > prev; --j)
-            order.push_back(j - 1);
-        prev = limit;
-        if (limit == small.size())
-            break;
-    }
+	for (size_t i = 1; i < jacob.size(); ++i)
+	{
+ 		size_t limit = std::min(jacob[i], small.size());
+		for (size_t j = limit; j > prev; --j)
+			order.push_back(j - 1);
+		prev = limit;
+		if (limit == small.size())
+		break;
+	}
 
 	for (size_t i = 0; i < small.size(); i++)
 	{
@@ -112,11 +173,37 @@ void PmergeMe::sort_vector(std::vector<long> &vector)
 	vector = big;
 }
 
-void PmergeMe::init(std::stringstream &arg)
+void PmergeMe::init(void)
 {
-	(void)arg;
-	print_num(this->_vect, "Antes: ");
+	double time;
+	clock_t init;
+	clock_t	end;
+	std::cout << YELLOW"------------------------------------------------------------" << NC << std::endl;
+	print_num(_vect, "Vector Antes: ");
+	std::cout << MAGENTA"------------------------------------------------------------" << NC << std::endl;
+	print_num(_dequ, "Deque  Antes: ");
+	std::cout << YELLOW"------------------------------------------------------------" << NC << std::endl;
+	std::cout << YELLOW"------------------------------------------------------------" << NC << std::endl;
+
 	//Vector
+	init = clock();
 	sort_vector(_vect);
-	//List
+	end = clock();
+	time = 1000 * static_cast<double>(end - init)/ CLOCKS_PER_SEC;
+	std::cout << std::endl << CYAN << "Tiempo en ordenar un vector de " << _vect.size() << " : " << time << NC << std::endl;
+ 	
+	//Deque
+	init = clock();
+	sort_deque(_dequ);
+	end = clock();
+	time = 1000 * static_cast<double>(end - init)/ CLOCKS_PER_SEC;
+	std::cout << CYAN << "Tiempo en ordenar una lista de " << _vect.size() << " : " << time << NC << std::endl << std::endl;
+
+	std::cout << YELLOW"------------------------------------------------------------" << NC << std::endl;
+	std::cout << YELLOW"------------------------------------------------------------" << NC << std::endl;
+	print_num(_vect, "Vector Después: ");
+	std::cout << MAGENTA"------------------------------------------------------------" << NC << std::endl;
+	print_num(_dequ, "Deque  Después: ");
+	std::cout << YELLOW"------------------------------------------------------------" << NC << std::endl;
+	std::cout << YELLOW"------------------------------------------------------------" << NC << std::endl;
 }

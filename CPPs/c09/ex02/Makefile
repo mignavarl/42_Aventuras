@@ -3,7 +3,7 @@ SRC = main.cpp PmergeMe.cpp
 OBJ = ${SRC:.cpp=.o}
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=leak -g3
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=leak -g3
 RM = rm -f
 
 all: ${NAME}

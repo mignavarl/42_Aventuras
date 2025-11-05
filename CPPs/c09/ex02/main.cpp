@@ -16,7 +16,7 @@ int main(int ac, char **av)
 		for (size_t i = 1; av[i]; i++)
 			arg <<  av[i] << " ";
 		algo.parse(arg);
-		algo.init(arg);
+		algo.init();
 	}
 	catch(const std::exception& e)
 	{

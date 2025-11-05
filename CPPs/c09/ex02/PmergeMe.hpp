@@ -33,15 +33,10 @@ void print_num(T const &num, std::string text)
 	
 	it = num.begin();
 	std::cout << text;
-	for (size_t i = 0; i < 6 && it != num.end(); i++)
+	for (size_t i = 0; i < num.size(); i++)
 	{
 		std::cout << *it << " ";
 		it++;
-		if (i == 5)
-		{
-			std::cout << "[...]" << std::endl;
-			return ;
-		}
 	}
 	std::cout << std::endl;
 }
@@ -59,9 +54,10 @@ class PmergeMe
 		PmergeMe& operator=(PmergeMe const& other);
 
 		void parse(std::stringstream &arg);
-		void init(std::stringstream &arg);
-		//VECTOR
+		void init();
+
 		void sort_vector(std::vector<long> &vector);
+		void sort_deque(std::deque<long> &deque);
 	class PMergeException : public std::exception
 	{
 		private:
