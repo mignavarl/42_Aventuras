@@ -21,6 +21,11 @@ else
     echo "El certificado SSL ya existe. Pasando."
 fi
 
+# Substitute DOMAIN_NAME in nginx config
+echo "Substituting domain name in nginx configuration..."
+sed "s/\${DOMAIN_NAME}/$DOMAIN_NAME/g" /etc/nginx/nginx.conf > /tmp/nginx.conf
+mv /tmp/nginx.conf /etc/nginx/nginx.conf
+
 echo "Probando configuracion nginx..."
 nginx -t
 echo "Tests nginx correctos"

@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
 
 # Create Directories
 RUN mkdir -p /var/run/mysqld \
-	&& mkdir -p /var/log/mysql \
 	&& chown -R mysql:mysql /var/run/mysqld \
 	&& chmod 755 /var/run/mysqld
 
@@ -17,12 +16,6 @@ COPY tools/init_db.sh /usr/local/bin/
 
 # Set permisions
 RUN chmod +x /usr/local/bin/init_db.sh
-
-# Environment variables
-ENV MYSQL_ROOT_PASSWORD=root \
-	MYSQL_DATABASE=app_db \
-	MYSQL_USER=app_user \
-	MYSQL_PASSWORD=app_pass
 
 EXPOSE 3306
 

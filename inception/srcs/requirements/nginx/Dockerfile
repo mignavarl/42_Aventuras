@@ -14,6 +14,6 @@ COPY tools/generate_ssl.sh /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/*.sh
 
-EXPOSE 443
+EXPOSE 80 443
 
 ENTRYPOINT ["/usr/local/bin/generate_ssl.sh"]

@@ -9,18 +9,23 @@ if [ -n "$WORDPRESS_DB_PASSWORD_FILE" ] && [ -f "$WORDPRESS_DB_PASSWORD_FILE" ];
     export WORDPRESS_DB_PASSWORD
 fi
 
+echo "Esperando a la base de datos..."
+# Wait for MariaDB
+until mysql -h"${WORDPRESS_DB_HOST}" -u"${WORDPRESS_DB_USER}" -p"${WORDPRESS_DB_PASSWORD}" -e "SELECT 1" >/dev/null 2>&1; do
+    echo "Base de datos no disponible - durmiendo. ZZZ..."
+    sleep 3
+done
+echo "¡Base de datos lista!"
+
 echo "Configurando Wordpress..."
 
 # Download Wordpress
 if [ ! -f "$WP_PATH/wp-config.php" ]; then
     echo "Descargando WordPress..."
-    wget -q https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
-    tar -xzf /tmp/wordpress.tar.gz -C /tmp
-    rm /tmp/wordpress.tar.gz
-
-    # Copy missing files
-    cp -rn /tmp/wordpress/* "$WP_PATH" || true
-    rm -rf /tmp/wordpress
+    cd "$WP_PATH"
+    
+    # Download WordPress core using WP-CLI
+    wp core download --allow-root
 
     WP_SALTS=$(wget -qO- https://api.wordpress.org/secret-key/1.1/salt/)
 
@@ -46,12 +51,30 @@ if ( !defined('ABSPATH') )
 require_once ABSPATH . 'wp-settings.php';
 EOF
 
+	echo "Installing WordPress..."
+    # Install WordPress (this creates tables and admin user)
+    wp core install \
+        --url="${DOMAIN_NAME}" \
+        --title="Inception" \
+        --admin_user="${WP_ADMIN_USER}" \
+        --admin_password="${WP_ADMIN_PASSWORD}" \
+        --admin_email="${WP_ADMIN_EMAIL}" \
+        --skip-email \
+        --allow-root
+    
+    # Create additional user
+    echo "Creating additional user..."
+    wp user create "${WP_USER}" "${WP_USER_EMAIL}" \
+        --role=author \
+        --user_pass="${WP_USER_PASSWORD}" \
+        --allow-root || echo "User already exists or creation failed"
+    
     # Set secure permissions
-    find "$WP_PATH" -type d -exec chmod 750 {} \;
-    find "$WP_PATH" -type f -exec chmod 640 {} \;
+    find "$WP_PATH" -type d -exec chmod 755 {} \;
+    find "$WP_PATH" -type f -exec chmod 644 {} \;
     chown -R www-data:www-data "$WP_PATH"
-
-    echo "WordPress setup complete."
+    
+    echo "WordPress installation complete!"
 else
     echo "WordPress already initialized, skipping setup."
 fi
