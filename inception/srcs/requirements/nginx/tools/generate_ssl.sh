@@ -8,6 +8,7 @@ mkdir -p /etc/nginx/ssl
 if [ ! -f /etc/nginx/ssl/nginx.crt ]; then
     echo "Generando certificado SSL para ${DOMAIN_NAME}..."
 
+    # Generate a self-signed certificate valid for 365 days
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
         -keyout /etc/nginx/ssl/nginx.key \
         -out /etc/nginx/ssl/nginx.crt \
@@ -27,8 +28,8 @@ sed "s/\${DOMAIN_NAME}/$DOMAIN_NAME/g" /etc/nginx/nginx.conf > /tmp/nginx.conf
 mv /tmp/nginx.conf /etc/nginx/nginx.conf
 
 echo "Probando configuracion nginx..."
-nginx -t
+nginx -t #Verify the syntax of Nginx configuration files without restarting the server
 echo "Tests nginx correctos"
 
 echo "Iniciando Nginx"
-exec nginx -g "daemon off;"
+exec nginx -g "daemon off;" # Foreground
