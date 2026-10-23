@@ -1,0 +1,25 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+		    "name": "C debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/pipex_bonus",
+            "args": ["text.txt" "grep m" "wc -l" "outfile"],
+            "stopAtEntry": true,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": false,
+		    "preLaunchTask": "run the makefile",
+            "linux": {
+                "MIMode": "gdb"
+            },
+            "osx": {
+                "MIMode": "lldb"
+            },
+		}
+	
