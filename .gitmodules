@@ -1,3 +1,12 @@
 [submodule "Minishell"]
 	path = Minishell
 	url = https://github.com/mignavarl/La_Conchi.git
+[submodule "Cub3D"]
+	path = Cub3D
+	url = https://github.com/mignavarl/mercadooma.git
+[submodule "Transcendence_Chinchon"]
+	path = Transcendence_Chinchon
+	url = https://github.com/mignavarl/chinchon_transcendence.git
+[submodule "ft_irc"]
+	path = ft_irc
+	url = https://github.com/david-3lm/doscord-42_ft_irc-.git
