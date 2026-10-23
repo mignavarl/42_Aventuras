@@ -1,0 +1,26 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+		    "name": "C debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/push_swap",
+            "args": [-69664 -65018 52062 -37733 11714 62993 -42289 -60848 3532 57005 267 38405 45461 23191 -58038 -24076 -36135 -79146 -91901 -17196 28057 -38697 -25482 89668 95375 -50026 55222 46107 29979 -20879 -16582 -72591 91916 -18565 71038 -16330 45183 67344 97056 71019 32325 37532 -68271 35920 93867 -71968 73535 -98297 14455 98743 -1944 93293 -47733 -8635 50469 -863 94299 -1313 -1660 98251 -95178 21062 -53362 -35449 74924 42156 -76826 -48188 -30467 -89075 -62955 8546 -36321 35255 -9449],
+            "stopAtEntry": true,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": false,
+		    "preLaunchTask": "run the makefile",
+            "linux": {
+                "MIMode": "gdb"
+            },
+            "osx": {
+                "MIMode": "lldb"
+            },
+		}
+	]
+}
